@@ -1,0 +1,164 @@
+<Season name="2019/20">
+	<Conference name="West">
+		<Team name="Dallas Mavericks" headCoach="Rick Carlisle">
+			<Player name="J.J." surname="Barea" position="Guard" number="5" age="35" nationality="Puerto Rican" indice="0"></Player>
+			<Player name="Ryan" surname="Broekhoff" position="Shooting Guard" number="45" age="29" nationality="Australian" indice="1" ></Player>
+			<Player name="Jalen" surname="Brunson" position="Guard" number="13" age="23" nationality="American" indice="2"></Player>
+			<Player name="Antonius" surname="Cleveland" position="Shooting Guard" number="3" age="25" nationality="American" indice="3"></Player>
+			<Player name="Seth" surname="Curry" position="Guard" number="30" age="29" nationality="American" indice="4"></Player>
+			<Player name="Luka" surname="Doncic" position="Small Forward" number="77" age="20" nationality="Slovenian" indice="5"></Player>
+			<Player name="Dorian" surname="Finney-Smith" position="Small Forward" number="10" age="26" nationality="American" indice="6"></Player>
+			<Player name="Tim" surname="Hardaway Jr." position="Shooting Guard" number="11" age="27" nationality="American" indice="7"></Player>
+			<Player name="Justin" surname="Jackson" position="Small Forward" number="44" age="24" nationality="American" indice="8"></Player>
+			<Player name="Maxi" surname="Kleber" position="Power Forward" number="42" age="27" nationality="German" indice="9"></Player>
+			<Player name="Courntey" surname="Lee" position="Shooting Guard" number="1" age="34" nationality="American" indice="10"></Player>
+			<Player name="Boban" surname="Marjanovic" position="Center" number="51" age="31" nationality="Serbian" indice="11"></Player>
+			<Player name="Kristaps" surname="Porzingis" position="Power Forward" number="6" age="24" nationality="Latvian" indice="12"></Player>
+			<Player name="Dwight" surname="Powell" position="Power Forward" number="7" age="28" nationality="Canadian" indice="13"></Player>
+			<Player name="Josh" surname="Reaves" position="Shooting Guard" number="23" age="22" nationality="American" indice="14"></Player>
+			<Player name="Isaiah" surname="Roby" position="Power Forward" number="9" age="21" nationality="American" indice="15"></Player>
+			<Player name="Delon" surname="Wright" position="Guard" number="55" age="27" nationality="American" indice="16"></Player>
+		</Team>
+		<Team name="Los Angeles Clippers" headCoach="Doc Rivers">
+			<Player name="Patrick" surname="Beverley" position="Guard" number="31" age="27" nationality="American" indice="0"></Player>
+			<Player name="Amir" surname="Coffey" position="Guard" number="7" age="22" nationality="American" indice="1"></Player>
+			<Player name="Paul" surname="Georges" position="Small Forward" number="13" age="29" nationality="American" indice="2"></Player>
+			<Player name="JaMychal" surname="Green" position="Power Forward" number="4" age="29" nationality="American" indice="3"></Player>
+			<Player name="Maurice" surname="Harkless" position="Small Forward" number="8" age="26" nationality="American" indice="4"></Player>
+			<Player name="Montrezl" surname="Harrell" position="Power Forward" number="5" age="25" nationality="American" indice="5"></Player>
+			<Player name="Mfiondu" surname="Kabengele" position="Power Forward" number="25" age="22" nationality="Canadian" indice="6"></Player>
+			<Player name="Kawhi" surname="Leonard" position="Small Forward" number="2" age="28" nationality="American" indice="7"></Player>
+			<Player name="Terance" surname="Mann" position="Shooting Guard" number="14" age="23" nationality="American" indice="8"></Player>
+			<Player name="Rodney" surname="McGruder" position="Shooting Guard" number="19" age="28" nationality="American" indice="9"></Player>
+			<Player name="Johnathan" surname="Motley" position="Power Forward" number="15" age="24" nationality="American" indice="10"></Player>
+			<Player name="Patrick" surname="Patterson" position="Power Forward" number="54" age="30" nationality="American" indice="11"></Player>
+			<Player name="Jerome" surname="Robinson" position="Shooting Guard" number="1" age="22" nationality="American" indice="12"></Player>
+			<Player name="Landry" surname="Shamet" position="Shooting Guard" number="20" age="22" nationality="American" indice="13"></Player>
+			<Player name="Derrick" surname="Walton" position="Guard" number="10" age="24" nationality="American" indice="14"></Player>
+			<Player name="Lou" surname="Williams" position="Shooting Guard" number="23" age="33" nationality="American" indice="15"></Player>
+			<Player name="Ivica" surname="Zubac" position="Center" number="40" age="22" nationality="Croatian" indice="16"></Player>
+		</Team>
+	</Conference>
+	<Conference name="East">
+		<Team name="Milwaukee Bucks" headCoach="Mike Budenholzer">
+			<Player name="Giannis" surname="Antetokounmpo" position="Power Forward" number="34" age="25" nationality="Greek" indice="0"></Player>
+			<Player name="Thanasis" surname="Antetokounmpo" position="Small Forward" number="43" age="27" nationality="Greek" indice="1"></Player>
+			<Player name="Dragan" surname="Bender" position="Power Forward" number="17" age="22" nationality="Croatian" indice="2"></Player>
+			<Player name="Eric" surname="Bledsoe" position="Guard" number="6" age="30" nationality="American" indice="3"></Player>
+			<Player name="Sterling" surname="Brown" position="Shooting Guard" number="23" age="24" nationality="American" indice="4"></Player>
+			<Player name="Pat" surname="Connaughton" position="Shooting Guard" number="24" age="26" nationality="American" indice="5"></Player>
+			<Player name="Donte" surname="DiVicenzo" position="Shooting Guard" number="0" age="22" nationality="American" indice="6"></Player>
+			<Player name="George" surname="Hill" position="Guard" number="3" age="33" nationality="American" indice="7"></Player>
+			<Player name="Ersan" surname="Ilyasova" position="Power Forward" number="7" age="32" nationality="Turkish" indice="8"></Player>
+			<Player name="Kyle" surname="Korver" position="Shooting Guard" number="26" age="38" nationality="American" indice="9"></Player>
+			<Player name="Brook" surname="Lopez" position="Center" number="11" age="31" nationality="American" indice="10"></Player>
+			<Player name="Robin" surname="Lopez" position="Center" number="42" age="31" nationality="American" indice="11"></Player>
+			<Player name="Frank" surname="Mason" position="Guard" number="15" age="25" nationality="American" indice="12"></Player>
+			<Player name="Wesley" surname="Matthews" position="Shooting Guard" number="9" age="33" nationality="American" indice="13"></Player>
+			<Player name="Khris" surname="Middleton" position="Small Forward" number="22" age="28" nationality="American" indice="14"></Player>
+			<Player name="Cameron" surname="Reynolds" position="Shooting Guard" number="13" age="24" nationality="American" indice="15"></Player>
+			<Player name="D.J." surname="Wilson" position="Small Forward" number="5" age="23" nationality="American" indice="16">></Player>
+		</Team>
+		<Team name="New Orleans Pelicans" headCoach="Alvin Gentry">
+			<Player name="Nickeil" surname="Alexander-Walker" position="Guard" number="0" age="21" nationality="Canadian" indice="0"></Player>
+			<Player name="Lonzo" surname="Ball" position="Guard" number="2" age="22" nationality="American" indice="1"></Player>
+			<Player name="Zylan" surname="Cheatham" position="Small Forward" number="45" age="24" nationality="American" indice="2"></Player>
+			<Player name="Derrick" surname="Favors" position="Power Forward" number="22" age="28" nationality="American" indice="3"></Player>
+			<Player name="Josh" surname="Gray" position="Guard" number="5" age="26" nationality="American" indice="4"></Player>
+			<Player name="Josh" surname="Hart" position="Shooting Guard" number="3" age="24" nationality="American" indice="5"></Player>
+			<Player name="Jaxson" surname="Hayes" position="Center" number="10" age="19" nationality="American" indice="6"></Player>
+			<Player name="Jrue" surname="Holiday" position="Guard" number="11" age="29" nationality="American" indice="7"></Player>
+			<Player name="Brandon" surname="Ingram" position="Small Forward" number="14" age="22" nationality="American" indice="8"></Player>
+			<Player name="Frank" surname="Jackson" position="Guard" number="15" age="21" nationality="American" indice="9"></Player>
+			<Player name="Nicolo" surname="Melli" position="Power Forward" number="20" age="28" nationality="Italian" indice="10"></Player>
+			<Player name="Darius" surname="Miller" position="Small Forward" number="21" age="29" nationality="American" indice="11"></Player>
+			<Player name="E'Twaun" surname="Moore" position="Shooting Guard" number="55" age="30" nationality="American" indice="12"></Player>
+			<Player name="Jahlil" surname="Okafor" position="Center" number="8" age="24" nationality="American" indice="13"></Player>
+			<Player name="J.J." surname="Redick" position="Shooting Guard" number="4" age="35" nationality="American" indice="14"></Player>
+			<Player name="Kenrich" surname="Williams" position="Small Forward" number="34" age="25" nationality="American" indice="15"></Player>
+			<Player name="Zion" surname="Williamson" position="Power Forward" number="1" age="19" nationality="American" indice="16"></Player>
+		</Team>
+	</Conference>
+	<Games>
+		<Game date="26/10/19" totScore="116-123" q1Score="27-43" q2Score="45-23" q3Score="23-29" q4Score="28-23" Winner="visitor">
+			<Home name="New Orleans Pelicans">
+				<PlayerStat indice="0" min="14" points="6" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="0/0" steals="0" blocks="0" turnovers="1"></PlayerStat>
+				<PlayerStat indice="1" min="33" points="15" rebounds="8" assists="5" fg="6/16" threePt="3/12" ft="0/2" steals="2" blocks="0" turnovers="2"></PlayerStat>
+				<PlayerStat indice="2" min="0"></PlayerStat>
+				<PlayerStat indice="3" min="21" points="16" rebounds="7" assists="2" fg="8/10" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="2"></PlayerStat>
+				<PlayerStat indice="4" min="0"></PlayerStat>
+				<PlayerStat indice="5" min="26" points="16" rebounds="9" assists="0" fg="5/9" threePt="1/5" ft="5/6" steals="2" blocks="0" turnovers="2"></PlayerStat>
+				<PlayerStat indice="6" min="0"></PlayerStat>
+				<PlayerStat indice="7" min="33" points="8" rebounds="4" assists="8" fg="2/11" threePt="0/3" ft="4/4" steals="2" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="8" min="31" points="25" rebounds="8" assists="3" fg="10/20" threePt="4/7" ft="1/1" steals="0" blocks="3" turnovers="3"></PlayerStat>
+				<PlayerStat indice="9" min="14" points="10" rebounds="0" assists="2" fg="4/9" threePt="2/3" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="10" min="14" points="4" rebounds="2" assists="1" fg="2/3" threePt="0/1" ft="0/0" steals="0" blocks="0" turnovers="1"></PlayerStat>
+				<PlayerStat indice="11" min="0"></PlayerStat>
+				<PlayerStat indice="12" min="0"></PlayerStat>
+				<PlayerStat indice="13" min="7" points="4" rebounds="3" assists="0" fg="2/3" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="14" min="21" points="3" rebounds="0" assists="2" fg="1/3" threePt="1/2" ft="0/0" steals="0" blocks="0" turnovers="2"></PlayerStat>
+				<PlayerStat indice="15" min="21" points="9" rebounds="6" assists="1" fg="3/5" threePt="2/3" ft="1/2" steals="0" blocks="0" turnovers="1"></PlayerStat>
+				<PlayerStat indice="16" min="0"></PlayerStat>
+			</Home>
+			<Visitor name="Dallas Mavericks">
+				<PlayerStat indice="0" min="0"></PlayerStat>
+				<PlayerStat indice="1" min="0"></PlayerStat>
+				<PlayerStat indice="2" min="28" points="14" rebounds="8" assists="2" fg="6/11" threePt="2/5" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="3" min="0"></PlayerStat>
+				<PlayerStat indice="4" min="17" points="8" rebounds="2" assists="0" fg="3/5" threePt="2/2" ft="0/0" steals="0" blocks="1" turnovers="1"></PlayerStat>
+				<PlayerStat indice="5" min="37" points="25" rebounds="10" assists="10" fg="10/19" threePt="3/9" ft="2/2" steals="2" blocks="0" turnovers="3"></PlayerStat>
+				<PlayerStat indice="6" min="21" points="7" rebounds="6" assists="2" fg="3/8" threePt="0/4" ft="1/4" steals="1" blocks="0" turnovers="1"></PlayerStat>
+				<PlayerStat indice="7" min="21" points="8" rebounds="1" assists="2" fg="2/8" threePt="2/7" ft="2/2" steals="0" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="8" min="13" points="7" rebounds="1" assists="0" fg="2/5" threePt="1/2" ft="2/2" steals="0" blocks="0" turnovers="2"></PlayerStat>
+				<PlayerStat indice="9" min="33" points="8" rebounds="10" assists="1" fg="2/6" threePt="1/5" ft="3/4" steals="0" blocks="1" turnovers="1"></PlayerStat>
+				<PlayerStat indice="10" min="5" points="2" rebounds="0" assists="0" fg="1/2" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="11" min="0"></PlayerStat>
+				<PlayerStat indice="12" min="29" points="24" rebounds="4" assists="3" fg="8/17" threePt="3/5" ft="5/8" steals="0" blocks="5" turnovers="3"></PlayerStat>
+				<PlayerStat indice="13" min="0"></PlayerStat>
+				<PlayerStat indice="14" min="0"></PlayerStat>
+				<PlayerStat indice="15" min="0"></PlayerStat>
+				<PlayerStat indice="16" min="31" points="20" rebounds="7" assists="3" fg="8/12" threePt="0/1" ft="4/4" steals="5" blocks="0" turnovers="0"></PlayerStat>
+			</Visitor>
+		</Game>
+		<Game date="15/11/19" totScore="132-127" q1Score="34-35" q2Score="38-24" q3Score="24-38" q4Score="36-30" Winner="home">
+			<Home name="New Orleans Pelicans">
+				<PlayerStat indice="0" min="21" points="2" rebounds="2" assists="3" fg="2/9" threePt="2/5" ft="0/0" steals="0" blocks="2" turnovers="1"></PlayerStat>
+				<PlayerStat indice="1" min="0"></PlayerStat>
+				<PlayerStat indice="2" min="0"></PlayerStat>
+				<PlayerStat indice="3" min="34" points="20" rebounds="20" assists="3" fg="9/13" threePt="1/1" ft="1/3" steals="0" blocks="1" turnovers="2"></PlayerStat>
+				<PlayerStat indice="4" min="1" points="0" rebounds="0" assists="0" fg="0/0" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="5" min="0"></PlayerStat>
+				<PlayerStat indice="6" min="13" points="9" rebounds="3" assists="1" fg="3/6" threePt="0/0" ft="3/4" steals="1" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="7" min="36" points="36" rebounds="5" assists="7" fg="13/25" threePt="5/7" ft="5/7" steals="6" blocks="1" turnovers="7"></PlayerStat>
+				<PlayerStat indice="8" min="0"></PlayerStat>
+				<PlayerStat indice="9" min="22" points="23" rebounds="5" assists="2" fg="9/14" threePt="4/7" ft="1/2" steals="0" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="10" min="16" points="0" rebounds="2" assists="1" fg="0/2" threePt="0/1" ft="0/0" steals="1" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="11" min="0"></PlayerStat>
+				<PlayerStat indice="12" min="29" points="15" rebounds="3" assists="3" fg="5/14" threePt="3/6" ft="2/4" steals="0" blocks="0" turnovers="1"></PlayerStat>
+				<PlayerStat indice="13" min="0"></PlayerStat>
+				<PlayerStat indice="14" min="34" points="19" rebounds="3" assists="3" fg="5/13" threePt="3/7" ft="6/7" steals="0" blocks="0" turnovers="2"></PlayerStat>
+				<PlayerStat indice="15" min="31" points="8" rebounds="10" assists="3" fg="3/5" threePt="2/3" ft="1/2" steals="3" blocks="1" turnovers="2"></PlayerStat>
+				<PlayerStat indice="16" min="0"></PlayerStat>
+			</Home>
+			<Visitor name="Los Angeles Clippers">
+				<PlayerStat indice="0" min="0"></PlayerStat>
+				<PlayerStat indice="1" min="0"></PlayerStat>
+				<PlayerStat indice="2" min="24" points="33" rebounds="9" assists="4" fg="10/17" threePt="3/5" ft="10/10" steals="0" blocks="0" turnovers="5"></PlayerStat>
+				<PlayerStat indice="3" min="18" points="2" rebounds="6" assists="0" fg="1/4" threePt="0/2" ft="0/0" steals="0" blocks="0" turnovers="2"></PlayerStat>
+				<PlayerStat indice="4" min="31" points="9" rebounds="3" assists="1" fg="4/6" threePt="0/2" ft="1/2" steals="1" blocks="2" turnovers="1"></PlayerStat>
+				<PlayerStat indice="5" min="36" points="18" rebounds="7" assists="6" fg="8/12" threePt="0/0" ft="2/3" steals="2" blocks="2" turnovers="2"></PlayerStat>
+				<PlayerStat indice="6" min="0"></PlayerStat>
+				<PlayerStat indice="7" min="0"></PlayerStat>
+				<PlayerStat indice="8" min="24" points="5" rebounds="2" assists="4" fg="2/6" threePt="1/3" ft="0/0" steals="1" blocks="0" turnovers="3"></PlayerStat>
+				<PlayerStat indice="9" min="36" points="20" rebounds="3" assists="2" fg="6/10" threePt="5/7" ft="3/6" steals="0" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="10" min="0"></PlayerStat>
+				<PlayerStat indice="11" min="3" points="3" rebounds="0" assists="0" fg="1/3" threePt="1/2" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+				<PlayerStat indice="12" min="17" points="0" rebounds="0" assists="1" fg="0/2" threePt="0/1" ft="0/0" steals="0" blocks="2" turnovers="1"></PlayerStat>
+				<PlayerStat indice="13" min="0"></PlayerStat>
+				<PlayerStat indice="14" min="0"></PlayerStat>
+				<PlayerStat indice="15" min="36" points="31" rebounds="2" assists="9" fg="11/20" threePt="1/2" ft="8/10" steals="2" blocks="0" turnovers="2"></PlayerStat>
+				<PlayerStat indice="16" min="11" points="6" rebounds="5" assists="1" fg="3/4" threePt="0/0" ft="0/0" steals="0" blocks="1" turnovers="0"></PlayerStat>
+			</Visitor>
+		</Game>
+	</Games>
+</Season>

@@ -2,6 +2,7 @@ package com.NBA_Rankings_Scores_Project.Tree;
 
 import com.NBA_Rankings_Scores_Project.Models.Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TreeNode {
@@ -10,6 +11,7 @@ public class TreeNode {
 
     public TreeNode(Models val){
         data = val;
+        childs = new ArrayList<TreeNode>();
     }
 
     public Models getData() {

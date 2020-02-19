@@ -80,7 +80,7 @@
 		</Team>
 	</Conference>
 	<Games>
-		<Game date="26/10/19" totScore="116-123" q1Score="27-43" q2Score="45-23" q3Score="23-29" q4Score="28-23" Winner="visitor">
+		<Game name="Pelicans v Mavericks" date="26/10/19" totScore="116-123" q1Score="27-43" q2Score="45-23" q3Score="23-29" q4Score="28-23" Winner="visitor">
 			<Home name="New Orleans Pelicans">
 				<PlayerStat indice="0" min="14" points="6" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="0/0" steals="0" blocks="0" turnovers="1"></PlayerStat>
 				<PlayerStat indice="1" min="33" points="15" rebounds="8" assists="5" fg="6/16" threePt="3/12" ft="0/2" steals="2" blocks="0" turnovers="2"></PlayerStat>
@@ -120,7 +120,7 @@
 				<PlayerStat indice="16" min="31" points="20" rebounds="7" assists="3" fg="8/12" threePt="0/1" ft="4/4" steals="5" blocks="0" turnovers="0"></PlayerStat>
 			</Visitor>
 		</Game>
-		<Game date="15/11/19" totScore="132-127" q1Score="34-35" q2Score="38-24" q3Score="24-38" q4Score="36-30" Winner="home">
+		<Game name="Pelicans v Clippers" date="15/11/19" totScore="132-127" q1Score="34-35" q2Score="38-24" q3Score="24-38" q4Score="36-30" Winner="home">
 			<Home name="New Orleans Pelicans">
 				<PlayerStat indice="0" min="21" points="2" rebounds="2" assists="3" fg="2/9" threePt="2/5" ft="0/0" steals="0" blocks="2" turnovers="1"></PlayerStat>
 				<PlayerStat indice="1" min="0"></PlayerStat>

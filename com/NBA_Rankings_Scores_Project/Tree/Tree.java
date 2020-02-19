@@ -14,9 +14,10 @@ public class Tree {
         return root;
     }
 
-    public void add(TreeNode node, Models val){
+    public TreeNode add(TreeNode node, Models val){
         TreeNode tmp = new TreeNode(val);
         node.addChilds(tmp);
+        return tmp;
     }
 
     private void localShow(TreeNode node) {

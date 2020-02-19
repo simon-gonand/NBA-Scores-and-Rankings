@@ -14,7 +14,7 @@ public class Tree {
         return root;
     }
 
-    void add(TreeNode node, Models val){
+    public void add(TreeNode node, Models val){
         TreeNode tmp = new TreeNode(val);
         node.addChilds(tmp);
     }

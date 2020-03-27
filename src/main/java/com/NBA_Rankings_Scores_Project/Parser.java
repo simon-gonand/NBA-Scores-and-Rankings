@@ -33,7 +33,7 @@ public class Parser {
         return new Tree(new Season("void season"));
     }
 
-    private Tree getConferences(Document doc, Tree tree){
+    private Tree getConferences(Document doc, Tree tree) throws Exception {
         NodeList confList = doc.getElementsByTagName("Conference");
 
         for (int i = 0; i < confList.getLength(); ++i) {
@@ -47,26 +47,48 @@ public class Parser {
         return tree;
     }
 
-    private Tree getTeams (TreeNode conference, Element confElement, Tree tree){
+    private Tree getTeams (TreeNode conference, Element confElement, Tree tree) throws Exception {
         NodeList teamsList = confElement.getElementsByTagName("Team");
         for (int j = 0; j < teamsList.getLength(); ++j) {
             Node teamNode = teamsList.item(j);
             if (teamNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element teamElement = (Element) teamNode;
-                TreeNode team = tree.add(conference, new TeamModel(teamElement.getAttribute("name")));
+                TreeNode team = tree.add(conference, new TeamModel(
+                        teamElement.getAttribute("name"), teamElement.getAttribute("headCoach")));
                 tree = getPlayers(team, teamElement, tree);
             }
         }
         return tree;
     }
 
-    private Tree getPlayers (TreeNode team, Element teamElement, Tree tree){
+    private PlayerModel.Position getPositionEnum(String positionName) throws Exception {
+        if (positionName.equals("Guard"))
+            return PlayerModel.Position.GUARD;
+        else if (positionName.equals("Shooting Guard"))
+            return PlayerModel.Position.SHOOTING_GUARD;
+        else if (positionName.equals("Small Forward"))
+            return PlayerModel.Position.SMALL_FORWARD;
+        else if (positionName.equals("Power Forward"))
+            return PlayerModel.Position.POWER_FORWARD;
+        else if (positionName.equals("Center"))
+            return PlayerModel.Position.CENTER;
+        else
+            throw new Exception("Unknown Position");
+    }
+
+    private Tree getPlayers (TreeNode team, Element teamElement, Tree tree) throws Exception {
         NodeList playersList = teamElement.getElementsByTagName("Player");
         for (int k = 0; k < playersList.getLength(); ++k){
             Node playerNode = playersList.item(k);
             if (playerNode.getNodeType() == Node.ELEMENT_NODE){
                 Element playerElement = (Element) playerNode;
-                TreeNode player = tree.add(team, new PlayerModel(playerElement.getAttribute("name")));
+                TreeNode player = tree.add(team, new PlayerModel(playerElement.getAttribute("name"),
+                        playerElement.getAttribute("surname"),
+                        getPositionEnum(playerElement.getAttribute("position")),
+                        Integer.parseInt(playerElement.getAttribute("number")),
+                        Integer.parseInt(playerElement.getAttribute("age")),
+                        playerElement.getAttribute("nationality"),
+                        Integer.parseInt(playerElement.getAttribute("indice"))));
             }
         }
         return tree;

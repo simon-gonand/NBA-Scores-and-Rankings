@@ -1,5 +1,6 @@
 package com.NBA_Rankings_Scores_Project;
 
+import com.NBA_Rankings_Scores_Project.Models.TeamModel;
 import com.NBA_Rankings_Scores_Project.Tree.*;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -19,7 +20,7 @@ public class ParserTest {
 
     @BeforeAll
     public static void setup(){
-        Parser parser = new Parser("src/main/resources/Test_Datas.xml");
+        Parser parser = new Parser("src/test/resources/Test_Datas.xml");
         tree = parser.getTree();
 
         confWest = tree.getRoot().getChilds().get(0);
@@ -49,11 +50,16 @@ public class ParserTest {
 
     @Test
     public void teamInfoTest() {
-        assertEquals("Dallas Mavericks", teamWest1.getData().getName(), "Team must be Dallas Mavericks");
-        assertEquals("Los Angeles Clippers", teamWest2.getData().getName(), "Team must be Los Angeles Clippers");
+        TeamModel teamWestModel1 = (TeamModel) teamWest1.getData();
+        TeamModel teamWestModel2 = (TeamModel) teamWest2.getData();
+        assertEquals("Dallas Mavericks", teamWestModel1.getName(), "Team must be Dallas Mavericks");
+        assertEquals("Los Angeles Clippers", teamWestModel2.getName(), "Team must be Los Angeles Clippers");
 
-        assertEquals("Milwaukee Bucks", teamEast1.getData().getName(), "Team must be Milwaukee Bucks");
-        assertEquals("New Orleans Pelicans", teamEast2.getData().getName(), "Team must be New Orleans Pelicans");
+        TeamModel teamEastModel1 = (TeamModel) teamEast1.getData();
+        TeamModel teamEastModel2 = (TeamModel) teamEast2.getData();
+        assertEquals("Milwaukee Bucks", teamEastModel1.getName(), "Team must be Milwaukee Bucks");
+        assertEquals("Milwaukee Bucks", teamEastModel1.getName(), "Team must be Milwaukee Bucks");
+        assertEquals("New Orleans Pelicans", teamEastModel2.getName(), "Team must be New Orleans Pelicans");
     }
 
     @Test

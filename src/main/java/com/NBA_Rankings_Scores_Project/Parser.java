@@ -10,12 +10,7 @@ import java.io.*;
 public class Parser {
     public File inputFile;
     public Parser (String fileName){
-        try {
-            inputFile = new File (fileName);
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-
+        inputFile = new File (fileName);
     }
 
     public Tree getTree() {

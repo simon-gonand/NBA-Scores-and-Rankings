@@ -4,7 +4,7 @@
 			<Player name="J.J." surname="Barea" position="Guard" number="5" age="35" nationality="Puerto Rican" indice="0"></Player>
 		</Team>
 		<Team name="Los Angeles Clippers" headCoach="Doc Rivers">
-			<Player name="Patrick" surname="Beverley" position="Guard" number="31" age="27" nationality="American" indice="0"></Player>
+			<Player name="Patrick" surname="Beverley" position="Shooting Guard" number="31" age="27" nationality="American" indice="0"></Player>
 		</Team>
 	</Conference>
 	<Conference name="East">
@@ -12,7 +12,7 @@
 			<Player name="Giannis" surname="Antetokounmpo" position="Power Forward" number="34" age="25" nationality="Greek" indice="0"></Player>
 		</Team>
 		<Team name="New Orleans Pelicans" headCoach="Alvin Gentry">
-			<Player name="Nickeil" surname="Alexander-Walker" position="Guard" number="0" age="21" nationality="Canadian" indice="0"></Player>
+			<Player name="Nickeil" surname="Alexander-Walker" position="Center" number="0" age="21" nationality="Canadian" indice="0"></Player>
 		</Team>
 	</Conference>
 	<Games>

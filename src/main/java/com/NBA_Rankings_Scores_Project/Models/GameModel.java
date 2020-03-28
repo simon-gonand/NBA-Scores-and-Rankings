@@ -12,7 +12,7 @@ public class GameModel extends Models{
     public GameModel(String name, String date, String winner, String totScore, String q1Score,
                      String q2Score, String q3Score, String q4Score) {
         super(name);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yy");
         try {
             this.date = sdf.parse(date);
         } catch (ParseException e){

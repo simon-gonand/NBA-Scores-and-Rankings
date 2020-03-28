@@ -146,10 +146,10 @@ public class Parser {
     }
 
     private TreeGames getGameTeams(Element gameElement, TreeNode gameNode, TreeGames tree, TreeSeasonInfo treeSeason) throws Exception {
-        Node home = gameElement.getAttributeNode("Home");
+        NodeList home = gameElement.getElementsByTagName("Home");
         TreeNode homeNode = null;
-        if (home.getNodeType() == Node.ELEMENT_NODE) {
-            Element homeElement = (Element) home;
+        if (home.item(0).getNodeType() == Node.ELEMENT_NODE) {
+            Element homeElement = (Element) home.item(0);
             boolean teamFound = false;
             for (TeamModel teamModel : treeSeason.getTeams()){
                 if (teamModel.getName().equals(homeElement.getAttribute("name"))) {
@@ -161,10 +161,10 @@ public class Parser {
             tree = this.getTreePlayersStats(homeElement, homeNode, tree);
         }
 
-        Node visitor = gameElement.getAttributeNode("Visitor");
+        NodeList visitor = gameElement.getElementsByTagName("Visitor");
         TreeNode visitorNode = null;
-        if(visitor.getNodeType() == Node.ELEMENT_NODE){
-            Element visitorElement = (Element) visitor;
+        if(visitor.item(0).getNodeType() == Node.ELEMENT_NODE){
+            Element visitorElement = (Element) visitor.item(0);
             boolean teamFound = false;
             for (TeamModel teamModel : treeSeason.getTeams()) {
                 if (teamModel.getName().equals(visitorElement.getAttribute("name"))) {
@@ -185,17 +185,21 @@ public class Parser {
             Node playerStatsNode = playersStatsList.item(i);
             if (playerStatsNode.getNodeType() == Element.ELEMENT_NODE){
                 Element playerStatElement = (Element) playerStatsNode;
-                tree.add(teamNode, new PlayerStats(Integer.parseInt(playerStatElement.getAttribute("indice")),
-                        Integer.parseInt(playerStatElement.getAttribute("min")),
-                        Integer.parseInt(playerStatElement.getAttribute("points")),
-                        Integer.parseInt(playerStatElement.getAttribute("rebounds")),
-                        Integer.parseInt(playerStatElement.getAttribute("assists")),
-                        Integer.parseInt(playerStatElement.getAttribute("steals")),
-                        Integer.parseInt(playerStatElement.getAttribute("blocks")),
-                        Integer.parseInt(playerStatElement.getAttribute("turnovers")),
-                        playerStatElement.getAttribute("fg"),
-                        playerStatElement.getAttribute("threePt"),
-                        playerStatElement.getAttribute("ft")));
+                if (playerStatElement.getAttribute("min").equals("0"))
+                    tree.add(teamNode, new PlayerStats(Integer.parseInt(playerStatElement.getAttribute("indice")),
+                            Integer.parseInt(playerStatElement.getAttribute("min"))));
+                else
+                    tree.add(teamNode, new PlayerStats(Integer.parseInt(playerStatElement.getAttribute("indice")),
+                            Integer.parseInt(playerStatElement.getAttribute("min")),
+                            Integer.parseInt(playerStatElement.getAttribute("points")),
+                            Integer.parseInt(playerStatElement.getAttribute("rebounds")),
+                            Integer.parseInt(playerStatElement.getAttribute("assists")),
+                            Integer.parseInt(playerStatElement.getAttribute("steals")),
+                            Integer.parseInt(playerStatElement.getAttribute("blocks")),
+                            Integer.parseInt(playerStatElement.getAttribute("turnovers")),
+                            playerStatElement.getAttribute("fg"),
+                            playerStatElement.getAttribute("threePt"),
+                            playerStatElement.getAttribute("ft")));
             }
         }
 

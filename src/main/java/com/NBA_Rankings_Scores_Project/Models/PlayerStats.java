@@ -2,10 +2,10 @@ package com.NBA_Rankings_Scores_Project.Models;
 
 public class PlayerStats extends Models{
     private Integer ID, minutes, points, rebounds, assists, steals, blocks, turnovers;
-    private String fg, treePts, ft;
+    private String fg, threePts, ft;
 
     public PlayerStats(int ID, int minutes, int points, int rebounds, int assists, int steals,
-                       int blocks, int turnovers, String fg, String treePts, String ft) {
+                       int blocks, int turnovers, String fg, String threePts, String ft) {
         super("playerStats" + ID);
         this.ID = ID;
         this.minutes = minutes;
@@ -16,7 +16,7 @@ public class PlayerStats extends Models{
         this.blocks = blocks;
         this.turnovers = turnovers;
         this.fg = fg;
-        this.treePts = treePts;
+        this.threePts = threePts;
         this.ft = ft;
     }
 
@@ -31,7 +31,7 @@ public class PlayerStats extends Models{
         this.blocks = null;
         this.turnovers = null;
         this.fg = null;
-        this.treePts = null;
+        this.threePts = null;
         this.ft = null;
     }
 
@@ -71,8 +71,8 @@ public class PlayerStats extends Models{
         return fg;
     }
 
-    public String getTreePts() {
-        return treePts;
+    public String getThreePts() {
+        return threePts;
     }
 
     public String getFt() {

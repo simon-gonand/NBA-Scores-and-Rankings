@@ -79,86 +79,84 @@
 			<Player name="Zion" surname="Williamson" position="Power Forward" number="1" age="19" nationality="American" indice="16"></Player>
 		</Team>
 	</Conference>
-	<Games>
-		<Game name="Pelicans v Mavericks" date="26/10/19" totScore="116-123" q1Score="27-43" q2Score="45-23" q3Score="23-29" q4Score="28-23" Winner="visitor">
-			<Home name="New Orleans Pelicans">
-				<PlayerStat indice="0" min="14" points="6" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="0/0" steals="0" blocks="0" turnovers="1"></PlayerStat>
-				<PlayerStat indice="1" min="33" points="15" rebounds="8" assists="5" fg="6/16" threePt="3/12" ft="0/2" steals="2" blocks="0" turnovers="2"></PlayerStat>
-				<PlayerStat indice="2" min="0"></PlayerStat>
-				<PlayerStat indice="3" min="21" points="16" rebounds="7" assists="2" fg="8/10" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="2"></PlayerStat>
-				<PlayerStat indice="4" min="0"></PlayerStat>
-				<PlayerStat indice="5" min="26" points="16" rebounds="9" assists="0" fg="5/9" threePt="1/5" ft="5/6" steals="2" blocks="0" turnovers="2"></PlayerStat>
-				<PlayerStat indice="6" min="0"></PlayerStat>
-				<PlayerStat indice="7" min="33" points="8" rebounds="4" assists="8" fg="2/11" threePt="0/3" ft="4/4" steals="2" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="8" min="31" points="25" rebounds="8" assists="3" fg="10/20" threePt="4/7" ft="1/1" steals="0" blocks="3" turnovers="3"></PlayerStat>
-				<PlayerStat indice="9" min="14" points="10" rebounds="0" assists="2" fg="4/9" threePt="2/3" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="10" min="14" points="4" rebounds="2" assists="1" fg="2/3" threePt="0/1" ft="0/0" steals="0" blocks="0" turnovers="1"></PlayerStat>
-				<PlayerStat indice="11" min="0"></PlayerStat>
-				<PlayerStat indice="12" min="0"></PlayerStat>
-				<PlayerStat indice="13" min="7" points="4" rebounds="3" assists="0" fg="2/3" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="14" min="21" points="3" rebounds="0" assists="2" fg="1/3" threePt="1/2" ft="0/0" steals="0" blocks="0" turnovers="2"></PlayerStat>
-				<PlayerStat indice="15" min="21" points="9" rebounds="6" assists="1" fg="3/5" threePt="2/3" ft="1/2" steals="0" blocks="0" turnovers="1"></PlayerStat>
-				<PlayerStat indice="16" min="0"></PlayerStat>
-			</Home>
-			<Visitor name="Dallas Mavericks">
-				<PlayerStat indice="0" min="0"></PlayerStat>
-				<PlayerStat indice="1" min="0"></PlayerStat>
-				<PlayerStat indice="2" min="28" points="14" rebounds="8" assists="2" fg="6/11" threePt="2/5" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="3" min="0"></PlayerStat>
-				<PlayerStat indice="4" min="17" points="8" rebounds="2" assists="0" fg="3/5" threePt="2/2" ft="0/0" steals="0" blocks="1" turnovers="1"></PlayerStat>
-				<PlayerStat indice="5" min="37" points="25" rebounds="10" assists="10" fg="10/19" threePt="3/9" ft="2/2" steals="2" blocks="0" turnovers="3"></PlayerStat>
-				<PlayerStat indice="6" min="21" points="7" rebounds="6" assists="2" fg="3/8" threePt="0/4" ft="1/4" steals="1" blocks="0" turnovers="1"></PlayerStat>
-				<PlayerStat indice="7" min="21" points="8" rebounds="1" assists="2" fg="2/8" threePt="2/7" ft="2/2" steals="0" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="8" min="13" points="7" rebounds="1" assists="0" fg="2/5" threePt="1/2" ft="2/2" steals="0" blocks="0" turnovers="2"></PlayerStat>
-				<PlayerStat indice="9" min="33" points="8" rebounds="10" assists="1" fg="2/6" threePt="1/5" ft="3/4" steals="0" blocks="1" turnovers="1"></PlayerStat>
-				<PlayerStat indice="10" min="5" points="2" rebounds="0" assists="0" fg="1/2" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="11" min="0"></PlayerStat>
-				<PlayerStat indice="12" min="29" points="24" rebounds="4" assists="3" fg="8/17" threePt="3/5" ft="5/8" steals="0" blocks="5" turnovers="3"></PlayerStat>
-				<PlayerStat indice="13" min="0"></PlayerStat>
-				<PlayerStat indice="14" min="0"></PlayerStat>
-				<PlayerStat indice="15" min="0"></PlayerStat>
-				<PlayerStat indice="16" min="31" points="20" rebounds="7" assists="3" fg="8/12" threePt="0/1" ft="4/4" steals="5" blocks="0" turnovers="0"></PlayerStat>
-			</Visitor>
-		</Game>
-		<Game name="Pelicans v Clippers" date="15/11/19" totScore="132-127" q1Score="34-35" q2Score="38-24" q3Score="24-38" q4Score="36-30" Winner="home">
-			<Home name="New Orleans Pelicans">
-				<PlayerStat indice="0" min="21" points="2" rebounds="2" assists="3" fg="2/9" threePt="2/5" ft="0/0" steals="0" blocks="2" turnovers="1"></PlayerStat>
-				<PlayerStat indice="1" min="0"></PlayerStat>
-				<PlayerStat indice="2" min="0"></PlayerStat>
-				<PlayerStat indice="3" min="34" points="20" rebounds="20" assists="3" fg="9/13" threePt="1/1" ft="1/3" steals="0" blocks="1" turnovers="2"></PlayerStat>
-				<PlayerStat indice="4" min="1" points="0" rebounds="0" assists="0" fg="0/0" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="5" min="0"></PlayerStat>
-				<PlayerStat indice="6" min="13" points="9" rebounds="3" assists="1" fg="3/6" threePt="0/0" ft="3/4" steals="1" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="7" min="36" points="36" rebounds="5" assists="7" fg="13/25" threePt="5/7" ft="5/7" steals="6" blocks="1" turnovers="7"></PlayerStat>
-				<PlayerStat indice="8" min="0"></PlayerStat>
-				<PlayerStat indice="9" min="22" points="23" rebounds="5" assists="2" fg="9/14" threePt="4/7" ft="1/2" steals="0" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="10" min="16" points="0" rebounds="2" assists="1" fg="0/2" threePt="0/1" ft="0/0" steals="1" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="11" min="0"></PlayerStat>
-				<PlayerStat indice="12" min="29" points="15" rebounds="3" assists="3" fg="5/14" threePt="3/6" ft="2/4" steals="0" blocks="0" turnovers="1"></PlayerStat>
-				<PlayerStat indice="13" min="0"></PlayerStat>
-				<PlayerStat indice="14" min="34" points="19" rebounds="3" assists="3" fg="5/13" threePt="3/7" ft="6/7" steals="0" blocks="0" turnovers="2"></PlayerStat>
-				<PlayerStat indice="15" min="31" points="8" rebounds="10" assists="3" fg="3/5" threePt="2/3" ft="1/2" steals="3" blocks="1" turnovers="2"></PlayerStat>
-				<PlayerStat indice="16" min="0"></PlayerStat>
-			</Home>
-			<Visitor name="Los Angeles Clippers">
-				<PlayerStat indice="0" min="0"></PlayerStat>
-				<PlayerStat indice="1" min="0"></PlayerStat>
-				<PlayerStat indice="2" min="24" points="33" rebounds="9" assists="4" fg="10/17" threePt="3/5" ft="10/10" steals="0" blocks="0" turnovers="5"></PlayerStat>
-				<PlayerStat indice="3" min="18" points="2" rebounds="6" assists="0" fg="1/4" threePt="0/2" ft="0/0" steals="0" blocks="0" turnovers="2"></PlayerStat>
-				<PlayerStat indice="4" min="31" points="9" rebounds="3" assists="1" fg="4/6" threePt="0/2" ft="1/2" steals="1" blocks="2" turnovers="1"></PlayerStat>
-				<PlayerStat indice="5" min="36" points="18" rebounds="7" assists="6" fg="8/12" threePt="0/0" ft="2/3" steals="2" blocks="2" turnovers="2"></PlayerStat>
-				<PlayerStat indice="6" min="0"></PlayerStat>
-				<PlayerStat indice="7" min="0"></PlayerStat>
-				<PlayerStat indice="8" min="24" points="5" rebounds="2" assists="4" fg="2/6" threePt="1/3" ft="0/0" steals="1" blocks="0" turnovers="3"></PlayerStat>
-				<PlayerStat indice="9" min="36" points="20" rebounds="3" assists="2" fg="6/10" threePt="5/7" ft="3/6" steals="0" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="10" min="0"></PlayerStat>
-				<PlayerStat indice="11" min="3" points="3" rebounds="0" assists="0" fg="1/3" threePt="1/2" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
-				<PlayerStat indice="12" min="17" points="0" rebounds="0" assists="1" fg="0/2" threePt="0/1" ft="0/0" steals="0" blocks="2" turnovers="1"></PlayerStat>
-				<PlayerStat indice="13" min="0"></PlayerStat>
-				<PlayerStat indice="14" min="0"></PlayerStat>
-				<PlayerStat indice="15" min="36" points="31" rebounds="2" assists="9" fg="11/20" threePt="1/2" ft="8/10" steals="2" blocks="0" turnovers="2"></PlayerStat>
-				<PlayerStat indice="16" min="11" points="6" rebounds="5" assists="1" fg="3/4" threePt="0/0" ft="0/0" steals="0" blocks="1" turnovers="0"></PlayerStat>
-			</Visitor>
-		</Game>
-	</Games>
+	<Game name="Pelicans v Mavericks" date="26/10/19" totScore="116-123" q1Score="27-43" q2Score="45-23" q3Score="23-29" q4Score="28-23" Winner="visitor">
+		<Home name="New Orleans Pelicans">
+			<PlayerStat indice="0" min="14" points="6" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="0/0" steals="0" blocks="0" turnovers="1"></PlayerStat>
+			<PlayerStat indice="1" min="33" points="15" rebounds="8" assists="5" fg="6/16" threePt="3/12" ft="0/2" steals="2" blocks="0" turnovers="2"></PlayerStat>
+			<PlayerStat indice="2" min="0"></PlayerStat>
+			<PlayerStat indice="3" min="21" points="16" rebounds="7" assists="2" fg="8/10" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="2"></PlayerStat>
+			<PlayerStat indice="4" min="0"></PlayerStat>
+			<PlayerStat indice="5" min="26" points="16" rebounds="9" assists="0" fg="5/9" threePt="1/5" ft="5/6" steals="2" blocks="0" turnovers="2"></PlayerStat>
+			<PlayerStat indice="6" min="0"></PlayerStat>
+			<PlayerStat indice="7" min="33" points="8" rebounds="4" assists="8" fg="2/11" threePt="0/3" ft="4/4" steals="2" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="8" min="31" points="25" rebounds="8" assists="3" fg="10/20" threePt="4/7" ft="1/1" steals="0" blocks="3" turnovers="3"></PlayerStat>
+			<PlayerStat indice="9" min="14" points="10" rebounds="0" assists="2" fg="4/9" threePt="2/3" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="10" min="14" points="4" rebounds="2" assists="1" fg="2/3" threePt="0/1" ft="0/0" steals="0" blocks="0" turnovers="1"></PlayerStat>
+			<PlayerStat indice="11" min="0"></PlayerStat>
+			<PlayerStat indice="12" min="0"></PlayerStat>
+			<PlayerStat indice="13" min="7" points="4" rebounds="3" assists="0" fg="2/3" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="14" min="21" points="3" rebounds="0" assists="2" fg="1/3" threePt="1/2" ft="0/0" steals="0" blocks="0" turnovers="2"></PlayerStat>
+			<PlayerStat indice="15" min="21" points="9" rebounds="6" assists="1" fg="3/5" threePt="2/3" ft="1/2" steals="0" blocks="0" turnovers="1"></PlayerStat>
+			<PlayerStat indice="16" min="0"></PlayerStat>
+		</Home>
+		<Visitor name="Dallas Mavericks">
+			<PlayerStat indice="0" min="0"></PlayerStat>
+			<PlayerStat indice="1" min="0"></PlayerStat>
+			<PlayerStat indice="2" min="28" points="14" rebounds="8" assists="2" fg="6/11" threePt="2/5" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="3" min="0"></PlayerStat>
+			<PlayerStat indice="4" min="17" points="8" rebounds="2" assists="0" fg="3/5" threePt="2/2" ft="0/0" steals="0" blocks="1" turnovers="1"></PlayerStat>
+			<PlayerStat indice="5" min="37" points="25" rebounds="10" assists="10" fg="10/19" threePt="3/9" ft="2/2" steals="2" blocks="0" turnovers="3"></PlayerStat>
+			<PlayerStat indice="6" min="21" points="7" rebounds="6" assists="2" fg="3/8" threePt="0/4" ft="1/4" steals="1" blocks="0" turnovers="1"></PlayerStat>
+			<PlayerStat indice="7" min="21" points="8" rebounds="1" assists="2" fg="2/8" threePt="2/7" ft="2/2" steals="0" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="8" min="13" points="7" rebounds="1" assists="0" fg="2/5" threePt="1/2" ft="2/2" steals="0" blocks="0" turnovers="2"></PlayerStat>
+			<PlayerStat indice="9" min="33" points="8" rebounds="10" assists="1" fg="2/6" threePt="1/5" ft="3/4" steals="0" blocks="1" turnovers="1"></PlayerStat>
+			<PlayerStat indice="10" min="5" points="2" rebounds="0" assists="0" fg="1/2" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="11" min="0"></PlayerStat>
+			<PlayerStat indice="12" min="29" points="24" rebounds="4" assists="3" fg="8/17" threePt="3/5" ft="5/8" steals="0" blocks="5" turnovers="3"></PlayerStat>
+			<PlayerStat indice="13" min="0"></PlayerStat>
+			<PlayerStat indice="14" min="0"></PlayerStat>
+			<PlayerStat indice="15" min="0"></PlayerStat>
+			<PlayerStat indice="16" min="31" points="20" rebounds="7" assists="3" fg="8/12" threePt="0/1" ft="4/4" steals="5" blocks="0" turnovers="0"></PlayerStat>
+		</Visitor>
+	</Game>
+	<Game name="Pelicans v Clippers" date="15/11/19" totScore="132-127" q1Score="34-35" q2Score="38-24" q3Score="24-38" q4Score="36-30" Winner="home">
+		<Home name="New Orleans Pelicans">
+			<PlayerStat indice="0" min="21" points="2" rebounds="2" assists="3" fg="2/9" threePt="2/5" ft="0/0" steals="0" blocks="2" turnovers="1"></PlayerStat>
+			<PlayerStat indice="1" min="0"></PlayerStat>
+			<PlayerStat indice="2" min="0"></PlayerStat>
+			<PlayerStat indice="3" min="34" points="20" rebounds="20" assists="3" fg="9/13" threePt="1/1" ft="1/3" steals="0" blocks="1" turnovers="2"></PlayerStat>
+			<PlayerStat indice="4" min="1" points="0" rebounds="0" assists="0" fg="0/0" threePt="0/0" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="5" min="0"></PlayerStat>
+			<PlayerStat indice="6" min="13" points="9" rebounds="3" assists="1" fg="3/6" threePt="0/0" ft="3/4" steals="1" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="7" min="36" points="36" rebounds="5" assists="7" fg="13/25" threePt="5/7" ft="5/7" steals="6" blocks="1" turnovers="7"></PlayerStat>
+			<PlayerStat indice="8" min="0"></PlayerStat>
+			<PlayerStat indice="9" min="22" points="23" rebounds="5" assists="2" fg="9/14" threePt="4/7" ft="1/2" steals="0" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="10" min="16" points="0" rebounds="2" assists="1" fg="0/2" threePt="0/1" ft="0/0" steals="1" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="11" min="0"></PlayerStat>
+			<PlayerStat indice="12" min="29" points="15" rebounds="3" assists="3" fg="5/14" threePt="3/6" ft="2/4" steals="0" blocks="0" turnovers="1"></PlayerStat>
+			<PlayerStat indice="13" min="0"></PlayerStat>
+			<PlayerStat indice="14" min="34" points="19" rebounds="3" assists="3" fg="5/13" threePt="3/7" ft="6/7" steals="0" blocks="0" turnovers="2"></PlayerStat>
+			<PlayerStat indice="15" min="31" points="8" rebounds="10" assists="3" fg="3/5" threePt="2/3" ft="1/2" steals="3" blocks="1" turnovers="2"></PlayerStat>
+			<PlayerStat indice="16" min="0"></PlayerStat>
+		</Home>
+		<Visitor name="Los Angeles Clippers">
+			<PlayerStat indice="0" min="0"></PlayerStat>
+			<PlayerStat indice="1" min="0"></PlayerStat>
+			<PlayerStat indice="2" min="24" points="33" rebounds="9" assists="4" fg="10/17" threePt="3/5" ft="10/10" steals="0" blocks="0" turnovers="5"></PlayerStat>
+			<PlayerStat indice="3" min="18" points="2" rebounds="6" assists="0" fg="1/4" threePt="0/2" ft="0/0" steals="0" blocks="0" turnovers="2"></PlayerStat>
+			<PlayerStat indice="4" min="31" points="9" rebounds="3" assists="1" fg="4/6" threePt="0/2" ft="1/2" steals="1" blocks="2" turnovers="1"></PlayerStat>
+			<PlayerStat indice="5" min="36" points="18" rebounds="7" assists="6" fg="8/12" threePt="0/0" ft="2/3" steals="2" blocks="2" turnovers="2"></PlayerStat>
+			<PlayerStat indice="6" min="0"></PlayerStat>
+			<PlayerStat indice="7" min="0"></PlayerStat>
+			<PlayerStat indice="8" min="24" points="5" rebounds="2" assists="4" fg="2/6" threePt="1/3" ft="0/0" steals="1" blocks="0" turnovers="3"></PlayerStat>
+			<PlayerStat indice="9" min="36" points="20" rebounds="3" assists="2" fg="6/10" threePt="5/7" ft="3/6" steals="0" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="10" min="0"></PlayerStat>
+			<PlayerStat indice="11" min="3" points="3" rebounds="0" assists="0" fg="1/3" threePt="1/2" ft="0/0" steals="0" blocks="0" turnovers="0"></PlayerStat>
+			<PlayerStat indice="12" min="17" points="0" rebounds="0" assists="1" fg="0/2" threePt="0/1" ft="0/0" steals="0" blocks="2" turnovers="1"></PlayerStat>
+			<PlayerStat indice="13" min="0"></PlayerStat>
+			<PlayerStat indice="14" min="0"></PlayerStat>
+			<PlayerStat indice="15" min="36" points="31" rebounds="2" assists="9" fg="11/20" threePt="1/2" ft="8/10" steals="2" blocks="0" turnovers="2"></PlayerStat>
+			<PlayerStat indice="16" min="11" points="6" rebounds="5" assists="1" fg="3/4" threePt="0/0" ft="0/0" steals="0" blocks="1" turnovers="0"></PlayerStat>
+		</Visitor>
+	</Game>
 </Season>

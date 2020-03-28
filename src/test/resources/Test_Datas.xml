@@ -15,14 +15,12 @@
 			<Player name="Nickeil" surname="Alexander-Walker" position="Center" number="0" age="21" nationality="Canadian" indice="0"></Player>
 		</Team>
 	</Conference>
-	<Games>
-		<Game name="Pelicans v Mavericks" date="26/10/19" totScore="116-123" q1Score="27-43" q2Score="45-23" q3Score="23-29" q4Score="28-23" Winner="visitor">
-			<Home name="New Orleans Pelicans">
-				<PlayerStat indice="0" min="14" points="6" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="0/0" steals="0" blocks="0" turnovers="1"></PlayerStat>
-			</Home>
-			<Visitor name="Dallas Mavericks">
-				<PlayerStat indice="0" min="0"></PlayerStat>
-			</Visitor>
-		</Game>
-	</Games>
+	<Game name="Pelicans v Mavericks" date="26/10/19" totScore="116-123" q1Score="27-43" q2Score="45-23" q3Score="23-29" q4Score="28-23" Winner="visitor">
+		<Home name="New Orleans Pelicans">
+			<PlayerStat indice="0" min="14" points="6" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="0/0" steals="0" blocks="0" turnovers="1"></PlayerStat>
+		</Home>
+		<Visitor name="Dallas Mavericks">
+			<PlayerStat indice="0" min="0"></PlayerStat>
+		</Visitor>
+	</Game>
 </Season>

@@ -1,11 +1,12 @@
 package com.NBA_Rankings_Scores_Project.Models;
 
-public class PlayerStats {
+public class PlayerStats extends Models{
     private Integer ID, minutes, points, rebounds, assists, steals, blocks, turnovers;
     private String fg, treePts, ft;
 
     public PlayerStats(int ID, int minutes, int points, int rebounds, int assists, int steals,
                        int blocks, int turnovers, String fg, String treePts, String ft) {
+        super("playerStats" + ID);
         this.ID = ID;
         this.minutes = minutes;
         this.points = points;
@@ -20,6 +21,7 @@ public class PlayerStats {
     }
 
     public PlayerStats(int ID, int minutes) {
+        super("playerStats" + ID);
         this.ID = ID;
         this.minutes = minutes;
         this.points = null;

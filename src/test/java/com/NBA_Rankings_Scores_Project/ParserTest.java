@@ -1,13 +1,19 @@
 package com.NBA_Rankings_Scores_Project;
 
+import com.NBA_Rankings_Scores_Project.Models.GameModel;
 import com.NBA_Rankings_Scores_Project.Models.PlayerModel;
+import com.NBA_Rankings_Scores_Project.Models.PlayerStats;
 import com.NBA_Rankings_Scores_Project.Models.TeamModel;
 import com.NBA_Rankings_Scores_Project.Tree.*;
 import org.junit.jupiter.api.*;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
-    private static Tree tree;
+    private static TreeSeasonInfo treeSeasonInfo;
     private static TreeNode confWest;
     private static TreeNode confEast;
     private static TreeNode teamWest1;
@@ -19,13 +25,20 @@ public class ParserTest {
     private static TreeNode playerTeamEast1;
     private static TreeNode playerTeamEast2;
 
+    private static TreeGames treeGames;
+    private static TreeNode gameNode;
+    private static TreeNode homeNode;
+    private static TreeNode visitorNode;
+    private static TreeNode homePlayerStatNode;
+    private static TreeNode visitorPlayerStatNode;
+
     @BeforeAll
     public static void setup(){
         Parser parser = new Parser("src/test/resources/Test_Datas.xml");
-        tree = parser.getTreeSeason();
+        treeSeasonInfo = parser.getTreeSeason();
 
-        confWest = tree.getRoot().getChilds().get(0);
-        confEast = tree.getRoot().getChilds().get(1);
+        confWest = treeSeasonInfo.getRoot().getChilds().get(0);
+        confEast = treeSeasonInfo.getRoot().getChilds().get(1);
 
         teamWest1 = confWest.getChilds().get(0);
         teamWest2 = confWest.getChilds().get(1);
@@ -36,11 +49,19 @@ public class ParserTest {
         playerTeamWest2 = teamWest2.getChilds().get(0);
         playerTeamEast1 = teamEast1.getChilds().get(0);
         playerTeamEast2 = teamEast2.getChilds().get(0);
+
+        treeGames = parser.getTreeSeasonGames(treeSeasonInfo);
+
+        gameNode = treeGames.getRoot().getChilds().get(0);
+        homeNode = gameNode.getChilds().get(0);
+        visitorNode = gameNode.getChilds().get(1);
+        homePlayerStatNode = homeNode.getChilds().get(0);
+        visitorPlayerStatNode = visitorNode.getChilds().get(0);
     }
 
     @Test
     public void seasonInfoTest() {
-        assertEquals("2019/20", tree.getRoot().getData().getName(), "Season must be 2019/20");
+        assertEquals("2019/20", treeSeasonInfo.getRoot().getData().getName(), "Season must be 2019/20");
     }
 
     @Test
@@ -143,5 +164,58 @@ public class ParserTest {
                 playerModelTeamEast2.getNationality(),
                 "Player's nationality must be Canadian");
         assertEquals(0, playerModelTeamEast2.getID(), "Player's ID must be 0");
+    }
+
+    @Test
+    public void gameInfoTest(){
+        GameModel gameModel = (GameModel) gameNode.getData();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yy");
+        String date = sdf.format(gameModel.getDate());
+        assertEquals("26/10/19", date, "Game's date must be 26/10/19");
+        assertEquals("visitor", gameModel.getWinner(), "Game's winner must be visitor");
+        assertEquals("116-123", gameModel.getTotScore(), "Game's total score must be 116-123");
+        assertEquals("27-43", gameModel.getQ1Score(), "Game's q1 score must be 27-43");
+        assertEquals("45-23", gameModel.getQ2Score(), "Game's q2 score must be 45-23");
+        assertEquals("23-29", gameModel.getQ3Score(), "Game's q3 score must be 23-29");
+        assertEquals("28-23", gameModel.getQ4Score(), "Game's q4 score must be 28-23");
+    }
+
+    @Test
+    public void gameTeamsTest(){
+        assertEquals("New Orleans Pelicans",
+                homeNode.getData().getName(),
+                "Home team's name must be New Orleans Pelicans");
+        assertEquals("Dallas Mavericks",
+                visitorNode.getData().getName(),
+                "Home team's name must be Dallas Mavericks");
+    }
+
+    @Test
+    public void playerStatsTest(){
+        PlayerStats homePlayerStats = (PlayerStats) homePlayerStatNode.getData();
+        assertEquals("0", homePlayerStats.getID().toString(), "Player's stat ID must be 0");
+        assertEquals("14", homePlayerStats.getMinutes().toString(), "Player's minutes must be 14");
+        assertEquals("6", homePlayerStats.getPoints().toString(), "Player's points must be 6");
+        assertEquals("1", homePlayerStats.getRebounds().toString(), "Player's rebounds must be 1");
+        assertEquals("6", homePlayerStats.getAssists().toString(), "Player's assists must be 6");
+        assertEquals("2/9", homePlayerStats.getFg(), "Player's field goals must be 2/9");
+        assertEquals("2/5", homePlayerStats.getThreePts(), "Player's three points must be 2/5");
+        assertEquals("0/0", homePlayerStats.getFt(), "Player's free throws must be 0/0");
+        assertEquals("0", homePlayerStats.getSteals().toString(), "Player's steals must be 0");
+        assertEquals("0", homePlayerStats.getBlocks().toString(), "Player's blocks must be 0");
+        assertEquals("1", homePlayerStats.getTurnovers().toString(), "Player's turnovers must be 1");
+
+        PlayerStats visitorPlayerStats = (PlayerStats) visitorPlayerStatNode.getData();
+        assertEquals("0", visitorPlayerStats.getID().toString(), "Player's stat ID must be 0");
+        assertEquals("0", visitorPlayerStats.getMinutes().toString(), "Player's minutes must be 0");
+        assertEquals(null, visitorPlayerStats.getPoints(), "Player's points must be null");
+        assertEquals(null, visitorPlayerStats.getRebounds(), "Player's rebounds must be null");
+        assertEquals(null, visitorPlayerStats.getAssists(), "Player's assists must be null");
+        assertEquals(null, visitorPlayerStats.getFg(), "Player's field goals must be null");
+        assertEquals(null, visitorPlayerStats.getThreePts(), "Player's three points must be null");
+        assertEquals(null, visitorPlayerStats.getFt(), "Player's free throws must be null");
+        assertEquals(null, visitorPlayerStats.getSteals(), "Player's steals must be null");
+        assertEquals(null, visitorPlayerStats.getBlocks(), "Player's blocks must be null");
+        assertEquals(null, visitorPlayerStats.getTurnovers(), "Player's turnovers must be null");
     }
 }

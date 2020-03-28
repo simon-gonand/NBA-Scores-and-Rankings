@@ -22,7 +22,7 @@ public class ParserTest {
     @BeforeAll
     public static void setup(){
         Parser parser = new Parser("src/test/resources/Test_Datas.xml");
-        tree = parser.getTree();
+        tree = parser.getTreeSeason();
 
         confWest = tree.getRoot().getChilds().get(0);
         confEast = tree.getRoot().getChilds().get(1);

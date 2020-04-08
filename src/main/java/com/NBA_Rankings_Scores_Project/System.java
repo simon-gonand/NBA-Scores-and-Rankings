@@ -49,10 +49,11 @@ public class System {
         gamesScoreViewButton.setBounds(0,0, menuPanel.getWidth(), 70);
         gamesScoreViewButton.setBorder(BorderFactory.createEmptyBorder());
         gamesScoreViewButton.addMouseListener(new MouseAdapter() {
-            Color oldColor = gamesScoreViewButton.getBackground();
+            Color oldColor;
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
+                oldColor = gamesScoreViewButton.getBackground();
                 gamesScoreViewButton.setBackground(Color.lightGray);
             }
 
@@ -70,7 +71,7 @@ public class System {
                 rankingsViewButton.setBackground(Color.white);
                 gamesScoreViewButton.setBackground(Color.lightGray);
                 oldColor = gamesScoreViewButton.getBackground();
-                SwingUtilities.updateComponentTreeUI(window);
+                SwingUtilities.updateComponentTreeUI(contentPanel);
             }
         });
 
@@ -78,10 +79,11 @@ public class System {
         teamsViewButton.setBounds(0,gamesScoreViewButton.getHeight(), menuPanel.getWidth(), 70);
         teamsViewButton.setBorder(BorderFactory.createEmptyBorder());
         teamsViewButton.addMouseListener(new MouseAdapter() {
-            Color oldColor = teamsViewButton.getBackground();
+            Color oldColor;
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
+                oldColor = teamsViewButton.getBackground();
                 teamsViewButton.setBackground(Color.lightGray);
             }
 
@@ -99,7 +101,7 @@ public class System {
                 rankingsViewButton.setBackground(Color.white);
                 teamsViewButton.setBackground(Color.lightGray);
                 oldColor = teamsViewButton.getBackground();
-                SwingUtilities.updateComponentTreeUI(window);
+                SwingUtilities.updateComponentTreeUI(contentPanel);
             }
         });
 
@@ -107,10 +109,11 @@ public class System {
         rankingsViewButton.setBounds(0,gamesScoreViewButton.getHeight()*2, menuPanel.getWidth(), 70);
         rankingsViewButton.setBorder(BorderFactory.createEmptyBorder());
         rankingsViewButton.addMouseListener(new MouseAdapter() {
-            Color oldColor = rankingsViewButton.getBackground();
+            Color oldColor;
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
+                oldColor = rankingsViewButton.getBackground();
                 rankingsViewButton.setBackground(Color.lightGray);
             }
 
@@ -128,7 +131,7 @@ public class System {
                 teamsViewButton.setBackground(Color.white);
                 rankingsViewButton.setBackground(Color.lightGray);
                 oldColor = rankingsViewButton.getBackground();
-                SwingUtilities.updateComponentTreeUI(window);
+                SwingUtilities.updateComponentTreeUI(contentPanel);
             }
         });
 

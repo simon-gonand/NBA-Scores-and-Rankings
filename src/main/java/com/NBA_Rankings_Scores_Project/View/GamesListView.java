@@ -10,6 +10,7 @@ public class GamesListView{
 
     public GamesListView (JPanel panel){
         this.panel = panel;
+        panel.removeAll();
 
         final JButton button = new JButton("click");
         button.setBounds(panel.getWidth()/2, panel.getHeight()/2, 100, 40);

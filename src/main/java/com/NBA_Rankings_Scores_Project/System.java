@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 
 public class System {
     private static JFrame window;
+    private static JPanel contentPanel;
 
     public static void main(String[] args) {
         window = new JFrame();
@@ -31,20 +32,20 @@ public class System {
         menuPanel.setBounds(0,0,screenSize.width/5, screenSize.height);
         menuPanel.setBackground(Color.white);
 
-        JPanel contentPanel = new JPanel();
+        contentPanel = new JPanel();
         window.add(contentPanel);
         contentPanel.setLayout(null);
         contentPanel.setBounds(menuPanel.getWidth(), 0, 4*screenSize.width/5, screenSize.height);
 
         final JButton gamesScoreViewButton = new JButton("Games Scores", new ImageIcon("src/main/resources/Icons/basketball.png"));
-        final JButton teamsViewButton = new JButton ("Teams              ", new ImageIcon("src/main/resources/Icons/jersey.png"));
+        final JButton teamsViewButton = new JButton ("Teams             ", new ImageIcon("src/main/resources/Icons/jersey.png"));
         final JButton rankingsViewButton = new JButton("Rankings        ", new ImageIcon("src/main/resources/Icons/cup.png"));
 
         menuPanel.add(gamesScoreViewButton);
         menuPanel.add(teamsViewButton);
         menuPanel.add(rankingsViewButton);
 
-        gamesScoreViewButton.setBackground(Color.lightGray);
+        gamesScoreViewButton.setBackground(Color.white);
         gamesScoreViewButton.setBounds(0,0, menuPanel.getWidth(), 70);
         gamesScoreViewButton.setBorder(BorderFactory.createEmptyBorder());
         gamesScoreViewButton.addMouseListener(new MouseAdapter() {
@@ -64,7 +65,7 @@ public class System {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                new GamesListView(window);
+                new GamesListView(contentPanel);
                 teamsViewButton.setBackground(Color.white);
                 rankingsViewButton.setBackground(Color.white);
                 gamesScoreViewButton.setBackground(Color.lightGray);

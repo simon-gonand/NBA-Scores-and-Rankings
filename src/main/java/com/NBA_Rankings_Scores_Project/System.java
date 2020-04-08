@@ -31,6 +31,11 @@ public class System {
         menuPanel.setBounds(0,0,screenSize.width/5, screenSize.height);
         menuPanel.setBackground(Color.white);
 
+        JPanel contentPanel = new JPanel();
+        window.add(contentPanel);
+        contentPanel.setLayout(null);
+        contentPanel.setBounds(menuPanel.getWidth(), 0, 4*screenSize.width/5, screenSize.height);
+
         final JButton gamesScoreViewButton = new JButton("Games Scores", new ImageIcon("src/main/resources/Icons/basketball.png"));
         final JButton teamsViewButton = new JButton ("Teams              ", new ImageIcon("src/main/resources/Icons/jersey.png"));
         final JButton rankingsViewButton = new JButton("Rankings        ", new ImageIcon("src/main/resources/Icons/cup.png"));

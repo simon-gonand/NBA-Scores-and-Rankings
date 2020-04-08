@@ -5,34 +5,127 @@ import com.NBA_Rankings_Scores_Project.View.GamesListView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class System {
+    private static JFrame window;
+
     public static void main(String[] args) {
-        JFrame window = new JFrame();
+        window = new JFrame();
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         window.setBounds(0,0,screenSize.width,screenSize.height);
         window.setTitle("NBA: Scores & Rankings");
-        ImageIcon icon = new ImageIcon("src/main/resources/Icons/basketball.png");
+        ImageIcon icon = new ImageIcon("src/main/resources/Icons/logo.png");
         window.setIconImage(icon.getImage());
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLayout(null);
         window.setVisible(true);
 
         JPanel menuPanel = new JPanel();
+        window.add(menuPanel);
+        menuPanel.setLayout(null);
         menuPanel.setBounds(0,0,screenSize.width/5, screenSize.height);
-        menuPanel.setBackground(Color.lightGray);
+        menuPanel.setBackground(Color.white);
 
-        JButton gamesScoreViewButton = new JButton("Games Scores");
-        gamesScoreViewButton.setForeground(Color.white);
-        gamesScoreViewButton.setBackground(Color.darkGray);
-        gamesScoreViewButton.setBounds(0,0, menuPanel.getWidth(), 40);
+        final JButton gamesScoreViewButton = new JButton("Games Scores", new ImageIcon("src/main/resources/Icons/basketball.png"));
+        final JButton teamsViewButton = new JButton ("Teams              ", new ImageIcon("src/main/resources/Icons/jersey.png"));
+        final JButton rankingsViewButton = new JButton("Rankings        ", new ImageIcon("src/main/resources/Icons/cup.png"));
 
         menuPanel.add(gamesScoreViewButton);
+        menuPanel.add(teamsViewButton);
+        menuPanel.add(rankingsViewButton);
 
-        window.add(menuPanel);
+        gamesScoreViewButton.setBackground(Color.lightGray);
+        gamesScoreViewButton.setBounds(0,0, menuPanel.getWidth(), 70);
+        gamesScoreViewButton.setBorder(BorderFactory.createEmptyBorder());
+        gamesScoreViewButton.addMouseListener(new MouseAdapter() {
+            Color oldColor = gamesScoreViewButton.getBackground();
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                gamesScoreViewButton.setBackground(Color.lightGray);
+            }
 
-        new GamesListView(window);
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                gamesScoreViewButton.setBackground(oldColor);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                new GamesListView(window);
+                teamsViewButton.setBackground(Color.white);
+                rankingsViewButton.setBackground(Color.white);
+                gamesScoreViewButton.setBackground(Color.lightGray);
+                oldColor = gamesScoreViewButton.getBackground();
+                SwingUtilities.updateComponentTreeUI(window);
+            }
+        });
+
+        teamsViewButton.setBackground(Color.white);
+        teamsViewButton.setBounds(0,gamesScoreViewButton.getHeight(), menuPanel.getWidth(), 70);
+        teamsViewButton.setBorder(BorderFactory.createEmptyBorder());
+        teamsViewButton.addMouseListener(new MouseAdapter() {
+            Color oldColor = teamsViewButton.getBackground();
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                teamsViewButton.setBackground(Color.lightGray);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                teamsViewButton.setBackground(oldColor);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                // create teams list view
+                gamesScoreViewButton.setBackground(Color.white);
+                rankingsViewButton.setBackground(Color.white);
+                teamsViewButton.setBackground(Color.lightGray);
+                oldColor = teamsViewButton.getBackground();
+                SwingUtilities.updateComponentTreeUI(window);
+            }
+        });
+
+        rankingsViewButton.setBackground(Color.white);
+        rankingsViewButton.setBounds(0,gamesScoreViewButton.getHeight()*2, menuPanel.getWidth(), 70);
+        rankingsViewButton.setBorder(BorderFactory.createEmptyBorder());
+        rankingsViewButton.addMouseListener(new MouseAdapter() {
+            Color oldColor = rankingsViewButton.getBackground();
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                rankingsViewButton.setBackground(Color.lightGray);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                rankingsViewButton.setBackground(oldColor);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                // create teams list view
+                gamesScoreViewButton.setBackground(Color.white);
+                teamsViewButton.setBackground(Color.white);
+                rankingsViewButton.setBackground(Color.lightGray);
+                oldColor = rankingsViewButton.getBackground();
+                SwingUtilities.updateComponentTreeUI(window);
+            }
+        });
+
 
         /*Parser p = new Parser("src/main/resources/Season_19_20.xml");
         Tree tree = p.getTreeSeason();

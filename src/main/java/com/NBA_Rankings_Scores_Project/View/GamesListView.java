@@ -38,8 +38,12 @@ public class GamesListView{
 
         final Map<String, TeamModel> teams = treeGames.getTeamsOfGame(game);
 
-        JLabel logoLeft = new JLabel(teams.get("Visitor").getName(), new ImageIcon("src/main/resources/Icons/jersey.png"), JLabel.LEFT);
-        JLabel logoRight = new JLabel(teams.get("Home").getName(), new ImageIcon("src/main/resources/Icons/jersey.png"), JLabel.RIGHT);
+        JLabel logoLeft = new JLabel(teams.get("Visitor").getName(),
+                new ImageIcon("src/main/resources/Icons/jersey.png"),
+                JLabel.LEFT);
+        JLabel logoRight = new JLabel(teams.get("Home").getName(),
+                new ImageIcon("src/main/resources/Icons/jersey.png"),
+                JLabel.RIGHT);
 
         logoLeft.setVerticalTextPosition(JLabel.BOTTOM);
         logoLeft.setHorizontalTextPosition(JLabel.CENTER);

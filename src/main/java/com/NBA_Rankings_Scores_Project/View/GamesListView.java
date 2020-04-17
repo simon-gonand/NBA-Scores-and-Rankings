@@ -14,23 +14,25 @@ import java.util.Map;
 
 public class GamesListView{
     private JPanel panel;
+    private TreeSeasonInfo info;
+    private TreeGames treeGames;
 
     public GamesListView (JPanel panel){
         this.panel = panel;
         panel.removeAll();
 
         Parser parser = new Parser("src/main/resources/Season_19_20.xml");
-        TreeSeasonInfo info = parser.getTreeSeason();
-        TreeGames treeGames = parser.getTreeSeasonGames(info);
+        this.info = parser.getTreeSeason();
+        this.treeGames = parser.getTreeSeasonGames(info);
         List<GameModel> games = treeGames.getAllGames();
         int yPosButton = 0;
         for (GameModel game : games) {
-            displayGame(game, treeGames, yPosButton);
+            displayGame(game, yPosButton);
             yPosButton += 100;
         }
     }
 
-    private void displayGame(final GameModel game, TreeGames treeGames, int yPosButton){
+    private void displayGame(final GameModel game, int yPosButton){
         JButton button = new JButton(game.getTotScore());
         button.setBounds(0, yPosButton, panel.getWidth(), 100);
         button.setLayout(null);
@@ -59,7 +61,7 @@ public class GamesListView{
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 panel.removeAll();
-                new GameView(panel, game, teams.get("Home"), teams.get("Visitor"));
+                new GameView(panel, game, teams.get("Home"), teams.get("Visitor"), info, treeGames);
                 SwingUtilities.updateComponentTreeUI(panel);
             }
         });

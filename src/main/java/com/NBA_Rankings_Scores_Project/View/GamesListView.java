@@ -7,10 +7,8 @@ import com.NBA_Rankings_Scores_Project.Tree.TreeGames;
 import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +36,7 @@ public class GamesListView{
         button.setLayout(null);
         this.panel.add(button);
 
-        Map<String, TeamModel> teams = treeGames.getTeamsOfGame(game);
+        final Map<String, TeamModel> teams = treeGames.getTeamsOfGame(game);
 
         JLabel logoLeft = new JLabel(teams.get("Visitor").getName(), new ImageIcon("src/main/resources/Icons/jersey.png"), JLabel.LEFT);
         JLabel logoRight = new JLabel(teams.get("Home").getName(), new ImageIcon("src/main/resources/Icons/jersey.png"), JLabel.RIGHT);
@@ -57,7 +55,7 @@ public class GamesListView{
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 panel.removeAll();
-                new GameView(panel, game);
+                new GameView(panel, game, teams.get("Home"), teams.get("Visitor"));
                 SwingUtilities.updateComponentTreeUI(panel);
             }
         });

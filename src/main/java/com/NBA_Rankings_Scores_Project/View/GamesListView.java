@@ -1,9 +1,15 @@
 package com.NBA_Rankings_Scores_Project.View;
 
+import com.NBA_Rankings_Scores_Project.Models.GameModel;
+import com.NBA_Rankings_Scores_Project.Models.TeamModel;
+import com.NBA_Rankings_Scores_Project.Parser;
+import com.NBA_Rankings_Scores_Project.Tree.TreeGames;
+import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Map;
 
 public class GamesListView{
     private JPanel panel;
@@ -12,14 +18,37 @@ public class GamesListView{
         this.panel = panel;
         panel.removeAll();
 
-        final JButton button = new JButton("click");
-        button.setBounds(panel.getWidth()/2, panel.getHeight()/2, 100, 40);
+        Parser parser = new Parser("src/main/resources/Season_19_20.xml");
+        TreeSeasonInfo info = parser.getTreeSeason();
+        TreeGames treeGames = parser.getTreeSeasonGames(info);
+        List<GameModel> games = treeGames.getAllGames();
+        int yPosButton = 0;
+        for (GameModel game : games) {
+            displayGame(game, treeGames, yPosButton);
+            yPosButton += 100;
+        }
+    }
 
+    public void displayGame(GameModel game, TreeGames treeGames, int yPosButton){
+        JButton button = new JButton(game.getTotScore());
+        button.setBounds(0, yPosButton, panel.getWidth(), 100);
+        button.setLayout(null);
         this.panel.add(button);
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Button actionned");
-            }
-        });
+
+        Map<String, TeamModel> teams = treeGames.getTeamsOfGame(game);
+
+        JLabel logoLeft = new JLabel(teams.get("Visitor").getName(), new ImageIcon("src/main/resources/Icons/jersey.png"), JLabel.LEFT);
+        JLabel logoRight = new JLabel(teams.get("Home").getName(), new ImageIcon("src/main/resources/Icons/jersey.png"), JLabel.RIGHT);
+
+        logoLeft.setVerticalTextPosition(JLabel.BOTTOM);
+        logoLeft.setHorizontalTextPosition(JLabel.CENTER);
+        logoRight.setVerticalTextPosition(JLabel.BOTTOM);
+        logoRight.setHorizontalTextPosition(JLabel.CENTER);
+
+        logoLeft.setBounds(10, 0, 500, 100);
+        logoRight.setBounds(0, 0, button.getWidth() - 10, 100);
+
+        button.add(logoLeft);
+        button.add(logoRight);
     }
 }

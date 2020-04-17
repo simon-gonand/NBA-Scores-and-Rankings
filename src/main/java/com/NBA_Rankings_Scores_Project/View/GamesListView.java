@@ -8,6 +8,9 @@ import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +32,7 @@ public class GamesListView{
         }
     }
 
-    public void displayGame(GameModel game, TreeGames treeGames, int yPosButton){
+    private void displayGame(final GameModel game, TreeGames treeGames, int yPosButton){
         JButton button = new JButton(game.getTotScore());
         button.setBounds(0, yPosButton, panel.getWidth(), 100);
         button.setLayout(null);
@@ -50,5 +53,13 @@ public class GamesListView{
 
         button.add(logoLeft);
         button.add(logoRight);
+
+        button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                panel.removeAll();
+                new GameView(panel, game);
+                SwingUtilities.updateComponentTreeUI(panel);
+            }
+        });
     }
 }

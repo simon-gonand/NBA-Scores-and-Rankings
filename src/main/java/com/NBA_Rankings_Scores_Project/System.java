@@ -31,6 +31,7 @@ public class System {
         menuPanel.setLayout(null);
         menuPanel.setBounds(0,0,screenSize.width/5, screenSize.height);
         menuPanel.setBackground(Color.white);
+        menuPanel.setBorder(BorderFactory.createMatteBorder(0,0,0,3, Color.black));
 
         contentPanel = new JPanel();
         window.add(contentPanel);
@@ -46,7 +47,7 @@ public class System {
         menuPanel.add(rankingsViewButton);
 
         gamesScoreViewButton.setBackground(Color.white);
-        gamesScoreViewButton.setBounds(0,0, menuPanel.getWidth(), 100);
+        gamesScoreViewButton.setBounds(0,0, menuPanel.getWidth()-3, 100);
         gamesScoreViewButton.setBorder(BorderFactory.createEmptyBorder());
         gamesScoreViewButton.addMouseListener(new MouseAdapter() {
             Color oldColor;
@@ -76,7 +77,7 @@ public class System {
         });
 
         teamsViewButton.setBackground(Color.white);
-        teamsViewButton.setBounds(0,gamesScoreViewButton.getHeight(), menuPanel.getWidth(), 100);
+        teamsViewButton.setBounds(0,gamesScoreViewButton.getHeight(), menuPanel.getWidth()-3, 100);
         teamsViewButton.setBorder(BorderFactory.createEmptyBorder());
         teamsViewButton.addMouseListener(new MouseAdapter() {
             Color oldColor;
@@ -106,7 +107,7 @@ public class System {
         });
 
         rankingsViewButton.setBackground(Color.white);
-        rankingsViewButton.setBounds(0,gamesScoreViewButton.getHeight()*2, menuPanel.getWidth(), 100);
+        rankingsViewButton.setBounds(0,gamesScoreViewButton.getHeight()*2, menuPanel.getWidth()-3, 100);
         rankingsViewButton.setBorder(BorderFactory.createEmptyBorder());
         rankingsViewButton.addMouseListener(new MouseAdapter() {
             Color oldColor;

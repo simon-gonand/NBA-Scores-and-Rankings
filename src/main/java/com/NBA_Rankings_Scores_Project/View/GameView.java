@@ -1,19 +1,28 @@
 package com.NBA_Rankings_Scores_Project.View;
 
 import com.NBA_Rankings_Scores_Project.Models.GameModel;
+import com.NBA_Rankings_Scores_Project.Models.PlayerStats;
 import com.NBA_Rankings_Scores_Project.Models.TeamModel;
+import com.NBA_Rankings_Scores_Project.Tree.TreeGames;
+import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class GameView {
     private JPanel panel;
     private GameModel game;
+    private TreeSeasonInfo info;
+    private TreeGames games;
     private TeamModel home, visitor;
 
-    public GameView(JPanel panel, GameModel game, TeamModel home, TeamModel visitor){
+    public GameView(JPanel panel, GameModel game, TeamModel home, TeamModel visitor,
+                    TreeSeasonInfo info, TreeGames games){
         this.panel = panel;
         this.game = game;
+        this.info = info;
+        this.games = games;
         this.home = home;
         this.visitor = visitor;
 
@@ -21,7 +30,7 @@ public class GameView {
         JPanel otherStats = new JPanel();
 
         generalStats.setBounds(0,0, panel.getWidth(), panel.getHeight()/3 + 5);
-        otherStats.setBounds(0, generalStats.getHeight(), panel.getWidth(), 2*panel.getHeight()/3 - 5);
+        otherStats.setBounds(0, generalStats.getHeight(), panel.getWidth(), 2*panel.getHeight()/3);
         generalStats.setBorder(BorderFactory.createMatteBorder(0,0,3,0, Color.black));
 
         generalStats.setLayout(null);
@@ -31,6 +40,7 @@ public class GameView {
         this.panel.add(otherStats);
 
         fillGeneralStatsPanel(generalStats);
+        fillOtherStatsPanel(otherStats);
     }
 
     private void fillGeneralStatsPanel(JPanel generalStats){
@@ -49,19 +59,17 @@ public class GameView {
         homeTeamLabel.setBounds(0, 0, generalStats.getWidth() - 10, 100);
         visitorTeamLabel.setBounds(10, 0, 300, 100);
 
+        displayScores(generalStats);
+
+        generalStats.add(homeTeamLabel);
+        generalStats.add(visitorTeamLabel);
+    }
+
+    private void displayScores(JPanel generalStats){
         JLabel totScore = new JLabel(game.getTotScore(), JLabel.CENTER);
         totScore.setBounds(0, 15, generalStats.getWidth(), 50);
         totScore.setFont(new Font(totScore.getFont().getName(), Font.BOLD, 35));
 
-        displayScores(generalStats, totScore);
-
-        generalStats.add(homeTeamLabel);
-        generalStats.add(visitorTeamLabel);
-        generalStats.add(totScore);
-
-    }
-
-    private void displayScores(JPanel generalStats, JLabel totScore){
         JLabel q1 = new JLabel("Q1", JLabel.CENTER);
         q1.setBounds(0, totScore.getY() + totScore.getHeight() + 3, generalStats.getWidth(), 25);
         q1.setFont(new Font(q1.getFont().getName(), Font.BOLD, 20));
@@ -94,6 +102,7 @@ public class GameView {
         q4Score.setBounds(0, q4.getY() + q4.getHeight() + 2, generalStats.getWidth(), 25);
         q4Score.setFont(new Font(totScore.getFont().getName(), Font.PLAIN, 15));
 
+        generalStats.add(totScore);
         generalStats.add(q1);
         generalStats.add(q2);
         generalStats.add(q3);
@@ -102,5 +111,40 @@ public class GameView {
         generalStats.add(q2Score);
         generalStats.add(q3Score);
         generalStats.add(q4Score);
+    }
+
+    private void fillOtherStatsPanel(JPanel otherStats){
+        JLabel title = new JLabel("Statistics", JLabel.CENTER);
+        title.setBounds(0, 5, otherStats.getWidth(), 40);
+        title.setFont(new Font(title.getFont().getName(), Font.BOLD, 30));
+        otherStats.add(title);
+
+        String[] columnsName = {"Player", "Min", "Points", "Rebounds", "Assists", "FG",
+                "3pt", "FT", "Steals", "Blocks", "TO"};
+
+        Object[][] data = new Object[games.getPlayerStatsByTeam(game, home).size()][11];
+        for (PlayerStats playerStats : games.getPlayerStatsByTeam(game, home)){
+            Object[] tmp = {info.getPlayersByTeam(home).get(playerStats.getID()).getSurname(),
+                playerStats.getMinutes(),
+                playerStats.getPoints(),
+                playerStats.getRebounds(),
+                playerStats.getAssists(),
+                playerStats.getFg(),
+                playerStats.getThreePts(),
+                playerStats.getFt(),
+                playerStats.getSteals(),
+                playerStats.getBlocks(),
+                playerStats.getTurnovers()};
+            data[playerStats.getID()] = tmp;
+        }
+        JTable stats = new JTable(new DefaultTableModel(data, columnsName){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+        JScrollPane scrollPane = new JScrollPane(stats);
+        scrollPane.setBounds(0, title.getY() + title.getHeight(), otherStats.getWidth(), otherStats.getHeight());
+        otherStats.add(scrollPane);
     }
 }

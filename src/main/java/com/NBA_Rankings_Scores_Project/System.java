@@ -18,13 +18,13 @@ public class System {
         window = new JFrame();
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        window.setBounds(0,0,screenSize.width,screenSize.height);
         window.setTitle("NBA: Scores & Rankings");
         ImageIcon icon = new ImageIcon("src/main/resources/Icons/logo.png");
         window.setIconImage(icon.getImage());
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLayout(null);
         window.setVisible(true);
+        window.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         JPanel menuPanel = new JPanel();
         window.add(menuPanel);

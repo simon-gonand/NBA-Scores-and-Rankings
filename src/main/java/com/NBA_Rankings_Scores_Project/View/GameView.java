@@ -10,6 +10,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GameView {
     private JPanel panel;
@@ -114,13 +116,13 @@ public class GameView {
         generalStats.add(q4Score);
     }
 
-    private void fillOtherStatsPanel(JPanel otherStats){
+    private void fillOtherStatsPanel(final JPanel otherStats){
         JLabel title = new JLabel("Statistics", JLabel.CENTER);
         title.setBounds(0, 5, otherStats.getWidth(), 40);
         title.setFont(new Font(title.getFont().getName(), Font.BOLD, 30));
         otherStats.add(title);
 
-        JPanel statsMenu = new JPanel(new GridBagLayout());
+        final JPanel statsMenu = new JPanel(new GridBagLayout());
         statsMenu.setBounds(0, title.getY() + title.getHeight(), otherStats.getWidth(), 150);
         otherStats.add(statsMenu);
         GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 0, 0,
@@ -130,7 +132,7 @@ public class GameView {
         statsMenu.add(players, constraints);
 
         constraints.gridx = 1;
-        JButton teams = new JButton("Teams");
+        final JButton teams = new JButton("Teams");
         statsMenu.add(teams, constraints);
 
         constraints.gridx = 0;
@@ -150,7 +152,19 @@ public class GameView {
         JButton homeButton = new JButton("Home");
         statsMenu.add(homeButton, constraints);
 
+
         fillPlayerStats(home, statsMenu, otherStats);
+        visitorButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                fillPlayerStats(visitor, statsMenu, otherStats);
+            }
+        });
+        homeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                fillPlayerStats(home, statsMenu, otherStats);
+            }
+        });
+
     }
 
     private void fillPlayerStats(TeamModel team, JPanel statsMenu, JPanel otherStats){

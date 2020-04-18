@@ -244,11 +244,12 @@ public class GameView {
     }
 
     private JScrollPane fillTeamsStats(JPanel statsMenu, JPanel otherStats){
-        String[] columnsName = {"Points", "Rebounds", "Assists", "%Field Goal", "%3pt", "FT", "Steals", "Blocks", "Turnovers"};
+        String[] columnsName = {"Team", "Points", "Rebounds", "Assists", "%Field Goal", "%3pt", "FT", "Steals", "Blocks", "Turnovers"};
 
-        Object[][] data = new Object[2][9];
+        Object[][] data = new Object[2][10];
         Map<String, Object> homeStats = gameController.calculateTeamStats(games.getPlayerStatsByTeam(game, home));
-        Object[] homeTmp = {homeStats.get("Points"),
+        Object[] homeTmp = {home.getName(),
+                homeStats.get("Points"),
                 homeStats.get("Rebounds"),
                 homeStats.get("Assists"),
                 homeStats.get("FG"),
@@ -259,7 +260,8 @@ public class GameView {
                 homeStats.get("Turnovers")};
         data[0] = homeTmp;
         Map<String, Object> visitorStats = gameController.calculateTeamStats(games.getPlayerStatsByTeam(game, visitor));
-        Object[] visitorTmp = {visitorStats.get("Points"),
+        Object[] visitorTmp = { visitor.getName(),
+                visitorStats.get("Points"),
                 visitorStats.get("Rebounds"),
                 visitorStats.get("Assists"),
                 visitorStats.get("FG"),
@@ -277,6 +279,14 @@ public class GameView {
                 return false;
             }
         });
+
+        stats.setRowHeight(30);
+        stats.getColumnModel().getColumn(0).setPreferredWidth(175);
+        stats.getColumnModel().getColumn(2).setPreferredWidth(20);
+        stats.getColumnModel().getColumn(3).setPreferredWidth(20);
+        stats.getColumnModel().getColumn(7).setPreferredWidth(20);
+        stats.getColumnModel().getColumn(8).setPreferredWidth(20);
+        stats.getColumnModel().getColumn(9).setPreferredWidth(20);
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );

@@ -1,5 +1,6 @@
 package com.NBA_Rankings_Scores_Project.View;
 
+import com.NBA_Rankings_Scores_Project.Controllers.GameController;
 import com.NBA_Rankings_Scores_Project.Models.GameModel;
 import com.NBA_Rankings_Scores_Project.Models.PlayerStats;
 import com.NBA_Rankings_Scores_Project.Models.TeamModel;
@@ -12,10 +13,14 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 
 public class GameView {
     private JPanel panel;
+    private JScrollPane table;
+
     private GameModel game;
+    private GameController gameController;
     private TreeSeasonInfo info;
     private TreeGames games;
     private TeamModel home, visitor;
@@ -26,6 +31,7 @@ public class GameView {
         this.game = game;
         this.info = info;
         this.games = games;
+        this.gameController = new GameController(game);
         this.home = home;
         this.visitor = visitor;
 
@@ -117,6 +123,9 @@ public class GameView {
     }
 
     private void fillOtherStatsPanel(final JPanel otherStats){
+        final JButton visitorButton = new JButton("Visitor");
+        final JButton homeButton = new JButton("Home");
+
         JLabel title = new JLabel("Statistics", JLabel.CENTER);
         title.setBounds(0, 5, otherStats.getWidth(), 40);
         title.setFont(new Font(title.getFont().getName(), Font.BOLD, 30));
@@ -125,49 +134,69 @@ public class GameView {
         final JPanel statsMenu = new JPanel(new GridBagLayout());
         statsMenu.setBounds(0, title.getY() + title.getHeight(), otherStats.getWidth(), 150);
         otherStats.add(statsMenu);
-        GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 0, 0,
+        final GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 0, 0,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-25,0,0,0), 30, 25);
 
         JButton players = new JButton("Players");
         statsMenu.add(players, constraints);
+        players.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (table != null)
+                    otherStats.remove(table);
+                visitorButton.setVisible(true);
+                homeButton.setVisible(true);
+                constraints.gridx = 0;
+                constraints.gridy = 1;
+                constraints.gridheight = 3;
+                constraints.ipadx = 20;
+                constraints.ipady = 15;
+                constraints.anchor = GridBagConstraints.LINE_END;
+                constraints.insets.top = 15;
+                constraints.insets.bottom = 0;
+                statsMenu.add(visitorButton, constraints);
+
+                constraints.gridx = 1;
+                constraints.anchor = GridBagConstraints.LINE_START;
+                statsMenu.add(homeButton, constraints);
+
+                visitorButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        if (table != null)
+                            otherStats.remove(table);
+                        table = fillPlayerStats(visitor, statsMenu, otherStats);
+                        SwingUtilities.updateComponentTreeUI(otherStats);
+                    }
+                });
+                homeButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        if (table != null)
+                            otherStats.remove(table);
+                        table = fillPlayerStats(home, statsMenu, otherStats);
+                        SwingUtilities.updateComponentTreeUI(otherStats);
+                    }
+                });
+                SwingUtilities.updateComponentTreeUI(otherStats);
+            }
+        });
 
         constraints.gridx = 1;
         final JButton teams = new JButton("Teams");
         statsMenu.add(teams, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        constraints.gridheight = 3;
-        constraints.ipadx = 20;
-        constraints.ipady = 15;
-        constraints.anchor = GridBagConstraints.LINE_END;
-        constraints.insets.top = 15;
-        constraints.insets.bottom = 0;
-        JButton visitorButton = new JButton("Visitor");
-        statsMenu.add(visitorButton, constraints);
-
-
-        constraints.gridx = 1;
-        constraints.anchor = GridBagConstraints.LINE_START;
-        JButton homeButton = new JButton("Home");
-        statsMenu.add(homeButton, constraints);
-
-
-        fillPlayerStats(home, statsMenu, otherStats);
-        visitorButton.addActionListener(new ActionListener() {
+        teams.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                fillPlayerStats(visitor, statsMenu, otherStats);
+                statsMenu.remove(visitorButton);
+                statsMenu.remove(homeButton);
+                visitorButton.setVisible(false);
+                homeButton.setVisible(false);
+                if (table != null)
+                    otherStats.remove(table);
+                table = fillTeamsStats(statsMenu, otherStats);
+                SwingUtilities.updateComponentTreeUI(otherStats);
             }
         });
-        homeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                fillPlayerStats(home, statsMenu, otherStats);
-            }
-        });
-
     }
 
-    private void fillPlayerStats(TeamModel team, JPanel statsMenu, JPanel otherStats){
+    private JScrollPane fillPlayerStats(TeamModel team, JPanel statsMenu, JPanel otherStats){
         String[] columnsName = {"Player", "Min", "Points", "Rebounds", "Assists", "FG",
                 "3pt", "FT", "Steals", "Blocks", "TO"};
 
@@ -211,5 +240,51 @@ public class GameView {
         JScrollPane scrollPane = new JScrollPane(stats);
         scrollPane.setBounds(0, statsMenu.getY() + statsMenu.getHeight(), otherStats.getWidth(), otherStats.getHeight() - (statsMenu.getY() + statsMenu.getHeight()+67));
         otherStats.add(scrollPane);
+        return scrollPane;
+    }
+
+    private JScrollPane fillTeamsStats(JPanel statsMenu, JPanel otherStats){
+        String[] columnsName = {"Points", "Rebounds", "Assists", "%Field Goal", "%3pt", "FT", "Steals", "Blocks", "Turnovers"};
+
+        Object[][] data = new Object[2][9];
+        Map<String, Object> homeStats = gameController.calculateTeamStats(games.getPlayerStatsByTeam(game, home));
+        Object[] homeTmp = {homeStats.get("Points"),
+                homeStats.get("Rebounds"),
+                homeStats.get("Assists"),
+                homeStats.get("FG"),
+                homeStats.get("3pt"),
+                homeStats.get("FT"),
+                homeStats.get("Steals"),
+                homeStats.get("Blocks"),
+                homeStats.get("Turnovers")};
+        data[0] = homeTmp;
+        Map<String, Object> visitorStats = gameController.calculateTeamStats(games.getPlayerStatsByTeam(game, visitor));
+        Object[] visitorTmp = {visitorStats.get("Points"),
+                visitorStats.get("Rebounds"),
+                visitorStats.get("Assists"),
+                visitorStats.get("FG"),
+                visitorStats.get("3pt"),
+                visitorStats.get("FT"),
+                visitorStats.get("Steals"),
+                visitorStats.get("Blocks"),
+                visitorStats.get("Turnovers")};
+
+        data[1] = visitorTmp;
+
+        JTable stats = new JTable(new DefaultTableModel(data, columnsName){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        stats.setDefaultRenderer(Object.class, centerRenderer);
+
+        JScrollPane scrollPane = new JScrollPane(stats);
+        scrollPane.setBounds(0, statsMenu.getY() + statsMenu.getHeight(), otherStats.getWidth(), otherStats.getHeight() - (statsMenu.getY() + statsMenu.getHeight()+67));
+        otherStats.add(scrollPane);
+        return scrollPane;
     }
 }

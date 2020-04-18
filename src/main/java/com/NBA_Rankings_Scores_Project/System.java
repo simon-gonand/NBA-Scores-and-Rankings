@@ -1,12 +1,9 @@
 package com.NBA_Rankings_Scores_Project;
 
-import com.NBA_Rankings_Scores_Project.Tree.Tree;
 import com.NBA_Rankings_Scores_Project.View.GamesListView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -15,6 +12,7 @@ public class System {
     private static JPanel contentPanel;
 
     public static void main(String[] args) {
+
         window = new JFrame();
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

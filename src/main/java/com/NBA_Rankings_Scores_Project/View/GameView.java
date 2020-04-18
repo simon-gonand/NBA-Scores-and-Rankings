@@ -7,6 +7,7 @@ import com.NBA_Rankings_Scores_Project.Tree.TreeGames;
 import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
@@ -119,22 +120,56 @@ public class GameView {
         title.setFont(new Font(title.getFont().getName(), Font.BOLD, 30));
         otherStats.add(title);
 
+        JPanel statsMenu = new JPanel(new GridBagLayout());
+        statsMenu.setBounds(0, title.getY() + title.getHeight(), otherStats.getWidth(), 150);
+        otherStats.add(statsMenu);
+        GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 0, 0,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-25,0,0,0), 30, 25);
+
+        JButton players = new JButton("Players");
+        statsMenu.add(players, constraints);
+
+        constraints.gridx = 1;
+        JButton teams = new JButton("Teams");
+        statsMenu.add(teams, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridheight = 3;
+        constraints.ipadx = 20;
+        constraints.ipady = 15;
+        constraints.anchor = GridBagConstraints.LINE_END;
+        constraints.insets.top = 15;
+        constraints.insets.bottom = 0;
+        JButton visitorButton = new JButton("Visitor");
+        statsMenu.add(visitorButton, constraints);
+
+
+        constraints.gridx = 1;
+        constraints.anchor = GridBagConstraints.LINE_START;
+        JButton homeButton = new JButton("Home");
+        statsMenu.add(homeButton, constraints);
+
+        fillPlayerStats(home, statsMenu, otherStats);
+    }
+
+    private void fillPlayerStats(TeamModel team, JPanel statsMenu, JPanel otherStats){
         String[] columnsName = {"Player", "Min", "Points", "Rebounds", "Assists", "FG",
                 "3pt", "FT", "Steals", "Blocks", "TO"};
 
-        Object[][] data = new Object[games.getPlayerStatsByTeam(game, home).size()][11];
-        for (PlayerStats playerStats : games.getPlayerStatsByTeam(game, home)){
-            Object[] tmp = {info.getPlayersByTeam(home).get(playerStats.getID()).getSurname(),
-                playerStats.getMinutes(),
-                playerStats.getPoints(),
-                playerStats.getRebounds(),
-                playerStats.getAssists(),
-                playerStats.getFg(),
-                playerStats.getThreePts(),
-                playerStats.getFt(),
-                playerStats.getSteals(),
-                playerStats.getBlocks(),
-                playerStats.getTurnovers()};
+        Object[][] data = new Object[games.getPlayerStatsByTeam(game, team).size()][11];
+        for (PlayerStats playerStats : games.getPlayerStatsByTeam(game, team)){
+            Object[] tmp = {info.getPlayersByTeam(team).get(playerStats.getID()).getSurname(),
+                    playerStats.getMinutes(),
+                    playerStats.getPoints(),
+                    playerStats.getRebounds(),
+                    playerStats.getAssists(),
+                    playerStats.getFg(),
+                    playerStats.getThreePts(),
+                    playerStats.getFt(),
+                    playerStats.getSteals(),
+                    playerStats.getBlocks(),
+                    playerStats.getTurnovers()};
             data[playerStats.getID()] = tmp;
         }
         JTable stats = new JTable(new DefaultTableModel(data, columnsName){
@@ -143,8 +178,24 @@ public class GameView {
                 return false;
             }
         });
+        // Set cell sizes
+        stats.setRowHeight(25);
+        stats.getColumnModel().getColumn(0).setPreferredWidth(150);
+        stats.getColumnModel().getColumn(1).setPreferredWidth(20);
+        stats.getColumnModel().getColumn(2).setPreferredWidth(20);
+        stats.getColumnModel().getColumn(3).setPreferredWidth(20);
+        stats.getColumnModel().getColumn(4).setPreferredWidth(20);
+        stats.getColumnModel().getColumn(8).setPreferredWidth(20);
+        stats.getColumnModel().getColumn(9).setPreferredWidth(20);
+        stats.getColumnModel().getColumn(10).setPreferredWidth(20);
+
+        // Set horizontal alignement to center for every cell
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        stats.setDefaultRenderer(Object.class, centerRenderer);
+
         JScrollPane scrollPane = new JScrollPane(stats);
-        scrollPane.setBounds(0, title.getY() + title.getHeight(), otherStats.getWidth(), otherStats.getHeight());
+        scrollPane.setBounds(0, statsMenu.getY() + statsMenu.getHeight(), otherStats.getWidth(), otherStats.getHeight() - (statsMenu.getY() + statsMenu.getHeight()+67));
         otherStats.add(scrollPane);
     }
 }

@@ -19,7 +19,6 @@ public class TreeSeasonInfo extends Tree {
             if (confNode.getData().getClass().equals(Conference.class))
                 confList.add((Conference) confNode.getData());
         }
-
         return confList;
     }
 
@@ -31,7 +30,6 @@ public class TreeSeasonInfo extends Tree {
                     teamsList.add((TeamModel)teamNode.getData());
             }
         }
-
         return teamsList;
     }
 
@@ -45,7 +43,6 @@ public class TreeSeasonInfo extends Tree {
                 }
             }
         }
-
         return teamsList;
     }
 
@@ -61,7 +58,17 @@ public class TreeSeasonInfo extends Tree {
                 }
             }
         }
-
         return playersList;
+    }
+
+    public Conference getConferenceOfATeam (TeamModel team) throws Exception {
+        for (TreeNode confNode : this.getRoot().getChilds()){
+            for (TreeNode teamNode : confNode.getChilds()) {
+                if (teamNode.getData().getClass().equals(TeamModel.class))
+                    if (teamNode.getData().equals(team))
+                        return (Conference) confNode.getData();
+            }
+        }
+        throw new Exception("Team doesn't exist");
     }
 }

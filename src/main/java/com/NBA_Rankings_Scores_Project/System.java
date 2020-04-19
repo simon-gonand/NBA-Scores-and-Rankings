@@ -134,10 +134,5 @@ public class System {
                 SwingUtilities.updateComponentTreeUI(contentPanel);
             }
         });
-
-
-        /*Parser p = new Parser("src/main/resources/Season_19_20.xml");
-        Tree tree = p.getTreeSeason();
-        tree.show();*/
     }
 }

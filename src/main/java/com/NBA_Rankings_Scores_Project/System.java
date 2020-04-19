@@ -28,14 +28,14 @@ public class System {
         JPanel menuPanel = new JPanel();
         window.add(menuPanel);
         menuPanel.setLayout(null);
-        menuPanel.setBounds(0,0,screenSize.width/5, screenSize.height);
+        menuPanel.setBounds(0,0,window.getWidth()/5, window.getHeight());
         menuPanel.setBackground(Color.white);
         menuPanel.setBorder(BorderFactory.createMatteBorder(0,0,0,3, Color.black));
 
         contentPanel = new JPanel();
         window.add(contentPanel);
         contentPanel.setLayout(null);
-        contentPanel.setBounds(menuPanel.getWidth(), 0, 4*screenSize.width/5, screenSize.height);
+        contentPanel.setBounds(menuPanel.getWidth(), 0, 4*window.getWidth()/5-13, window.getHeight()-36);
 
         final JButton gamesScoreViewButton = new JButton("Games Scores", new ImageIcon("src/main/resources/Icons/basketball.png"));
         final JButton teamsViewButton = new JButton ("Teams             ", new ImageIcon("src/main/resources/Icons/jersey.png"));

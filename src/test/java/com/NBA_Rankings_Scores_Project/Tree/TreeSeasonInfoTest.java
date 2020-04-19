@@ -102,5 +102,17 @@ public class TreeSeasonInfoTest {
                 "Player's nationality must be Puerto Rican");
         assertEquals(0, player.getID(), "Player's ID must be 0");
     }
+
+    @Test
+    public void getConferenceOfTeamTest(){
+        TeamModel team = treeSeasonInfo.getTeams().get(0);
+        try {
+            Conference conference = treeSeasonInfo.getConferenceOfATeam(team);
+            assertEquals("West", conference.getName(), "Conference must be West");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
 

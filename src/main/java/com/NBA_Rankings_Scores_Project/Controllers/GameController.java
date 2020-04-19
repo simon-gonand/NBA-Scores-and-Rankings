@@ -24,16 +24,16 @@ public class GameController {
                 points += p.getPoints();
                 rebounds += p.getRebounds();
                 assists += p.getAssists();
-                steals += p.getAssists();
+                steals += p.getSteals();
                 blocks += p.getBlocks();
                 turnovers += p.getTurnovers();
                 List<Integer> madeAttempts = getMadeAttempts(p.getFt());
                 ftMade += madeAttempts.get(0);
                 ftAttempts += madeAttempts.get(1);
-                madeAttempts = getMadeAttempts(p.getFt());
+                madeAttempts = getMadeAttempts(p.getFg());
                 fgMade += madeAttempts.get(0);
                 fgAttempts += madeAttempts.get(1);
-                madeAttempts = getMadeAttempts(p.getFt());
+                madeAttempts = getMadeAttempts(p.getThreePts());
                 threePtMade += madeAttempts.get(0);
                 threePtAttempts += madeAttempts.get(1);
             }
@@ -45,8 +45,12 @@ public class GameController {
         teamStats.put("Blocks", blocks);
         teamStats.put("Turnovers", turnovers);
         teamStats.put("FT", ftMade + "/" + ftAttempts);
-        teamStats.put("FG", calculatePercentage(fgMade, fgAttempts));
-        teamStats.put("3pt", calculatePercentage(threePtMade, threePtAttempts));
+        String[] str = Float.toString(calculatePercentage(fgMade, fgAttempts)).split("\\.");
+        String res = str[1].length() < 2 ? str[0]+"."+str[1].substring(0,str[1].length()) : str[0]+"."+str[1].substring(0,2);
+        teamStats.put("FG", res);
+        str = Float.toString(calculatePercentage(threePtMade,threePtAttempts)).split("\\.");
+        res = str[1].length() < 2 ? str[0]+"."+str[1].substring(0,str[1].length()) : str[0]+"."+str[1].substring(0,2);
+        teamStats.put("3pt", res);
         return teamStats;
     }
 
@@ -57,7 +61,7 @@ public class GameController {
         madeAttempts.add(Integer.parseInt(madeAndAttemptsStr[1]));
         return madeAttempts;
     }
-    private float calculatePercentage(int made, int attempts){
+    private float calculatePercentage(float made, float attempts){
         return made*100/attempts;
     }
 }

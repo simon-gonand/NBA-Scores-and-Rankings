@@ -1,0 +1,60 @@
+package com.NBA_Rankings_Scores_Project.View;
+
+import com.NBA_Rankings_Scores_Project.Models.Conference;
+import com.NBA_Rankings_Scores_Project.Models.TeamModel;
+import com.NBA_Rankings_Scores_Project.Parser;
+import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class TeamListView {
+    private JPanel panel;
+    private TreeSeasonInfo treeSeasonInfo;
+
+    public TeamListView(JPanel panel){
+        this.panel = panel;
+        panel.removeAll();
+
+        Parser parser = new Parser("src/main/resources/Season_19_20.xml");
+        this.treeSeasonInfo = parser.getTreeSeason();
+
+        final JPanel teamLists = new JPanel(new GridBagLayout());
+
+        teamLists.setLayout(new GridBagLayout());
+
+        addButton(treeSeasonInfo.getConferences().get(0), teamLists, 0);
+        addButton(treeSeasonInfo.getConferences().get(1), teamLists, 1);
+        //teamLists.setBounds(0,0, panel.getWidth(), panel.getHeight());
+        teamLists.setSize(new Dimension(panel.getWidth(), panel.getHeight()));
+        JScrollPane scrollPane = new JScrollPane(teamLists, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        //scrollPane.add(teamLists);
+        scrollPane.setBounds(0,0, panel.getWidth(), panel.getHeight());
+        //scrollPane.setLayout(null);
+
+        panel.add(scrollPane);
+    }
+
+    private void addButton(Conference conference, JPanel teamLists, int column){
+        JLabel columnName = new JLabel(conference.getName() + " Conference", JLabel.CENTER);
+        GridBagConstraints constraints = new GridBagConstraints(column, 0, 1, 1, 0.25, 0.25,
+                GridBagConstraints.PAGE_START, GridBagConstraints.HORIZONTAL, new Insets(0,0,0,0), 0, 0);
+        teamLists.add(columnName, constraints);
+        int i = 1;
+        for (TeamModel team : treeSeasonInfo.getTeamByConference(conference)){
+            JButton button = new JButton(team.getName(), new ImageIcon("src/main/resources/Icons/jersey.png"));
+            constraints.gridy = i;
+            teamLists.add(button, constraints);
+            ++i;
+
+            button.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println(team.getName());
+                }
+            });
+        }
+    }
+}

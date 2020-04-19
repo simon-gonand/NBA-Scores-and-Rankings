@@ -1,7 +1,9 @@
 package com.NBA_Rankings_Scores_Project.View;
 
+import com.NBA_Rankings_Scores_Project.Controllers.TeamController;
 import com.NBA_Rankings_Scores_Project.Models.Conference;
 import com.NBA_Rankings_Scores_Project.Models.TeamModel;
+import com.NBA_Rankings_Scores_Project.Tree.TreeGames;
 import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
 
 import javax.swing.*;
@@ -10,11 +12,13 @@ import java.awt.*;
 public class TeamView {
     private JPanel panel;
     private TeamModel team;
+    private TeamController teamController;
     private TreeSeasonInfo info;
 
-    public TeamView(JPanel panel, TeamModel team, TreeSeasonInfo info){
+    public TeamView(JPanel panel, TeamModel team, TreeSeasonInfo info, TreeGames games){
         this.panel = panel;
         this.team = team;
+        this.teamController = new TeamController(team, games);
         this.info = info;
 
         panel.removeAll();

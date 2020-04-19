@@ -60,7 +60,6 @@ public class GamesListView{
 
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                panel.removeAll();
                 new GameView(panel, game, teams.get("Home"), teams.get("Visitor"), info, treeGames);
                 SwingUtilities.updateComponentTreeUI(panel);
             }

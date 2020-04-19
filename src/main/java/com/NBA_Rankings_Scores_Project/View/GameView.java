@@ -34,6 +34,7 @@ public class GameView {
         this.gameController = new GameController(game);
         this.home = home;
         this.visitor = visitor;
+        panel.removeAll();
 
         JPanel generalStats = new JPanel();
         JPanel otherStats = new JPanel();

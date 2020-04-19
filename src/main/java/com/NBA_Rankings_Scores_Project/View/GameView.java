@@ -39,8 +39,8 @@ public class GameView {
         JPanel generalStats = new JPanel();
         JPanel otherStats = new JPanel();
 
-        generalStats.setBounds(0,0, panel.getWidth(), panel.getHeight()/3 + 5);
-        otherStats.setBounds(0, generalStats.getHeight(), panel.getWidth(), 2*panel.getHeight()/3);
+        generalStats.setBounds(0,0, panel.getWidth(), panel.getHeight()/3 + 30);
+        otherStats.setBounds(0, generalStats.getHeight(), panel.getWidth(), 2*panel.getHeight()/3 - 30);
         generalStats.setBorder(BorderFactory.createMatteBorder(0,0,3,0, Color.black));
 
         generalStats.setLayout(null);
@@ -78,7 +78,7 @@ public class GameView {
     private void displayScores(JPanel generalStats){
         JLabel totScore = new JLabel(game.getTotScore(), JLabel.CENTER);
         totScore.setBounds(0, 15, generalStats.getWidth(), 50);
-        totScore.setFont(new Font(totScore.getFont().getName(), Font.BOLD, 35));
+        totScore.setFont(new Font(totScore.getFont().getName(), Font.BOLD, 30));
 
         JLabel q1 = new JLabel("Q1", JLabel.CENTER);
         q1.setBounds(0, totScore.getY() + totScore.getHeight() + 3, generalStats.getWidth(), 25);
@@ -239,7 +239,7 @@ public class GameView {
         stats.setDefaultRenderer(Object.class, centerRenderer);
 
         JScrollPane scrollPane = new JScrollPane(stats);
-        scrollPane.setBounds(0, statsMenu.getY() + statsMenu.getHeight(), otherStats.getWidth(), otherStats.getHeight() - (statsMenu.getY() + statsMenu.getHeight()+4));
+        scrollPane.setBounds(0, statsMenu.getY() + statsMenu.getHeight(), otherStats.getWidth(), otherStats.getHeight() - (statsMenu.getY() + statsMenu.getHeight()));
         otherStats.add(scrollPane);
         return scrollPane;
     }
@@ -294,7 +294,7 @@ public class GameView {
         stats.setDefaultRenderer(Object.class, centerRenderer);
 
         JScrollPane scrollPane = new JScrollPane(stats);
-        scrollPane.setBounds(0, statsMenu.getY() + statsMenu.getHeight(), otherStats.getWidth(), otherStats.getHeight() - (statsMenu.getY() + statsMenu.getHeight()+67));
+        scrollPane.setBounds(0, statsMenu.getY() + statsMenu.getHeight(), otherStats.getWidth(), otherStats.getHeight() - (statsMenu.getY() + statsMenu.getHeight()));
         otherStats.add(scrollPane);
         return scrollPane;
     }

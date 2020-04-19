@@ -19,7 +19,6 @@ public class TreeGames extends Tree {
             if(gameNode.getData().getClass().equals(GameModel.class))
                 games.add((GameModel) gameNode.getData());
         }
-
         return games;
     }
 
@@ -37,7 +36,6 @@ public class TreeGames extends Tree {
                 }
             }
         }
-
         return teams;
     }
 
@@ -59,7 +57,18 @@ public class TreeGames extends Tree {
                 }
             }
         }
-
         return playersStats;
+    }
+
+    public ArrayList<GameModel> getAllGamesOfTeam(TeamModel team){
+        ArrayList<GameModel> games = new ArrayList<GameModel>();
+        for (TreeNode gameNode : this.getRoot().getChilds()){
+            if(gameNode.getData().getClass().equals(GameModel.class)) {
+                HashMap<String, TeamModel> teams = getTeamsOfGame((GameModel) gameNode.getData());
+                if (teams.get("Home").equals(team) || teams.get("Visitor").equals(team))
+                    games.add((GameModel) gameNode.getData());
+            }
+        }
+        return games;
     }
 }

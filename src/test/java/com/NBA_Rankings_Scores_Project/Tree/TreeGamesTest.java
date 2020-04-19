@@ -93,4 +93,11 @@ public class TreeGamesTest {
         assertEquals(null, playerStats.getBlocks(), "Player's blocks must be null");
         assertEquals(null, playerStats.getTurnovers(), "Player's turnovers must be null");
     }
+
+    @Test
+    public void getAllGamesOfTeamTest(){
+        TeamModel team = treeSeasonInfo.getTeams().get(0);
+        ArrayList<GameModel> games = treeGames.getAllGamesOfTeam(team);
+        assertEquals("Pelicans v Mavericks", games.get(0).getName(), "Game's name must be Pelicans v Mavericks");
+    }
 }

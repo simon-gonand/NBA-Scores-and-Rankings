@@ -31,7 +31,7 @@ public class TreeGamesTest {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/M/yy");
         String date = sdf.format(gameModel.getDate());
         assertEquals("26/10/19", date, "Game's date must be 26/10/19");
-        assertEquals("visitor", gameModel.getWinner(), "Game's winner must be visitor");
+        assertEquals("Visitor", gameModel.getWinner(), "Game's winner must be visitor");
         assertEquals("116-123", gameModel.getTotScore(), "Game's total score must be 116-123");
         assertEquals("27-43", gameModel.getQ1Score(), "Game's q1 score must be 27-43");
         assertEquals("45-23", gameModel.getQ2Score(), "Game's q2 score must be 45-23");

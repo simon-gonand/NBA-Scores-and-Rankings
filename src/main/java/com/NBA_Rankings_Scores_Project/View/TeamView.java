@@ -75,7 +75,7 @@ public class TeamView {
 
         // titles
         JLabel headCoachName = new JLabel(team.getHeadCoach(), JLabel.CENTER);
-        JLabel results = new JLabel("Results", JLabel.CENTER);
+        JLabel results = new JLabel(teamController.calculateTeamResults(), JLabel.CENTER);
         JLabel ranking = new JLabel("Ranking", JLabel.CENTER);
         Conference conf = new Conference("Void Conference");
         try {

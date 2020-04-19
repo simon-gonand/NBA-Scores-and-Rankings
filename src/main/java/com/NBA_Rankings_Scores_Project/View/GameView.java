@@ -1,6 +1,7 @@
 package com.NBA_Rankings_Scores_Project.View;
 
 import com.NBA_Rankings_Scores_Project.Controllers.GameController;
+import com.NBA_Rankings_Scores_Project.Controllers.TeamController;
 import com.NBA_Rankings_Scores_Project.Models.GameModel;
 import com.NBA_Rankings_Scores_Project.Models.PlayerStats;
 import com.NBA_Rankings_Scores_Project.Models.TeamModel;
@@ -54,25 +55,45 @@ public class GameView {
     }
 
     private void fillGeneralStatsPanel(JPanel generalStats){
+        JPanel homeTeamPanel = new JPanel (new GridBagLayout());
+        JPanel visitorTeamPanel = new JPanel (new GridBagLayout());
+        homeTeamPanel.setBounds(2*generalStats.getWidth()/3,0, generalStats.getWidth()/3, 100);
+        visitorTeamPanel.setBounds(0,0, generalStats.getWidth()/3, 100);
+        generalStats.add(homeTeamPanel);
+        generalStats.add(visitorTeamPanel);
+
         JLabel homeTeamLabel = new JLabel(home.getName(),
                 new ImageIcon("src/main/resources/Icons/jersey.png"),
                 JLabel.RIGHT);
+        JLabel homeTeamResult = new JLabel(new TeamController(home, games).calculateTeamResults());
+        homeTeamResult.setFont(new Font(homeTeamResult.getFont().getName(), Font.BOLD, 15));
         JLabel visitorTeamLabel = new JLabel (visitor.getName(),
                 new ImageIcon("src/main/resources/Icons/jersey.png"),
                 JLabel.LEFT);
+        JLabel visitorTeamResult = new JLabel(new TeamController(visitor, games).calculateTeamResults());
+        visitorTeamResult.setFont(new Font(visitorTeamResult.getFont().getName(), Font.BOLD, 15));
 
         homeTeamLabel.setHorizontalTextPosition(JLabel.CENTER);
         homeTeamLabel.setVerticalTextPosition(JLabel.BOTTOM);
         visitorTeamLabel.setHorizontalTextPosition(JLabel.CENTER);
         visitorTeamLabel.setVerticalTextPosition(JLabel.BOTTOM);
 
-        homeTeamLabel.setBounds(0, 0, generalStats.getWidth() - 10, 100);
-        visitorTeamLabel.setBounds(10, 0, 300, 100);
+        homeTeamResult.setBounds(
+                (generalStats.getWidth() - 35) - (homeTeamLabel.getFontMetrics(homeTeamLabel.getFont()).stringWidth(home.getName())/2) + 10,
+                55, 100, 100);
+        visitorTeamResult.setBounds((visitorTeamLabel.getFontMetrics(visitorTeamLabel.getFont()).stringWidth(visitor.getName())/2) - 5,
+                55, 100, 100);
 
         displayScores(generalStats);
 
-        generalStats.add(homeTeamLabel);
-        generalStats.add(visitorTeamLabel);
+        GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 1, 1,
+                GridBagConstraints.LINE_END, GridBagConstraints.HORIZONTAL, new Insets(0,0,0,10), 0, 0);
+        homeTeamPanel.add(homeTeamLabel, constraints);
+        generalStats.add(homeTeamResult);
+        constraints.anchor = GridBagConstraints.LINE_START;
+        constraints.insets = new Insets(0,10,0,0);
+        generalStats.add(visitorTeamResult);
+        visitorTeamPanel.add(visitorTeamLabel, constraints);
     }
 
     private void displayScores(JPanel generalStats){

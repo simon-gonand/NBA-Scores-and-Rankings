@@ -239,7 +239,7 @@ public class GameView {
         stats.setDefaultRenderer(Object.class, centerRenderer);
 
         JScrollPane scrollPane = new JScrollPane(stats);
-        scrollPane.setBounds(0, statsMenu.getY() + statsMenu.getHeight(), otherStats.getWidth(), otherStats.getHeight() - (statsMenu.getY() + statsMenu.getHeight()+67));
+        scrollPane.setBounds(0, statsMenu.getY() + statsMenu.getHeight(), otherStats.getWidth(), otherStats.getHeight() - (statsMenu.getY() + statsMenu.getHeight()+4));
         otherStats.add(scrollPane);
         return scrollPane;
     }

@@ -27,12 +27,8 @@ public class TeamListView {
 
         addButton(treeSeasonInfo.getConferences().get(0), teamLists, 0);
         addButton(treeSeasonInfo.getConferences().get(1), teamLists, 1);
-        //teamLists.setBounds(0,0, panel.getWidth(), panel.getHeight());
-        teamLists.setSize(new Dimension(panel.getWidth(), panel.getHeight()));
         JScrollPane scrollPane = new JScrollPane(teamLists, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        //scrollPane.add(teamLists);
         scrollPane.setBounds(0,0, panel.getWidth(), panel.getHeight());
-        //scrollPane.setLayout(null);
 
         panel.add(scrollPane);
     }

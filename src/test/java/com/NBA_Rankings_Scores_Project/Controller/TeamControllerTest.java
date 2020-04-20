@@ -27,6 +27,13 @@ public class TeamControllerTest {
         teamController = new TeamController(treeSeasonInfo.getTeams().get(0), treeGames);
         teamController2 = new TeamController(treeSeasonInfo.getTeams().get(3), treeGames);
         assertEquals("1 - 0", teamController.calculateTeamResults(), "Results must be \"1 - 0\"");
-        assertEquals("0 - 1", teamController2.calculateTeamResults(), "Results must be \"0 - 1\"");
+        assertEquals("1 - 1", teamController2.calculateTeamResults(), "Results must be \"1 - 1\"");
+    }
+
+    @Test
+    public void calculateWinPercentageOfATeam(){
+        teamController = new TeamController(treeSeasonInfo.getTeams().get(3), treeGames);
+        String winPercentage = teamController.calculateWinPercentage();
+        assertEquals("50.0", winPercentage, "Win percentage must be 50.0");
     }
 }

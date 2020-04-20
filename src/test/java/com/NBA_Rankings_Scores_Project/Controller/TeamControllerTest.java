@@ -41,4 +41,11 @@ public class TeamControllerTest {
         String pointsPerGame = teamController.calculatePointsPerGame();
         assertEquals("25.5", pointsPerGame, "Points per game average must be 25.5");
     }
+
+    @Test
+    public void calculateOpposantPointPerGameTest(){
+        TeamController teamController = new TeamController(treeSeasonInfo.getTeams().get(3), treeGames);
+        String pointsPerGame = teamController.calculateOpposantPointsPerGame();
+        assertEquals("22.0", pointsPerGame, "Opposant points per game average must be 22.0");
+    }
 }

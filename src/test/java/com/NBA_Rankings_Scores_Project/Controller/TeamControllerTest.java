@@ -7,6 +7,8 @@ import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TeamControllerTest {
@@ -36,16 +38,15 @@ public class TeamControllerTest {
     }
 
     @Test
-    public void calculatePointPerGameTest(){
+    public void calculateTeamSeasonStatsTest(){
         TeamController teamController = new TeamController(treeSeasonInfo.getTeams().get(3), treeGames);
-        String pointsPerGame = teamController.calculatePointsPerGame();
-        assertEquals("25.5", pointsPerGame, "Points per game average must be 25.5");
-    }
-
-    @Test
-    public void calculateOpposantPointPerGameTest(){
-        TeamController teamController = new TeamController(treeSeasonInfo.getTeams().get(3), treeGames);
-        String pointsPerGame = teamController.calculateOpposantPointsPerGame();
-        assertEquals("22.0", pointsPerGame, "Opposant points per game average must be 22.0");
+        Map<String, String> teamSeasonStats = teamController.calculateTeamSeasonStats();
+        assertEquals("25.5", teamSeasonStats.get("Points"), "Points per game average must be 25.5");
+        assertEquals("22.0", teamSeasonStats.get("OpposantPoints"), "Opposant oints per game average must be 22.0");
+        assertEquals("7.5", teamSeasonStats.get("Rebounds"), "Rebounds per game average must be 7.5");
+        assertEquals("15.5", teamSeasonStats.get("Assists"), "Assists per game average must be 15.5");
+        assertEquals("39.0", teamSeasonStats.get("FG"), "Field Goal per game average must be 39.0");
+        assertEquals("51.5", teamSeasonStats.get("FT"), "Free Trows per game average must be 51.5");
+        assertEquals("41.4", teamSeasonStats.get("3pt"), "Three Points per game average must be 41.4");
     }
 }

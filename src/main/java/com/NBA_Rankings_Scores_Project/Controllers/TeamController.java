@@ -52,4 +52,20 @@ public class TeamController {
                 pointsPerGameSplit[0]+"."+pointsPerGameSplit[1].substring(0,pointsPerGameSplit[1].length()) :
                 pointsPerGameSplit[0]+"."+pointsPerGameSplit[1].substring(0,2);
     }
+
+    public String calculateOpposantPointsPerGame(){
+        ArrayList<GameModel> games = treeGames.getAllGamesOfTeam(team);
+        float totPoints = 0;
+        for (GameModel game : games) {
+            TeamModel opposantTeam = treeGames.getTeamsOfGame(game).get("Home").equals(team) ?
+                    treeGames.getTeamsOfGame(game).get("Visitor") : treeGames.getTeamsOfGame(game).get("Home");
+            GameController gameController = new GameController(game);
+            totPoints += (Integer) gameController.calculateTeamStats(treeGames.getPlayerStatsByTeam(game, opposantTeam)).get("Points");
+        }
+        float pointsPerGame = totPoints / games.size();
+        String[] pointsPerGameSplit = Float.toString(pointsPerGame).split("\\.");
+        return pointsPerGameSplit[1].length() < 2 ?
+                pointsPerGameSplit[0]+"."+pointsPerGameSplit[1].substring(0,pointsPerGameSplit[1].length()) :
+                pointsPerGameSplit[0]+"."+pointsPerGameSplit[1].substring(0,2);
+    }
 }

@@ -26,4 +26,16 @@ public class TeamController {
         }
         return win + " - " + loose;
     }
+
+    public String calculateWinPercentage(){
+        String winLoose = calculateTeamResults();
+        String[] results = calculateTeamResults().split(" - ");
+        float win = Float.valueOf(results[0]);
+        float loose = Float.valueOf(results[1]);
+        float percentage = win * 100 / (win + loose);
+        String[] winPercentageSplit = Float.toString(percentage).split("\\.");
+        return winPercentageSplit[1].length() < 2 ?
+                winPercentageSplit[0]+"."+winPercentageSplit[1].substring(0,winPercentageSplit[1].length()) :
+                winPercentageSplit[0]+"."+winPercentageSplit[1].substring(0,2);
+    }
 }

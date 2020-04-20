@@ -8,6 +8,7 @@ import com.NBA_Rankings_Scores_Project.Tree.TreeGames;
 import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
@@ -142,7 +143,7 @@ public class TeamView {
             });
             button.setBackground(Color.white);
             data[i][0] = button;
-            data[i][1] = player.getNumber();
+            data[i][1] = Integer.valueOf(player.getNumber());
             data[i][2] = player.getPosition();
         }
         String[] columnsName = {"Players", "#", "Pos"};
@@ -270,13 +271,17 @@ public class TeamView {
                     }
                 }
             }
-
-
         });
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        playersTable.setDefaultRenderer(Object.class, centerRenderer);
 
         GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0,0,0,0), 0, 0);
 
-        otherStats.add(playersTable, constraints);
+        JScrollPane scrollPane = new JScrollPane(playersTable);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        otherStats.add(scrollPane, constraints);
     }
 }

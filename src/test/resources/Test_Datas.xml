@@ -27,9 +27,9 @@
 	</Game>
 	<Game name="Pelicans v Bucks" date="26/10/19" totScore="116-123" q1Score="27-43" q2Score="45-23" q3Score="23-29" q4Score="28-23" Winner="Home">
 		<Home name="New Orleans Pelicans">
-			<PlayerStat indice="0" min="14" points="6" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="1/5" steals="0" blocks="0" turnovers="1"></PlayerStat>
-			<PlayerStat indice="1" min="14" points="6" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="1/5" steals="0" blocks="0" turnovers="1"></PlayerStat>
-			<PlayerStat indice="2" min="14" points="6" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="1/5" steals="0" blocks="0" turnovers="1"></PlayerStat>
+			<PlayerStat indice="0" min="14" points="10" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="1/5" steals="0" blocks="0" turnovers="1"></PlayerStat>
+			<PlayerStat indice="1" min="14" points="11" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="1/5" steals="0" blocks="0" turnovers="1"></PlayerStat>
+			<PlayerStat indice="2" min="14" points="12" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="1/5" steals="0" blocks="0" turnovers="1"></PlayerStat>
 		</Home>
 		<Visitor name="Milwaukee Bucks">
 			<PlayerStat indice="0" min="0"></PlayerStat>

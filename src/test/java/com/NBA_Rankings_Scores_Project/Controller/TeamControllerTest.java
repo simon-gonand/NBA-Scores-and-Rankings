@@ -12,8 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TeamControllerTest {
     private static TreeGames treeGames;
     private static TreeSeasonInfo treeSeasonInfo;
-    private static TeamController teamController;
-    private static TeamController teamController2;
 
     @BeforeAll
     public static void setup(){
@@ -24,16 +22,23 @@ public class TeamControllerTest {
 
     @Test
     public void calculateTeamResultsTest(){
-        teamController = new TeamController(treeSeasonInfo.getTeams().get(0), treeGames);
-        teamController2 = new TeamController(treeSeasonInfo.getTeams().get(3), treeGames);
+        TeamController teamController = new TeamController(treeSeasonInfo.getTeams().get(0), treeGames);
+        TeamController teamController2 = new TeamController(treeSeasonInfo.getTeams().get(3), treeGames);
         assertEquals("1 - 0", teamController.calculateTeamResults(), "Results must be \"1 - 0\"");
         assertEquals("1 - 1", teamController2.calculateTeamResults(), "Results must be \"1 - 1\"");
     }
 
     @Test
-    public void calculateWinPercentageOfATeam(){
-        teamController = new TeamController(treeSeasonInfo.getTeams().get(3), treeGames);
+    public void calculateWinPercentageTest(){
+        TeamController teamController = new TeamController(treeSeasonInfo.getTeams().get(3), treeGames);
         String winPercentage = teamController.calculateWinPercentage();
         assertEquals("50.0", winPercentage, "Win percentage must be 50.0");
+    }
+
+    @Test
+    public void calculatePointPerGameTest(){
+        TeamController teamController = new TeamController(treeSeasonInfo.getTeams().get(3), treeGames);
+        String pointsPerGame = teamController.calculatePointsPerGame();
+        assertEquals("25.5", pointsPerGame, "Points per game average must be 25.5");
     }
 }

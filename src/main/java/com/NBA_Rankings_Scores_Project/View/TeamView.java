@@ -2,12 +2,21 @@ package com.NBA_Rankings_Scores_Project.View;
 
 import com.NBA_Rankings_Scores_Project.Controllers.TeamController;
 import com.NBA_Rankings_Scores_Project.Models.Conference;
+import com.NBA_Rankings_Scores_Project.Models.PlayerModel;
 import com.NBA_Rankings_Scores_Project.Models.TeamModel;
 import com.NBA_Rankings_Scores_Project.Tree.TreeGames;
 import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.font.TextAttribute;
+import java.util.List;
+import java.util.Map;
 
 public class TeamView {
     private JPanel panel;
@@ -31,9 +40,10 @@ public class TeamView {
         generalInfos.setBorder(BorderFactory.createMatteBorder(0,0,3,0, Color.black));
 
         generalInfos.setLayout(new GridBagLayout());
-        otherStats.setLayout(null);
+        otherStats.setLayout(new GridBagLayout());
 
         fillGeneralInfos(generalInfos);
+        fillPlayers(otherStats);
 
         panel.add(generalInfos);
         panel.add(otherStats);
@@ -98,5 +108,175 @@ public class TeamView {
         generalInfos.add(ranking, constraints);
         ++constraints.gridx;
         generalInfos.add(conference, constraints);
+    }
+
+    private void fillPlayers(JPanel otherStats){
+        List<PlayerModel> players = info.getPlayersByTeam(team);
+        Object[][] data = new Object[players.size()][3];
+        for (int i = 0; i < players.size(); ++i){
+            PlayerModel player = players.get(i);
+            JButton button = new JButton(player.getName() + " " + player.getSurname());
+            button.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    System.out.println(player.getName());
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    button.setForeground(Color.BLUE);
+                    Font font = button.getFont();
+                    Map attributes = font.getAttributes();
+                    attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+                    button.setFont(font.deriveFont(attributes));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    button.setForeground(Color.BLACK);
+                    Font font = button.getFont();
+                    Map attributes = font.getAttributes();
+                    attributes.put(TextAttribute.UNDERLINE, -1);
+                    button.setFont(font.deriveFont(attributes));
+                }
+            });
+            button.setBackground(Color.white);
+            data[i][0] = button;
+            data[i][1] = player.getNumber();
+            data[i][2] = player.getPosition();
+        }
+        String[] columnsName = {"Players", "#", "Pos"};
+        JTable playersTable = new JTable (new DefaultTableModel(data, columnsName){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+
+        playersTable.getColumn("Players").setCellRenderer(new TableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                JButton button = (JButton) value;
+                return button;
+            }
+        });
+
+        playersTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int column = playersTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
+                int row    = e.getY()/playersTable.getRowHeight(); //get the row of the button
+
+                /*Checking the row or column is valid or not*/
+                if (row < playersTable.getRowCount() && row >= 0 && column < playersTable.getColumnCount() && column >= 0) {
+                    Object value = playersTable.getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        /*perform a click event*/
+                        ((JButton)value).doClick();
+                    }
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                int column = playersTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
+                int row    = e.getY()/playersTable.getRowHeight(); //get the row of the button
+
+                if (row < playersTable.getRowCount() && row >= 0 && column < playersTable.getColumnCount() && column >= 0) {
+                    Object value = playersTable.getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        JButton button = ((JButton)value);
+                        button.getMouseListeners()[1].mousePressed(e);
+                    }
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                int column = playersTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
+                int row    = e.getY()/playersTable.getRowHeight(); //get the row of the button
+
+                if (row < playersTable.getRowCount() && row >= 0 && column < playersTable.getColumnCount() && column >= 0) {
+                    Object value = playersTable.getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        JButton button = ((JButton)value);
+                        button.getMouseListeners()[1].mouseReleased(e);
+                    }
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                int column = playersTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
+                int row    = e.getY()/playersTable.getRowHeight(); //get the row of the button
+
+                if (row < playersTable.getRowCount() && row >= 0 && column < playersTable.getColumnCount() && column >= 0) {
+                    Object value = playersTable.getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        JButton button = ((JButton)value);
+                        button.getMouseListeners()[1].mouseEntered(e);
+                        SwingUtilities.updateComponentTreeUI(playersTable);
+                    }
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+                int column = playersTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
+                int row    = e.getY()/playersTable.getRowHeight(); //get the row of the button
+                if (row <= playersTable.getRowCount() && row >= 0 && column < playersTable.getColumnCount() && column >= -1) {
+                    Object value;
+                    if (row == playersTable.getRowCount())
+                        value = playersTable.getValueAt(row - 1, column);
+                    else if (column == -1)
+                        value = playersTable.getValueAt(row, column + 1);
+                    else
+                        value = playersTable.getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        JButton button = ((JButton)value);
+                        button.getMouseListeners()[1].mouseExited(e);
+                        SwingUtilities.updateComponentTreeUI(playersTable);
+                    }
+                }
+            }
+        });
+        playersTable.addMouseMotionListener(new MouseAdapter() {
+            int column;
+            int row;
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                int c = playersTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the colomn of the button
+                int r    = e.getY()/playersTable.getRowHeight(); //get the row of the button
+                if (c != column || r != row){
+                    if (row < playersTable.getRowCount() && row >= 0 && column < playersTable.getColumnCount() && column >= 0) {
+                        Object value = playersTable.getValueAt(row, column);
+                        if (value instanceof JButton) {
+                            JButton button = ((JButton)value);
+                            button.getMouseListeners()[1].mouseExited(e);
+                            SwingUtilities.updateComponentTreeUI(playersTable);
+                        }
+                    }
+                    row = r;
+                    column = c;
+                    if (row < playersTable.getRowCount() && row >= 0 && column < playersTable.getColumnCount() && column >= 0) {
+                        Object value = playersTable.getValueAt(r, c);
+                        if (value instanceof JButton) {
+                            JButton button = ((JButton)value);
+                            button.getMouseListeners()[1].mouseEntered(e);
+                            SwingUtilities.updateComponentTreeUI(playersTable);
+                        }
+                    }
+                }
+            }
+
+
+        });
+
+        GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 1, 1,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0,0,0,0), 0, 0);
+
+        otherStats.add(playersTable, constraints);
     }
 }

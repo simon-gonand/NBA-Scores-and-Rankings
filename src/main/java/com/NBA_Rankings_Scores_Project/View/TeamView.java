@@ -23,11 +23,13 @@ public class TeamView {
     private TeamModel team;
     private TeamController teamController;
     private TreeSeasonInfo info;
+    private TreeGames games;
 
     public TeamView(JPanel panel, TeamModel team, TreeSeasonInfo info, TreeGames games){
         this.panel = panel;
         this.team = team;
-        this.teamController = new TeamController(team, games);
+        this.games = games;
+        this.teamController = new TeamController(team, this.games);
         this.info = info;
 
         panel.removeAll();
@@ -95,6 +97,11 @@ public class TeamView {
             e.printStackTrace();
         }
         JLabel conference = new JLabel(conf.getName(), JLabel.CENTER);
+        Font font = new Font(headCoachName.getFont().getName(), Font.PLAIN, 15);
+        headCoachName.setFont(font);
+        results.setFont(font);
+        ranking.setFont(font);
+        conference.setFont(font);
 
         constraints.gridx = 0;
         constraints.gridy = 2;
@@ -127,7 +134,7 @@ public class TeamView {
                 @Override
                 public void mouseReleased(MouseEvent e) {
                     button.setForeground(button.getForeground().brighter());
-                    new PlayerView(panel, player);
+                    new PlayerView(panel, player, info, games);
                     SwingUtilities.updateComponentTreeUI(panel);
                 }
 

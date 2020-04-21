@@ -40,10 +40,12 @@ public class System {
         final JButton gamesScoreViewButton = new JButton("Games Scores", new ImageIcon("src/main/resources/Icons/basketball.png"));
         final JButton teamsViewButton = new JButton ("Teams             ", new ImageIcon("src/main/resources/Icons/jersey.png"));
         final JButton rankingsViewButton = new JButton("Rankings        ", new ImageIcon("src/main/resources/Icons/cup.png"));
+        final JButton researchViewButton = new JButton("Research        ", new ImageIcon("src/main/resources/Icons/research.png"));
 
         menuPanel.add(gamesScoreViewButton);
         menuPanel.add(teamsViewButton);
         menuPanel.add(rankingsViewButton);
+        menuPanel.add(researchViewButton);
 
         gamesScoreViewButton.setBackground(Color.white);
         gamesScoreViewButton.setBounds(0,0, menuPanel.getWidth()-3, 100);
@@ -69,6 +71,7 @@ public class System {
                 new GamesListView(contentPanel);
                 teamsViewButton.setBackground(Color.white);
                 rankingsViewButton.setBackground(Color.white);
+                researchViewButton.setBackground(Color.white);
                 gamesScoreViewButton.setBackground(Color.lightGray);
                 oldColor = gamesScoreViewButton.getBackground();
                 SwingUtilities.updateComponentTreeUI(contentPanel);
@@ -99,6 +102,7 @@ public class System {
                 new TeamListView(contentPanel);
                 gamesScoreViewButton.setBackground(Color.white);
                 rankingsViewButton.setBackground(Color.white);
+                researchViewButton.setBackground(Color.white);
                 teamsViewButton.setBackground(Color.lightGray);
                 oldColor = teamsViewButton.getBackground();
                 SwingUtilities.updateComponentTreeUI(contentPanel);
@@ -129,8 +133,40 @@ public class System {
                 // create teams list view
                 gamesScoreViewButton.setBackground(Color.white);
                 teamsViewButton.setBackground(Color.white);
+                researchViewButton.setBackground(Color.white);
                 rankingsViewButton.setBackground(Color.lightGray);
                 oldColor = rankingsViewButton.getBackground();
+                SwingUtilities.updateComponentTreeUI(contentPanel);
+            }
+        });
+
+        researchViewButton.setBackground(Color.white);
+        researchViewButton.setBounds(0,rankingsViewButton.getY() + rankingsViewButton.getHeight(), menuPanel.getWidth()-3, 100);
+        researchViewButton.setBorder(BorderFactory.createEmptyBorder());
+        researchViewButton.addMouseListener(new MouseAdapter() {
+            Color oldColor;
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                oldColor = researchViewButton.getBackground();
+                researchViewButton.setBackground(Color.lightGray);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                researchViewButton.setBackground(oldColor);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                // research view
+                gamesScoreViewButton.setBackground(Color.white);
+                teamsViewButton.setBackground(Color.white);
+                rankingsViewButton.setBackground(Color.white);
+                researchViewButton.setBackground(Color.lightGray);
+                oldColor = researchViewButton.getBackground();
                 SwingUtilities.updateComponentTreeUI(contentPanel);
             }
         });

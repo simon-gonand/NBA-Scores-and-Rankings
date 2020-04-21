@@ -24,6 +24,7 @@ public class PlayerController {
         Map<String, String> playerStats = new HashMap<String, String>();
         Map<String, Float> playerTotals = calculateTotals();
         if (playerTotals.get("Minutes").equals(0.0f)){
+            playerStats.put("GamesPlayed", "0");
             playerStats.put("Minutes", "0.0");
             playerStats.put("Points", "0.0");
             playerStats.put("Rebounds", "0.0");
@@ -61,15 +62,24 @@ public class PlayerController {
         playerStats.put("Assists", assistsAverage[1].length() < 2 ?
                 assistsAverage[0]+"."+assistsAverage[1].substring(0,assistsAverage[1].length()) :
                 assistsAverage[0]+"."+assistsAverage[1].substring(0,1));
-        playerStats.put("FG", FGAverage[1].length() < 2 ?
-                FGAverage[0]+"."+FGAverage[1].substring(0,FGAverage[1].length()) :
-                FGAverage[0]+"."+FGAverage[1].substring(0,1));
-        playerStats.put("FT", FTAverage[1].length() < 2 ?
-                FTAverage[0]+"."+FTAverage[1].substring(0,FTAverage[1].length()) :
-                FTAverage[0]+"."+FTAverage[1].substring(0,1));
-        playerStats.put("3pt", threePtAverage[1].length() < 2 ?
-                threePtAverage[0]+"."+threePtAverage[1].substring(0,threePtAverage[1].length()) :
-                threePtAverage[0]+"."+threePtAverage[1].substring(0,1));
+        if (FTAverage.length <= 1)
+            playerStats.put("FG", "0.0");
+        else
+            playerStats.put("FG", FGAverage[1].length() < 2 ?
+                    FGAverage[0]+"."+FGAverage[1].substring(0,FGAverage[1].length()) :
+                    FGAverage[0]+"."+FGAverage[1].substring(0,1));
+        if (FTAverage.length <= 1)
+            playerStats.put("FT", "0.0");
+        else
+            playerStats.put("FT", FTAverage[1].length() < 2 ?
+                    FTAverage[0]+"."+FTAverage[1].substring(0,FTAverage[1].length()) :
+                    FTAverage[0]+"."+FTAverage[1].substring(0,1));
+        if (threePtAverage.length <= 1)
+            playerStats.put("3pt", "0.0");
+        else
+            playerStats.put("3pt", threePtAverage[1].length() < 2 ?
+                    threePtAverage[0]+"."+threePtAverage[1].substring(0,threePtAverage[1].length()) :
+                    threePtAverage[0]+"."+threePtAverage[1].substring(0,1));
         playerStats.put("Blocks", blocksAverage[1].length() < 2 ?
                 blocksAverage[0]+"."+blocksAverage[1].substring(0,blocksAverage[1].length()) :
                 blocksAverage[0]+"."+blocksAverage[1].substring(0,1));

@@ -1,7 +1,6 @@
 package com.NBA_Rankings_Scores_Project.Controller;
 
 import com.NBA_Rankings_Scores_Project.Controllers.PlayerController;
-import com.NBA_Rankings_Scores_Project.Models.GameModel;
 import com.NBA_Rankings_Scores_Project.Models.PlayerModel;
 import com.NBA_Rankings_Scores_Project.Parser;
 import com.NBA_Rankings_Scores_Project.Tree.TreeGames;

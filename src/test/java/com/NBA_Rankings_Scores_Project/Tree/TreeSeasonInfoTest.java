@@ -114,5 +114,16 @@ public class TreeSeasonInfoTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void getTeamOfATeamTest(){
+        PlayerModel player = treeSeasonInfo.getPlayersByTeam(treeSeasonInfo.getTeams().get(0)).get(0);
+        try {
+            TeamModel team = treeSeasonInfo.getTeamOfAPlayer(player);
+            assertEquals("Dallas Mavericks", team.getName(), "Team must be Dallas Mavericks");
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
 

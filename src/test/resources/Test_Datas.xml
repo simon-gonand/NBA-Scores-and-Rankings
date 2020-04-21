@@ -34,7 +34,7 @@
 			<PlayerStat indice="2" min="14" points="12" rebounds="3" assists="2" fg="12/14" threePt="0/2" ft="2/3" steals="0" blocks="0" turnovers="1"></PlayerStat>
 		</Home>
 		<Visitor name="Milwaukee Bucks">
-			<PlayerStat indice="0" min="0"></PlayerStat>30
+			<PlayerStat indice="0" min="0"></PlayerStat>
 			<PlayerStat indice="1" min="14" points="11" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="1/5" steals="0" blocks="0" turnovers="1"></PlayerStat>
 			<PlayerStat indice="2" min="14" points="12" rebounds="1" assists="6" fg="2/9" threePt="2/5" ft="1/5" steals="0" blocks="0" turnovers="1"></PlayerStat>
 		</Visitor>

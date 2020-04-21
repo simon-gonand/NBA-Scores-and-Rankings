@@ -24,6 +24,7 @@ public class PlayerController {
         Map<String, String> playerStats = new HashMap<String, String>();
         Map<String, Float> playerTotals = calculateTotals();
         playerStats.put("GamesPlayed", playerTotals.get("GamesPlayed").toString());
+        String[] minutesAverage = Float.toString(playerTotals.get("Minutes") / playerTotals.get("GamesPlayed")).split("\\.");
         String[] pointsAverage = Float.toString(playerTotals.get("Points") / playerTotals.get("GamesPlayed")).split("\\.");
         String[] reboundsAverage = Float.toString(playerTotals.get("Rebounds") / playerTotals.get("GamesPlayed")).split("\\.");
         String[] assistsAverage = Float.toString(playerTotals.get("Rebounds") / playerTotals.get("GamesPlayed")).split("\\.");
@@ -34,6 +35,9 @@ public class PlayerController {
         String[] stealsAverage = Float.toString(playerTotals.get("Steals") / playerTotals.get("GamesPlayed")).split("\\.");
         String[] turnoversAverage = Float.toString(playerTotals.get("Turnovers") / playerTotals.get("GamesPlayed")).split("\\.");
 
+        playerStats.put("Minutes", minutesAverage[1].length() < 2 ?
+                minutesAverage[0]+"."+minutesAverage[1].substring(0,minutesAverage[1].length()) :
+                minutesAverage[0]+"."+minutesAverage[1].substring(0,1));
         playerStats.put("Points", pointsAverage[1].length() < 2 ?
                 pointsAverage[0]+"."+pointsAverage[1].substring(0,pointsAverage[1].length()) :
                 pointsAverage[0]+"."+pointsAverage[1].substring(0,1));

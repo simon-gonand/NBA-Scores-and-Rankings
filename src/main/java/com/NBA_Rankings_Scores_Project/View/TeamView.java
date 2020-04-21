@@ -230,11 +230,12 @@ public class TeamView {
                 if (row <= playersTable.getRowCount() && row >= 0 && column < playersTable.getColumnCount() && column >= -1) {
                     Object value;
                     if (row == playersTable.getRowCount())
-                        value = playersTable.getValueAt(row - 1, column);
-                    else if (column == -1)
-                        value = playersTable.getValueAt(row, column + 1);
-                    else
-                        value = playersTable.getValueAt(row, column);
+                        row = row -1;
+
+                    if (column == -1)
+                        column = column +1;
+
+                    value = playersTable.getValueAt(row, column);
                     if (value instanceof JButton) {
                         JButton button = ((JButton)value);
                         button.getMouseListeners()[1].mouseExited(e);
@@ -274,12 +275,23 @@ public class TeamView {
             }
         });
 
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        playersTable.setBackground(new Color(238,238,238));
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                setBackground(Color.white);
+                return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            }
+        };
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         playersTable.setDefaultRenderer(Object.class, centerRenderer);
+        playersTable.setRowHeight(30);
+        playersTable.getColumnModel().getColumn(0).setMaxWidth(200);
+        playersTable.getColumnModel().getColumn(1).setMaxWidth(35);
+        playersTable.getColumnModel().getColumn(2).setMaxWidth(200);
 
         GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0,0,0,0), 0, 0);
+                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL, new Insets(25,0,0,0), 0, 0);
 
         JScrollPane scrollPane = new JScrollPane(playersTable);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -303,6 +315,20 @@ public class TeamView {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
+            }
+        });
+
+        tableStats.setBackground(new Color(238,238,238));
+        tableStats.setRowHeight(30);
+        tableStats.getColumnModel().getColumn(0).setMaxWidth(225);
+        tableStats.getColumnModel().getColumn(1).setMaxWidth(50);
+        tableStats.setDefaultRenderer(Object.class, new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                //setEnabled(table == null || table.isEnabled());
+                setBackground(Color.white);
+
+                return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
             }
         });
 

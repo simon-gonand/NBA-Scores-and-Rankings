@@ -45,6 +45,7 @@ public class TeamView {
 
         fillGeneralInfos(generalInfos);
         fillPlayers(otherStats);
+        fillTeamSeasonStats(otherStats);
 
         panel.add(generalInfos);
         panel.add(otherStats);
@@ -281,6 +282,34 @@ public class TeamView {
                 GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0,0,0,0), 0, 0);
 
         JScrollPane scrollPane = new JScrollPane(playersTable);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        otherStats.add(scrollPane, constraints);
+    }
+
+    private void fillTeamSeasonStats(JPanel otherStats){
+        String[] columnsName= {"Stats", "Values"};
+        Map<String, String> teamSeasonStats = teamController.calculateTeamSeasonStats();
+        String[][] data = {
+            {"% Victory", teamController.calculateWinPercentage()},
+            {"Points Per Game", teamSeasonStats.get("Points")},
+            {"Opposant Points Per Game", teamSeasonStats.get("OpposantPoints")},
+            {"Rebounds Per Game", teamSeasonStats.get("Rebounds")},
+            {"Assists Per Game", teamSeasonStats.get("Assists")},
+            {"% Field Goal", teamSeasonStats.get("FG")},
+            {"% Free Throws", teamSeasonStats.get("FT")},
+            {"% 3-points", teamSeasonStats.get("3pt")}
+        };
+        JTable tableStats = new JTable(new DefaultTableModel(data, columnsName){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+
+        GridBagConstraints constraints = new GridBagConstraints(1, 0, 1, 1, 1, 1,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0,0,0,0), 0, 0);
+
+        JScrollPane scrollPane = new JScrollPane(tableStats);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         otherStats.add(scrollPane, constraints);
     }

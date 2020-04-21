@@ -14,7 +14,6 @@ import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.font.TextAttribute;
 import java.util.List;
 import java.util.Map;
@@ -285,7 +284,7 @@ public class TeamView {
         playersTable.getColumnModel().getColumn(2).setMaxWidth(200);
 
         GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL, new Insets(25,0,0,0), 0, 0);
+                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL, new Insets(25,60,0,0), 0, 0);
 
         JScrollPane scrollPane = new JScrollPane(playersTable);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
@@ -303,7 +302,7 @@ public class TeamView {
             {"Assists Per Game", teamSeasonStats.get("Assists")},
             {"% Field Goal", teamSeasonStats.get("FG")},
             {"% Free Throws", teamSeasonStats.get("FT")},
-            {"% 3-points", teamSeasonStats.get("3pt")}
+            {"% 3-Points", teamSeasonStats.get("3pt")}
         };
         JTable tableStats = new JTable(new DefaultTableModel(data, columnsName){
             @Override
@@ -327,7 +326,7 @@ public class TeamView {
         });
 
         GridBagConstraints constraints = new GridBagConstraints(1, 0, 1, 1, 1, 1,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0,0,0,0), 0, 0);
+                GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(60,180,0,0), 0, 0);
 
         JScrollPane scrollPane = new JScrollPane(tableStats);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());

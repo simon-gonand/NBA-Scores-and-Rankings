@@ -43,7 +43,7 @@ public class TeamControllerTest {
         Map<String, String> teamSeasonStats = teamController.calculateTeamSeasonStats();
         assertEquals("25.5", teamSeasonStats.get("Points"), "Points per game average must be 25.5");
         assertEquals("22.0", teamSeasonStats.get("OpposantPoints"), "Opposant oints per game average must be 22.0");
-        assertEquals("7.5", teamSeasonStats.get("Rebounds"), "Rebounds per game average must be 7.5");
+        assertEquals("8.0", teamSeasonStats.get("Rebounds"), "Rebounds per game average must be 8.0");
         assertEquals("15.5", teamSeasonStats.get("Assists"), "Assists per game average must be 15.5");
         assertEquals("39.0", teamSeasonStats.get("FG"), "Field Goal per game average must be 39.0");
         assertEquals("51.5", teamSeasonStats.get("FT"), "Free Trows per game average must be 51.5");

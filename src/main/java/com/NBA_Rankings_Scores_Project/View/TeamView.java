@@ -126,8 +126,9 @@ public class TeamView {
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
-                    System.out.println(player.getName());
                     button.setForeground(button.getForeground().brighter());
+                    new PlayerView(panel, player);
+                    SwingUtilities.updateComponentTreeUI(panel);
                 }
 
                 @Override

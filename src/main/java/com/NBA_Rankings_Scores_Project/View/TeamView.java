@@ -121,7 +121,14 @@ public class TeamView {
             button.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mousePressed(MouseEvent e) {
+                    button.setForeground(button.getForeground().darker());
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
                     System.out.println(player.getName());
+                    button.setForeground(button.getForeground().brighter());
                 }
 
                 @Override
@@ -165,21 +172,6 @@ public class TeamView {
 
         playersTable.addMouseListener(new MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                int column = playersTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
-                int row    = e.getY()/playersTable.getRowHeight(); //get the row of the button
-
-                /*Checking the row or column is valid or not*/
-                if (row < playersTable.getRowCount() && row >= 0 && column < playersTable.getColumnCount() && column >= 0) {
-                    Object value = playersTable.getValueAt(row, column);
-                    if (value instanceof JButton) {
-                        /*perform a click event*/
-                        ((JButton)value).doClick();
-                    }
-                }
-            }
-
-            @Override
             public void mousePressed(MouseEvent e) {
                 int column = playersTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
                 int row    = e.getY()/playersTable.getRowHeight(); //get the row of the button
@@ -189,6 +181,7 @@ public class TeamView {
                     if (value instanceof JButton) {
                         JButton button = ((JButton)value);
                         button.getMouseListeners()[1].mousePressed(e);
+                        SwingUtilities.updateComponentTreeUI(playersTable);
                     }
                 }
             }
@@ -203,6 +196,7 @@ public class TeamView {
                     if (value instanceof JButton) {
                         JButton button = ((JButton)value);
                         button.getMouseListeners()[1].mouseReleased(e);
+                        SwingUtilities.updateComponentTreeUI(playersTable);
                     }
                 }
             }

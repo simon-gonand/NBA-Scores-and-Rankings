@@ -76,7 +76,7 @@ public class TreeGamesTest {
         assertEquals("2/5", playerStats.getThreePts(), "Player's three points must be 2/5");
         assertEquals("1/5", playerStats.getFt(), "Player's free throws must be 1/5");
         assertEquals("5", playerStats.getSteals().toString(), "Player's steals must be 5");
-        assertEquals("0", playerStats.getBlocks().toString(), "Player's blocks must be 0");
+        assertEquals("1", playerStats.getBlocks().toString(), "Player's blocks must be 1");
         assertEquals("1", playerStats.getTurnovers().toString(), "Player's turnovers must be 1");
 
         playersStats = treeGames.getPlayerStatsByTeam(gameModel, teams.get("Visitor"));

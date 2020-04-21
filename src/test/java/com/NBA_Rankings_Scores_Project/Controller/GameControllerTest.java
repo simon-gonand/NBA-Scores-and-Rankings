@@ -34,7 +34,7 @@ public class GameControllerTest {
         assertEquals(3, playerStats.get("Rebounds"),"Rebounds must be 3");
         assertEquals(18, playerStats.get("Assists"), "Assists must be 18");
         assertEquals(5, playerStats.get("Steals"),"Steals must be 5");
-        assertEquals(0, playerStats.get("Blocks"), "Blocks must be 0");
+        assertEquals(1, playerStats.get("Blocks"), "Blocks must be 1");
         assertEquals(3, playerStats.get("Turnovers"), "Turnovers must be 3");
         assertEquals("22.22", playerStats.get("FG"), "Field Goal must be " + 22.22);
         assertEquals("40.0", playerStats.get("3pt"), "Three Points must be " + (float)2*100/5);

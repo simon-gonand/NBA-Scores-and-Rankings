@@ -201,7 +201,7 @@ public class ParserTest {
         assertEquals("2/5", homePlayerStats.getThreePts(), "Player's three points must be 2/5");
         assertEquals("1/5", homePlayerStats.getFt(), "Player's free throws must be 1/5");
         assertEquals("5", homePlayerStats.getSteals().toString(), "Player's steals must be 5");
-        assertEquals("0", homePlayerStats.getBlocks().toString(), "Player's blocks must be 0");
+        assertEquals("1", homePlayerStats.getBlocks().toString(), "Player's blocks must be 1");
         assertEquals("1", homePlayerStats.getTurnovers().toString(), "Player's turnovers must be 1");
 
         PlayerStats visitorPlayerStats = (PlayerStats) visitorPlayerStatNode.getData();

@@ -36,6 +36,8 @@ public class TeamController {
         float loose = Float.valueOf(results[1]);
         float percentage = win * 100 / (win + loose);
         String[] winPercentageSplit = Float.toString(percentage).split("\\.");
+        if (winPercentageSplit.length <= 1)
+            return "0.0";
         return winPercentageSplit[1].length() < 2 ?
                 winPercentageSplit[0]+"."+winPercentageSplit[1].substring(0,winPercentageSplit[1].length()) :
                 winPercentageSplit[0]+"."+winPercentageSplit[1].substring(0,2);
@@ -52,27 +54,48 @@ public class TeamController {
         String[] FTAverage = Float.toString(statsTotals.get("FTMade") * 100 / statsTotals.get("FTAttempts")).split("\\.");
         String[] ThreePtAverage = Float.toString(statsTotals.get("3pt") / treeGames.getAllGamesOfTeam(team).size()).split("\\.");
 
-        statsAverages.put("Points", pointsAverage[1].length() < 2 ?
-                pointsAverage[0]+"."+pointsAverage[1].substring(0,pointsAverage[1].length()) :
-                pointsAverage[0]+"."+pointsAverage[1].substring(0,1));
-        statsAverages.put("OpposantPoints", opposantPointsAverage[1].length() < 2 ?
-                opposantPointsAverage[0]+"."+opposantPointsAverage[1].substring(0,opposantPointsAverage[1].length()) :
-                opposantPointsAverage[0]+"."+opposantPointsAverage[1].substring(0,1));
-        statsAverages.put("Rebounds", reboundsAverage[1].length() < 2 ?
-                reboundsAverage[0]+"."+reboundsAverage[1].substring(0,reboundsAverage[1].length()) :
-                reboundsAverage[0]+"."+reboundsAverage[1].substring(0,1));
-        statsAverages.put("Assists", assistsAverage[1].length() < 2 ?
-                assistsAverage[0]+"."+assistsAverage[1].substring(0,assistsAverage[1].length()) :
-                assistsAverage[0]+"."+assistsAverage[1].substring(0,1));
-        statsAverages.put("FG", FGAverage[1].length() < 2 ?
-                FGAverage[0]+"."+FGAverage[1].substring(0,FGAverage[1].length()) :
-                FGAverage[0]+"."+FGAverage[1].substring(0,1));
-        statsAverages.put("FT", FTAverage[1].length() < 2 ?
-                FTAverage[0]+"."+FTAverage[1].substring(0,FTAverage[1].length()) :
-                FTAverage[0]+"."+FTAverage[1].substring(0,1));
-        statsAverages.put("3pt", ThreePtAverage[1].length() < 2 ?
-                ThreePtAverage[0]+"."+ThreePtAverage[1].substring(0,ThreePtAverage[1].length()) :
-                ThreePtAverage[0]+"."+ThreePtAverage[1].substring(0,1));
+        if (pointsAverage.length <= 1)
+            statsAverages.put("Points", "0.0");
+        else
+            statsAverages.put("Points", pointsAverage[1].length() < 2 ?
+                    pointsAverage[0]+"."+pointsAverage[1].substring(0,pointsAverage[1].length()) :
+                    pointsAverage[0]+"."+pointsAverage[1].substring(0,1));
+        if (opposantPointsAverage.length <= 1)
+            statsAverages.put("OpposantPoints", "0.0");
+        else
+            statsAverages.put("OpposantPoints", opposantPointsAverage[1].length() < 2 ?
+                    opposantPointsAverage[0]+"."+opposantPointsAverage[1].substring(0,opposantPointsAverage[1].length()) :
+                    opposantPointsAverage[0]+"."+opposantPointsAverage[1].substring(0,1));
+        if (reboundsAverage.length <= 1)
+            statsAverages.put("Rebounds", "0.0");
+        else
+            statsAverages.put("Rebounds", reboundsAverage[1].length() < 2 ?
+                    reboundsAverage[0]+"."+reboundsAverage[1].substring(0,reboundsAverage[1].length()) :
+                    reboundsAverage[0]+"."+reboundsAverage[1].substring(0,1));
+        if (assistsAverage.length <= 1)
+            statsAverages.put("Assists", "0.0");
+        else
+            statsAverages.put("Assists", assistsAverage[1].length() < 2 ?
+                    assistsAverage[0]+"."+assistsAverage[1].substring(0,assistsAverage[1].length()) :
+                    assistsAverage[0]+"."+assistsAverage[1].substring(0,1));
+        if (FGAverage.length <= 1)
+            statsAverages.put("FG", "0.0");
+        else
+            statsAverages.put("FG", FGAverage[1].length() < 2 ?
+                    FGAverage[0]+"."+FGAverage[1].substring(0,FGAverage[1].length()) :
+                    FGAverage[0]+"."+FGAverage[1].substring(0,1));
+        if (FTAverage.length <= 1)
+            statsAverages.put("FT", "0.0");
+        else
+            statsAverages.put("FT", FTAverage[1].length() < 2 ?
+                    FTAverage[0]+"."+FTAverage[1].substring(0,FTAverage[1].length()) :
+                    FTAverage[0]+"."+FTAverage[1].substring(0,1));
+        if (ThreePtAverage.length <= 1)
+            statsAverages.put("3pt", "0.0");
+        else
+            statsAverages.put("3pt", ThreePtAverage[1].length() < 2 ?
+                    ThreePtAverage[0]+"."+ThreePtAverage[1].substring(0,ThreePtAverage[1].length()) :
+                    ThreePtAverage[0]+"."+ThreePtAverage[1].substring(0,1));
 
         return statsAverages;
     }

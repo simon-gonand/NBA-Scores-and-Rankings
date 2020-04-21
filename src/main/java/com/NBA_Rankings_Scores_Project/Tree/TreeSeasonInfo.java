@@ -71,4 +71,14 @@ public class TreeSeasonInfo extends Tree {
         }
         throw new Exception("Team doesn't exist");
     }
+
+    public TeamModel getTeamOfAPlayer (PlayerModel player)throws Exception{
+        for (TeamModel team : getTeams()){
+            for (PlayerModel model : getPlayersByTeam(team)){
+                if (model.equals(player))
+                    return team;
+            }
+        }
+        throw new Exception("Player doesn't exist");
+    }
 }

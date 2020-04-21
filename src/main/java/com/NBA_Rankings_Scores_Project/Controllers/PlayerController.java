@@ -23,11 +23,11 @@ public class PlayerController {
     public Map<String, String> calculatePlayerSeasonStats(){
         Map<String, String> playerStats = new HashMap<String, String>();
         Map<String, Float> playerTotals = calculateTotals();
-        playerStats.put("GamesPlayed", playerTotals.get("GamesPlayed").toString());
+        playerStats.put("GamesPlayed", playerTotals.get("GamesPlayed").toString().split("\\.")[0]);
         String[] minutesAverage = Float.toString(playerTotals.get("Minutes") / playerTotals.get("GamesPlayed")).split("\\.");
         String[] pointsAverage = Float.toString(playerTotals.get("Points") / playerTotals.get("GamesPlayed")).split("\\.");
         String[] reboundsAverage = Float.toString(playerTotals.get("Rebounds") / playerTotals.get("GamesPlayed")).split("\\.");
-        String[] assistsAverage = Float.toString(playerTotals.get("Rebounds") / playerTotals.get("GamesPlayed")).split("\\.");
+        String[] assistsAverage = Float.toString(playerTotals.get("Assists") / playerTotals.get("GamesPlayed")).split("\\.");
         String[] FGAverage = Float.toString(playerTotals.get("FGMade") * 100 / playerTotals.get("FGAttempts")).split("\\.");
         String[] FTAverage = Float.toString(playerTotals.get("FTMade") * 100 / playerTotals.get("FTAttempts")).split("\\.");
         String[] threePtAverage = Float.toString(playerTotals.get("3ptMade") * 100 / playerTotals.get("3ptAttempts")).split("\\.");

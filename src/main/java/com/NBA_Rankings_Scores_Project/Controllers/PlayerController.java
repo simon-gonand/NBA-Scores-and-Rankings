@@ -23,7 +23,21 @@ public class PlayerController {
     public Map<String, String> calculatePlayerSeasonStats(){
         Map<String, String> playerStats = new HashMap<String, String>();
         Map<String, Float> playerTotals = calculateTotals();
+        if (playerTotals.get("Minutes").equals(0.0f)){
+            playerStats.put("Minutes", "0.0");
+            playerStats.put("Points", "0.0");
+            playerStats.put("Rebounds", "0.0");
+            playerStats.put("Assists", "0.0");
+            playerStats.put("FG", "0.0");
+            playerStats.put("FT", "0.0");
+            playerStats.put("3pt", "0.0");
+            playerStats.put("Blocks", "0.0");
+            playerStats.put("Steals", "0.0");
+            playerStats.put("Turnovers", "0.0");
+            return playerStats;
+        }
         playerStats.put("GamesPlayed", playerTotals.get("GamesPlayed").toString().split("\\.")[0]);
+        System.out.println(playerTotals.get("Minutes"));
         String[] minutesAverage = Float.toString(playerTotals.get("Minutes") / playerTotals.get("GamesPlayed")).split("\\.");
         String[] pointsAverage = Float.toString(playerTotals.get("Points") / playerTotals.get("GamesPlayed")).split("\\.");
         String[] reboundsAverage = Float.toString(playerTotals.get("Rebounds") / playerTotals.get("GamesPlayed")).split("\\.");

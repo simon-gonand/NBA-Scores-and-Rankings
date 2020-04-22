@@ -30,7 +30,7 @@ public class ResearchView {
 
     private void fillPlayerResearch(){
         JPanel researchPanel = new JPanel(new GridBagLayout());
-        researchPanel.setBounds(100,this.panel.getHeight()/3, this.panel.getWidth() - 120, this.panel.getHeight()/3);
+        researchPanel.setBounds(0,this.panel.getHeight()/3, this.panel.getWidth() - 120, this.panel.getHeight()/3);
         this.panel.add(researchPanel);
 
         JLabel title = new JLabel("Search ", new ImageIcon("src/main/resources/Icons/research.png"), JLabel.CENTER);
@@ -99,11 +99,25 @@ public class ResearchView {
 
                 fillResultPanel(controllers.doPlayerSearch(nameTextField.getText(), postComboBox.getSelectedItem().toString(),
                         teamTextField.getText(), nationalityTextField.getText()));
+                SwingUtilities.updateComponentTreeUI(panel);
             }
         });
     }
 
-    public void fillResultPanel(ArrayList<PlayerModel> results){
+    private void fillResultPanel(ArrayList<PlayerModel> results){
+        this.panel.removeAll();
+        JPanel resultPanel = new JPanel(new GridBagLayout());
+        resultPanel.setBounds(0,0, this.panel.getWidth(), this.panel.getHeight());
+        this.panel.add(resultPanel);
+        if (results.isEmpty()){
+            fillEmptyResultPanel(resultPanel);
+        }
+    }
 
+    private void fillEmptyResultPanel(JPanel resultsPanel){
+        JLabel label = new JLabel("No Results", JLabel.CENTER);
+        GridBagConstraints constraints = new GridBagConstraints(0,0,1,1,1,1,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0,0,0,0),0,0);
+        resultsPanel.add(label, constraints);
     }
 }

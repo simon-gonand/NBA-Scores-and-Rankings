@@ -1,6 +1,5 @@
 package com.NBA_Rankings_Scores_Project.View;
 
-import com.NBA_Rankings_Scores_Project.Controllers.PlayerController;
 import com.NBA_Rankings_Scores_Project.Controllers.ResearchControllers;
 import com.NBA_Rankings_Scores_Project.Models.PlayerModel;
 import com.NBA_Rankings_Scores_Project.Models.TeamModel;
@@ -36,10 +35,10 @@ public class ResearchView {
         this.controllers = new ResearchControllers(this.info);
         panel.removeAll();
 
-        fillPlayerResearch();
+        fillTitle("");
     }
 
-    private void fillPlayerResearch(){
+    private void fillTitle(String whatToSearch){
         JPanel researchPanel = new JPanel(new GridBagLayout());
         researchPanel.setBounds(0,this.panel.getHeight()/3, this.panel.getWidth() - 120, this.panel.getHeight()/3);
         this.panel.add(researchPanel);
@@ -51,8 +50,40 @@ public class ResearchView {
                 GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0,250,0,0), 0, 0);
         researchPanel.add(title, constraints);
 
+        JComboBox whatToSearchButton = new JComboBox();
+        whatToSearchButton.addItem("Player");
+        whatToSearchButton.addItem("Team");
+        whatToSearchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (whatToSearchButton.getSelectedItem().equals("Player")) {
+                    fillPlayerResearch(researchPanel, constraints);
+                    SwingUtilities.updateComponentTreeUI(panel);
+                }
+                else if (whatToSearchButton.getSelectedItem().equals("Team")) {
+                    fillTeamResearchPanel(researchPanel, constraints);
+                    SwingUtilities.updateComponentTreeUI(panel);
+                }
+            }
+        });
+
+        constraints.gridy = 1;
+        researchPanel.add(whatToSearchButton, constraints);
+
+        if (whatToSearch.equals("Player")) {
+            fillPlayerResearch(researchPanel, constraints);
+            SwingUtilities.updateComponentTreeUI(panel);
+        }
+        else if (whatToSearch.equals("Team")) {
+            fillTeamResearchPanel(researchPanel, constraints);
+            SwingUtilities.updateComponentTreeUI(panel);
+        }
+    }
+
+    private void fillPlayerResearch(JPanel researchPanel, GridBagConstraints constraints){
+
         JButton submit = new JButton("Search");
-        constraints.gridy = 3;
+        constraints.gridy = 4;
         researchPanel.add(submit, constraints);
 
         JLabel name = new JLabel("Name",JLabel.CENTER);
@@ -76,7 +107,7 @@ public class ResearchView {
         postComboBox.addItem(PlayerModel.Position.CENTER.toString());
 
         constraints.gridx = 0;
-        constraints.gridy = 1;
+        constraints.gridy = 2;
         constraints.gridwidth = 1;
         constraints.insets.left = 0;
         constraints.weightx = 0.25;
@@ -91,7 +122,7 @@ public class ResearchView {
         constraints.weightx = 0.75;
         researchPanel.add(postComboBox, constraints);
         constraints.gridx = 0;
-        constraints.gridy = 2;
+        constraints.gridy = 3;
         constraints.weightx = 0.25;
         researchPanel.add(team, constraints);
         constraints.gridx = 1;
@@ -108,14 +139,55 @@ public class ResearchView {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                fillResultPanel(controllers.doPlayerSearch(nameTextField.getText(), postComboBox.getSelectedItem().toString(),
+                fillPlayerResultPanel(controllers.doPlayerSearch(nameTextField.getText(), postComboBox.getSelectedItem().toString(),
                         teamTextField.getText(), nationalityTextField.getText()));
                 SwingUtilities.updateComponentTreeUI(panel);
             }
         });
     }
 
-    private void fillResultPanel(ArrayList<PlayerModel> results){
+    private void fillTeamResearchPanel(JPanel researchPanel, GridBagConstraints constraints){
+        JButton submit = new JButton("Search");
+        constraints.gridy = 3;
+        researchPanel.add(submit, constraints);
+
+        JLabel name = new JLabel("Name",JLabel.CENTER);
+        JLabel conference = new JLabel("Conference", JLabel.CENTER);
+
+        TextField nameTextField = new TextField("");
+        nameTextField.setColumns(20);
+        JComboBox conferenceComboBox = new JComboBox();
+        conferenceComboBox.addItem("None");
+        conferenceComboBox.addItem(info.getConferences().get(0).getName());
+        conferenceComboBox.addItem(info.getConferences().get(1).getName());
+
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 1;
+        constraints.insets.left = 0;
+        constraints.weightx = 0.25;
+        researchPanel.add(name, constraints);
+        constraints.gridx = 1;
+        constraints.weightx = 0.75;
+        researchPanel.add(nameTextField, constraints);
+        constraints.gridx = 2;
+        constraints.weightx = 0.25;
+        researchPanel.add(conference, constraints);
+        constraints.gridx = 3;
+        constraints.weightx = 0.75;
+        researchPanel.add(conferenceComboBox, constraints);
+
+        submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                fillTeamResultPanel(controllers.doTeamSearch(nameTextField.getText(), conferenceComboBox.getSelectedItem().toString()));
+                SwingUtilities.updateComponentTreeUI(panel);
+            }
+        });
+    }
+
+    private void fillPlayerResultPanel(ArrayList<PlayerModel> results){
         this.panel.removeAll();
         JPanel resultPanel = new JPanel(new GridBagLayout());
         resultPanel.setBounds(0,40, this.panel.getWidth(), this.panel.getHeight());
@@ -126,7 +198,7 @@ public class ResearchView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.removeAll();
-                fillPlayerResearch();
+                fillTitle("Player");
                 SwingUtilities.updateComponentTreeUI(panel);
             }
         });
@@ -322,6 +394,213 @@ public class ResearchView {
                 GridBagConstraints.CENTER, GridBagConstraints.VERTICAL, new Insets(25,60,0,0), 0, 0);
 
         JScrollPane scrollPane = new JScrollPane(playersTable);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder());
+        resultPanel.add(scrollPane, constraints);
+    }
+
+    private void fillTeamResultPanel(ArrayList<TeamModel> results){
+        this.panel.removeAll();
+        JPanel resultPanel = new JPanel(new GridBagLayout());
+        resultPanel.setBounds(0,40, this.panel.getWidth(), this.panel.getHeight());
+        this.panel.add(resultPanel);
+        JButton returnToSearch = new JButton("Return", new ImageIcon("src/main/resources/Icons/back.png"));
+        returnToSearch.setBounds(0,0, 160,40);
+        returnToSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panel.removeAll();
+                fillTitle("Team");
+                SwingUtilities.updateComponentTreeUI(panel);
+            }
+        });
+        this.panel.add(returnToSearch);
+        if (results.isEmpty()){
+            fillEmptyResultPanel(resultPanel);
+        }
+        else {
+            fillTeamResultTable(resultPanel, results);
+        }
+    }
+
+    private void fillTeamResultTable(JPanel resultPanel, ArrayList<TeamModel> results){
+        Object[][] data = new Object[results.size()][3];
+        for (int i = 0; i < results.size(); ++i){
+            TeamModel team = results.get(i);
+            JButton button = new JButton(team.getName());
+            button.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    button.setForeground(button.getForeground().darker());
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    button.setForeground(button.getForeground().brighter());
+                    new TeamView(panel, team, info, games);
+                    SwingUtilities.updateComponentTreeUI(panel);
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    button.setForeground(Color.BLUE);
+                    Font font = button.getFont();
+                    Map attributes = font.getAttributes();
+                    attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+                    button.setFont(font.deriveFont(attributes));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    button.setForeground(Color.BLACK);
+                    Font font = button.getFont();
+                    Map attributes = font.getAttributes();
+                    attributes.put(TextAttribute.UNDERLINE, -1);
+                    button.setFont(font.deriveFont(attributes));
+                }
+            });
+            button.setBackground(Color.white);
+            data[i][0] = button;
+            data[i][1] = team.getHeadCoach();
+            try {
+                data[i][2] = info.getConferenceOfATeam(team).getName();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        String[] columnsName = {"Team", "Head Coach", "Conference"};
+        JTable teamTable = new JTable (new DefaultTableModel(data, columnsName){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        });
+
+        teamTable.getColumn("Team").setCellRenderer(new TableCellRenderer() {
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                JButton button = (JButton) value;
+                return button;
+            }
+        });
+
+        teamTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                int column = teamTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
+                int row    = e.getY()/teamTable.getRowHeight(); //get the row of the button
+
+                if (row < teamTable.getRowCount() && row >= 0 && column < teamTable.getColumnCount() && column >= 0) {
+                    Object value = teamTable.getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        JButton button = ((JButton)value);
+                        button.getMouseListeners()[1].mousePressed(e);
+                        SwingUtilities.updateComponentTreeUI(teamTable);
+                    }
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                int column = teamTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
+                int row    = e.getY()/teamTable.getRowHeight(); //get the row of the button
+
+                if (row < teamTable.getRowCount() && row >= 0 && column < teamTable.getColumnCount() && column >= 0) {
+                    Object value = teamTable.getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        JButton button = ((JButton)value);
+                        button.getMouseListeners()[1].mouseReleased(e);
+                        SwingUtilities.updateComponentTreeUI(teamTable);
+                    }
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                int column = teamTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
+                int row    = e.getY()/teamTable.getRowHeight(); //get the row of the button
+
+                if (row < teamTable.getRowCount() && row >= 0 && column < teamTable.getColumnCount() && column >= 0) {
+                    Object value = teamTable.getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        JButton button = ((JButton)value);
+                        button.getMouseListeners()[1].mouseEntered(e);
+                        SwingUtilities.updateComponentTreeUI(teamTable);
+                    }
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+                int column = teamTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the coloum of the button
+                int row    = e.getY()/teamTable.getRowHeight(); //get the row of the button
+                if (row <= teamTable.getRowCount() && row >= 0 && column < teamTable.getColumnCount() && column >= -1) {
+                    Object value;
+                    if (row == teamTable.getRowCount())
+                        row = row -1;
+
+                    if (column == -1)
+                        column = column +1;
+
+                    value = teamTable.getValueAt(row, column);
+                    if (value instanceof JButton) {
+                        JButton button = ((JButton)value);
+                        button.getMouseListeners()[1].mouseExited(e);
+                        SwingUtilities.updateComponentTreeUI(teamTable);
+                    }
+                }
+            }
+        });
+        teamTable.addMouseMotionListener(new MouseAdapter() {
+            int column;
+            int row;
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                int c = teamTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the colomn of the button
+                int r    = e.getY()/teamTable.getRowHeight(); //get the row of the button
+                if (c != column || r != row){
+                    if (row < teamTable.getRowCount() && row >= 0 && column < teamTable.getColumnCount() && column >= 0) {
+                        Object value = teamTable.getValueAt(row, column);
+                        if (value instanceof JButton) {
+                            JButton button = ((JButton)value);
+                            button.getMouseListeners()[1].mouseExited(e);
+                            SwingUtilities.updateComponentTreeUI(teamTable);
+                        }
+                    }
+                    row = r;
+                    column = c;
+                    if (row < teamTable.getRowCount() && row >= 0 && column < teamTable.getColumnCount() && column >= 0) {
+                        Object value = teamTable.getValueAt(r, c);
+                        if (value instanceof JButton) {
+                            JButton button = ((JButton)value);
+                            button.getMouseListeners()[1].mouseEntered(e);
+                            SwingUtilities.updateComponentTreeUI(teamTable);
+                        }
+                    }
+                }
+            }
+        });
+
+        teamTable.setBackground(new Color(238,238,238));
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(){
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                setBackground(Color.white);
+                return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+            }
+        };
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        teamTable.setDefaultRenderer(Object.class, centerRenderer);
+        teamTable.setRowHeight(30);
+        teamTable.getColumnModel().getColumn(0).setMaxWidth(300);
+        teamTable.getColumnModel().getColumn(1).setMaxWidth(200);
+        teamTable.getColumnModel().getColumn(2).setMaxWidth(200);
+
+        GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 1, 1,
+                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL, new Insets(25,60,0,0), 0, 0);
+
+        JScrollPane scrollPane = new JScrollPane(teamTable);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());
         resultPanel.add(scrollPane, constraints);
     }

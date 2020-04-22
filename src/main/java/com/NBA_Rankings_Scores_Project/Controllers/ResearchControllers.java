@@ -58,7 +58,7 @@ public class ResearchControllers {
                 if (!name.equals(teamModelSplit[0].toLowerCase()) && !name.equals(teamModelSplit[1].toLowerCase())
                         && !name.equals(team.getName().toLowerCase()) && !name.equals(""))
                     isGood = false;
-                else if (!conference.equals(info.getConferenceOfATeam(team)) && !conference.equals(""))
+                else if (!conference.equals(info.getConferenceOfATeam(team).getName().toLowerCase()) && !conference.equals("none"))
                     isGood = false;
             } catch (Exception e){
                 e.printStackTrace();

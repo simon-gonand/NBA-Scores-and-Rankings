@@ -1,6 +1,7 @@
 package com.NBA_Rankings_Scores_Project;
 
 import com.NBA_Rankings_Scores_Project.View.GamesListView;
+import com.NBA_Rankings_Scores_Project.View.ResearchView;
 import com.NBA_Rankings_Scores_Project.View.TeamListView;
 
 import javax.swing.*;
@@ -161,7 +162,7 @@ public class System {
             @Override
             public void mousePressed(MouseEvent e) {
                 super.mousePressed(e);
-                // research view
+                new ResearchView(contentPanel);
                 gamesScoreViewButton.setBackground(Color.white);
                 teamsViewButton.setBackground(Color.white);
                 rankingsViewButton.setBackground(Color.white);

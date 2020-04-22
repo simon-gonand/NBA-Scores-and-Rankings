@@ -90,14 +90,14 @@ public class ResearchView {
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ResearchControllers researchControllers = new ResearchControllers(nameTextField.getText().toLowerCase(), postComboBox.getSelectedItem().toString().toLowerCase(),
-                        teamTextField.getText().toLowerCase(), nationalityTextField.getText().toLowerCase(), info);
-                fillResultPanel(researchControllers.doSearch());
+                ResearchControllers researchControllers = new ResearchControllers(info);
+                fillResultPanel(researchControllers.doSearch(nameTextField.getText(), postComboBox.getSelectedItem().toString(),
+                        teamTextField.getText(), nationalityTextField.getText()));
             }
         });
     }
 
     public void fillResultPanel(ArrayList<PlayerModel> results){
-        
+
     }
 }

@@ -7,21 +7,17 @@ import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
 import java.util.ArrayList;
 
 public class ResearchControllers {
-    private String name;
-    private String team;
-    private String post;
-    private String nationality;
     private TreeSeasonInfo info;
 
-    public ResearchControllers(String name, String team, String post, String nationality, TreeSeasonInfo info) {
-        this.name = name;
-        this.team = team;
-        this.post = post;
-        this.nationality = nationality;
+    public ResearchControllers(TreeSeasonInfo info) {
         this.info = info;
     }
 
-    public ArrayList<PlayerModel> doSearch(){
+    public ArrayList<PlayerModel> doSearch(String name, String post, String team, String nationality){
+        name = name.toLowerCase();
+        team = team.toLowerCase();
+        post = post.toLowerCase();
+        nationality = nationality.toLowerCase();
         ArrayList<PlayerModel> results = new ArrayList<PlayerModel>();
         try {
             for (TeamModel teamModel : info.getTeams()){

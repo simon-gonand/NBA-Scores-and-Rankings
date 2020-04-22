@@ -23,45 +23,45 @@ public class ResearchControllerTest {
     @Test
     public void ResearchNameTest(){
         ResearchControllers researchControllers = new ResearchControllers(treeSeasonInfo);
-        ArrayList<PlayerModel> results = researchControllers.doSearch("Barea", "NoNe", "","");
+        ArrayList<PlayerModel> results = researchControllers.doPlayerSearch("Barea", "NoNe", "","");
         assertEquals("J.J. Barea", results.get(0).getName() + " " + results.get(0).getSurname(), "Player must be J.J. Barea");
     }
 
     @Test
     public void ResearchNationalityTest(){
         ResearchControllers researchControllers = new ResearchControllers(treeSeasonInfo);
-        ArrayList<PlayerModel> results = researchControllers.doSearch("", "none", "","canadian");
+        ArrayList<PlayerModel> results = researchControllers.doPlayerSearch("", "none", "","canadian");
         assertEquals("Nickeil Alexander-Walker", results.get(0).getName() + " " + results.get(0).getSurname(), "Player must be Nickeil Alexander-Walker");
     }
 
     @Test
     public void ResearchTeamTest(){
         ResearchControllers researchControllers = new ResearchControllers(treeSeasonInfo);
-        ArrayList<PlayerModel> results = researchControllers.doSearch("", "NONE", "Bucks","");
+        ArrayList<PlayerModel> results = researchControllers.doPlayerSearch("", "NONE", "Bucks","");
         assertEquals("Giannis Antetokounmpo", results.get(0).getName() + " " + results.get(0).getSurname(), "Player must be Giannis Antetokounmpo");
-        results = researchControllers.doSearch("", "none", "Los Angeles","");
+        results = researchControllers.doPlayerSearch("", "none", "Los Angeles","");
         assertEquals("Patrick Beverley", results.get(0).getName() + " " + results.get(0).getSurname(), "Player must be Patrick Beverley");
-        results = researchControllers.doSearch("", "nONe", "dAllas MaveRicks","");
+        results = researchControllers.doPlayerSearch("", "nONe", "dAllas MaveRicks","");
         assertEquals("J.J. Barea", results.get(0).getName() + " " + results.get(0).getSurname(), "Player must be J.J. Barea");
     }
 
     @Test
     public void ResearchPostTest(){
         ResearchControllers researchControllers = new ResearchControllers(treeSeasonInfo);
-        ArrayList<PlayerModel> results = researchControllers.doSearch("", "Power_Forward", "","");
+        ArrayList<PlayerModel> results = researchControllers.doPlayerSearch("", "Power_Forward", "","");
         assertEquals("Giannis Antetokounmpo", results.get(0).getName() + " " + results.get(0).getSurname(), "Player must be Giannis Antetokounmpo");
     }
 
     @Test
     public void ResearchWithSeveralParameters(){
         ResearchControllers researchControllers = new ResearchControllers(treeSeasonInfo);
-        ArrayList<PlayerModel> results = researchControllers.doSearch("", "Center", "","canadian");
+        ArrayList<PlayerModel> results = researchControllers.doPlayerSearch("", "Center", "","canadian");
         assertEquals("Nickeil Alexander-Walker", results.get(0).getName() + " " + results.get(0).getSurname(), "Player must be Nickeil Alexander-Walker");
-        results = researchControllers.doSearch("", "Center", "New Orleans","canadian");
+        results = researchControllers.doPlayerSearch("", "Center", "New Orleans","canadian");
         assertEquals("Nickeil Alexander-Walker", results.get(0).getName() + " " + results.get(0).getSurname(), "Player must be Nickeil Alexander-Walker");
-        results = researchControllers.doSearch("", "none", "New Orleans","canadian");
+        results = researchControllers.doPlayerSearch("", "none", "New Orleans","canadian");
         assertEquals("Nickeil Alexander-Walker", results.get(0).getName() + " " + results.get(0).getSurname(), "Player must be Nickeil Alexander-Walker");
-        results = researchControllers.doSearch("Alexander-walKer", "Center", "New Orleans","canadian");
+        results = researchControllers.doPlayerSearch("Alexander-walKer", "Center", "New Orleans","canadian");
         assertEquals("Nickeil Alexander-Walker", results.get(0).getName() + " " + results.get(0).getSurname(), "Player must be Nickeil Alexander-Walker");
     }
 }

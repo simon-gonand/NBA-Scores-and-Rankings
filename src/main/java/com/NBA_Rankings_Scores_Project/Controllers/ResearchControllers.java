@@ -13,7 +13,7 @@ public class ResearchControllers {
         this.info = info;
     }
 
-    public ArrayList<PlayerModel> doSearch(String name, String post, String team, String nationality){
+    public ArrayList<PlayerModel> doPlayerSearch(String name, String post, String team, String nationality){
         name = name.toLowerCase();
         team = team.toLowerCase();
         post = post.toLowerCase();

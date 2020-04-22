@@ -16,13 +16,19 @@ import java.util.ArrayList;
 public class ResearchView {
     private JPanel panel;
     private TreeSeasonInfo info;
+    private ResearchControllers controllers;
 
     public ResearchView(JPanel panel){
         this.panel = panel;
         Parser parser = new Parser("src/main/resources/Season_19_20.xml");
         this.info = parser.getTreeSeason();
+        this.controllers = new ResearchControllers(this.info);
         panel.removeAll();
 
+        fillPlayerResearch();
+    }
+
+    private void fillPlayerResearch(){
         JPanel researchPanel = new JPanel(new GridBagLayout());
         researchPanel.setBounds(100,this.panel.getHeight()/3, this.panel.getWidth() - 120, this.panel.getHeight()/3);
         this.panel.add(researchPanel);
@@ -90,8 +96,8 @@ public class ResearchView {
         submit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ResearchControllers researchControllers = new ResearchControllers(info);
-                fillResultPanel(researchControllers.doSearch(nameTextField.getText(), postComboBox.getSelectedItem().toString(),
+
+                fillResultPanel(controllers.doPlayerSearch(nameTextField.getText(), postComboBox.getSelectedItem().toString(),
                         teamTextField.getText(), nationalityTextField.getText()));
             }
         });

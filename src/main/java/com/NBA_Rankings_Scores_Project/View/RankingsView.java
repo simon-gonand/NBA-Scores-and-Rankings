@@ -1,5 +1,7 @@
 package com.NBA_Rankings_Scores_Project.View;
 
+import com.NBA_Rankings_Scores_Project.Controllers.RankingController;
+import com.NBA_Rankings_Scores_Project.Controllers.ResearchControllers;
 import com.NBA_Rankings_Scores_Project.Models.TeamModel;
 import com.NBA_Rankings_Scores_Project.Parser;
 import com.NBA_Rankings_Scores_Project.Tree.TreeGames;
@@ -20,6 +22,7 @@ public class RankingsView {
     private JPanel panel;
     private TreeSeasonInfo info;
     private TreeGames games;
+    private RankingController rankingController;
 
     public RankingsView(JPanel panel){
         this.panel = panel;
@@ -28,6 +31,8 @@ public class RankingsView {
         Parser parser = new Parser("src/main/resources/Season_19_20.xml");
         this.info = parser.getTreeSeason();
         this.games = parser.getTreeSeasonGames(this.info);
+
+        this.rankingController = new RankingController(info, games);
 
         JPanel rankingPanel = new JPanel(new GridBagLayout());
         rankingPanel.setBounds(0,0, this.panel.getWidth(), this.panel.getHeight());

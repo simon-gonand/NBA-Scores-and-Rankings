@@ -1,7 +1,7 @@
 package com.NBA_Rankings_Scores_Project.View;
 
 import com.NBA_Rankings_Scores_Project.Controllers.RankingController;
-import com.NBA_Rankings_Scores_Project.Controllers.ResearchControllers;
+import com.NBA_Rankings_Scores_Project.Models.Conference;
 import com.NBA_Rankings_Scores_Project.Models.TeamModel;
 import com.NBA_Rankings_Scores_Project.Parser;
 import com.NBA_Rankings_Scores_Project.Tree.TreeGames;
@@ -12,6 +12,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.font.TextAttribute;
@@ -23,6 +25,8 @@ public class RankingsView {
     private TreeSeasonInfo info;
     private TreeGames games;
     private RankingController rankingController;
+    private ArrayList<TeamModel> ranking;
+    private JScrollPane rankingPane;
 
     public RankingsView(JPanel panel){
         this.panel = panel;
@@ -31,8 +35,9 @@ public class RankingsView {
         Parser parser = new Parser("src/main/resources/Season_19_20.xml");
         this.info = parser.getTreeSeason();
         this.games = parser.getTreeSeasonGames(this.info);
-
         this.rankingController = new RankingController(info, games);
+        this.ranking = new ArrayList<TeamModel>();
+        this.rankingPane = new JScrollPane();
 
         JPanel rankingPanel = new JPanel(new GridBagLayout());
         rankingPanel.setBounds(0,0, this.panel.getWidth(), this.panel.getHeight());
@@ -45,17 +50,33 @@ public class RankingsView {
         rankingPanel.add(title, constraints);
 
         JComboBox conferenceChoice = new JComboBox();
-        conferenceChoice.addItem("West");
-        conferenceChoice.addItem("East");
+        conferenceChoice.addItem(info.getConferences().get(0));
+        conferenceChoice.addItem(info.getConferences().get(1));
+
+        conferenceChoice.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ranking = rankingController.sortRanking((Conference) conferenceChoice.getSelectedItem());
+                constraints.gridy = 2;
+
+                rankingPane = fillRankingPanel(rankingPane, ranking, constraints);
+                rankingPanel.add(rankingPane, constraints);
+                SwingUtilities.updateComponentTreeUI(rankingPanel);
+            }
+        });
+
+
         constraints.gridy = 1;
         constraints.fill = GridBagConstraints.NONE;
         rankingPanel.add(conferenceChoice, constraints);
+        conferenceChoice.setSelectedItem(info.getConferences().get(0));
     }
 
-    private void fillRankingPanel(JPanel rankingPanel, ArrayList<TeamModel> sortTeamRankin){
-        Object[][] data = new Object[sortTeamRankin.size()][3];
-        for (int i = 0; i < sortTeamRankin.size(); ++i){
-            TeamModel team = sortTeamRankin.get(i);
+    private JScrollPane fillRankingPanel(JScrollPane rankingPane, ArrayList<TeamModel> sortTeamRanking, GridBagConstraints constraints){
+        rankingPane.removeAll();
+        Object[][] data = new Object[sortTeamRanking.size()][3];
+        for (int i = 0; i < sortTeamRanking.size(); ++i){
+            TeamModel team = sortTeamRanking.get(i);
             JButton button = new JButton(team.getName());
             button.addMouseListener(new MouseAdapter() {
                 @Override
@@ -89,15 +110,11 @@ public class RankingsView {
                 }
             });
             button.setBackground(Color.white);
-            data[i][0] = button;
-            data[i][1] = team.getHeadCoach();
-            try {
-                data[i][2] = info.getConferenceOfATeam(team).getName();
-            } catch (Exception e){
-                e.printStackTrace();
-            }
+            data[i][0] = i + 1;
+            data[i][1] = button;
+            data[i][2] = team.getHeadCoach();
         }
-        String[] columnsName = {"Team", "Head Coach", "Conference"};
+        String[] columnsName = {"Pos", "Team", "Head Coach"};
         JTable rankingTable = new JTable (new DefaultTableModel(data, columnsName){
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -223,15 +240,12 @@ public class RankingsView {
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         rankingTable.setDefaultRenderer(Object.class, centerRenderer);
         rankingTable.setRowHeight(30);
-        rankingTable.getColumnModel().getColumn(0).setMaxWidth(300);
-        rankingTable.getColumnModel().getColumn(1).setMaxWidth(200);
+        rankingTable.getColumnModel().getColumn(0).setMaxWidth(100);
+        rankingTable.getColumnModel().getColumn(1).setMaxWidth(300);
         rankingTable.getColumnModel().getColumn(2).setMaxWidth(200);
 
-        GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL, new Insets(25,60,0,0), 0, 0);
-
-        JScrollPane scrollPane = new JScrollPane(rankingTable);
-        scrollPane.setBorder(BorderFactory.createEmptyBorder());
-        rankingPanel.add(scrollPane, constraints);
+        rankingPane = new JScrollPane(rankingTable);
+        rankingPane.setBorder(BorderFactory.createEmptyBorder());
+        return rankingPane;
     }
 }

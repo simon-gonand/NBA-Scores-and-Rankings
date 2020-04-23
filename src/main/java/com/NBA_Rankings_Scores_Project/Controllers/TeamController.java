@@ -130,4 +130,8 @@ public class TeamController {
 
         return totals;
     }
+
+    public TeamModel getTeam() {
+        return team;
+    }
 }

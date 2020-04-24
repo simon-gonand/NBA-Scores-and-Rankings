@@ -248,6 +248,11 @@ public class ResearchView {
         resultsPanel.add(label, constraints);
     }
 
+    /**
+     * To display the player research results
+     * @param resultPanel Panel where the results will be displayed
+     * @param results List of the player results
+     */
     private void fillPlayerResultTable(JPanel resultPanel, List<PlayerModel> results){
         Object[][] data = new Object[results.size()][3];
         for (int i = 0; i < results.size(); ++i){
@@ -437,6 +442,7 @@ public class ResearchView {
         JPanel resultPanel = new JPanel(new GridBagLayout());
         resultPanel.setBounds(0,40, this.panel.getWidth(), this.panel.getHeight());
         this.panel.add(resultPanel);
+
         JButton returnToSearch = new JButton("Return", new ImageIcon("src/main/resources/Icons/back.png"));
         returnToSearch.setBounds(0,0, 160,40);
         returnToSearch.addActionListener(new ActionListener() {
@@ -448,6 +454,8 @@ public class ResearchView {
             }
         });
         this.panel.add(returnToSearch);
+
+        // if there's no result then displayed an empty panel with a message
         if (results.isEmpty()){
             fillEmptyResultPanel(resultPanel);
         }
@@ -456,6 +464,11 @@ public class ResearchView {
         }
     }
 
+    /**
+     * To fill the table of the team research results
+     * @param resultPanel Panel where the results will be displayed
+     * @param results List of the results of the search
+     */
     private void fillTeamResultTable(JPanel resultPanel, ArrayList<TeamModel> results){
         Object[][] data = new Object[results.size()][3];
         for (int i = 0; i < results.size(); ++i){

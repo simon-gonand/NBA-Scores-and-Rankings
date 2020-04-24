@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"com.NBA_Rankings_Scores_Project"},{"l":"com.NBA_Rankings_Scores_Project.Controller"},{"l":"com.NBA_Rankings_Scores_Project.Controllers"},{"l":"com.NBA_Rankings_Scores_Project.Models"},{"l":"com.NBA_Rankings_Scores_Project.Tree"},{"l":"com.NBA_Rankings_Scores_Project.View"}]

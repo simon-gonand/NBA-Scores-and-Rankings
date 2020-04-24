@@ -8,15 +8,35 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Controller of a team that makes the calculation in order to display them in a view
+ */
 public class TeamController {
     private TeamModel team;
     private TreeGames treeGames;
 
+    /**
+     * Constructor that initialize the data members
+     * @param team TeamModel of the controller
+     * @param treeGames Tree with all games and statistics of the current season
+     */
     public TeamController(TeamModel team, TreeGames treeGames){
         this.team = team;
         this.treeGames = treeGames;
     }
 
+    /**
+     * Getter of the TeamModel of the controller
+     * @return TeamModel data member
+     */
+    public TeamModel getTeam() {
+        return team;
+    }
+
+    /**
+     * Calculate the team results
+     * @return Game win and game lose
+     */
     public String calculateTeamResults(){
         ArrayList<GameModel> games = treeGames.getAllGamesOfTeam(team);
         int win = 0, loose = 0;
@@ -29,6 +49,10 @@ public class TeamController {
         return win + " - " + loose;
     }
 
+    /**
+     * Calculate the win percentage of the team
+     * @return The win percentage
+     */
     public String calculateWinPercentage(){
         String winLoose = calculateTeamResults();
         String[] results = calculateTeamResults().split(" - ");
@@ -43,63 +67,29 @@ public class TeamController {
                 winPercentageSplit[0]+"."+winPercentageSplit[1].substring(0,2);
     }
 
+    /**
+     * Calculate the season stats of the team
+     * @return Map with all the season stats of the team
+     */
     public Map<String, String> calculateTeamSeasonStats(){
         Map<String, Float> statsTotals = calculateTotals();
         Map<String, String> statsAverages = new HashMap<String, String>();
-        String[] pointsAverage = Float.toString(statsTotals.get("Points") / treeGames.getAllGamesOfTeam(team).size()).split("\\.");
-        String[] opposantPointsAverage = Float.toString(statsTotals.get("OpposantPoints") / treeGames.getAllGamesOfTeam(team).size()).split("\\.");
-        String[] reboundsAverage = Float.toString(statsTotals.get("Rebounds") / treeGames.getAllGamesOfTeam(team).size()).split("\\.");
-        String[] assistsAverage = Float.toString(statsTotals.get("Assists") / treeGames.getAllGamesOfTeam(team).size()).split("\\.");
-        String[] FGAverage = Float.toString(statsTotals.get("FG") / treeGames.getAllGamesOfTeam(team).size()).split("\\.");
-        String[] FTAverage = Float.toString(statsTotals.get("FTMade") * 100 / statsTotals.get("FTAttempts")).split("\\.");
-        String[] ThreePtAverage = Float.toString(statsTotals.get("3pt") / treeGames.getAllGamesOfTeam(team).size()).split("\\.");
 
-        if (pointsAverage.length <= 1)
-            statsAverages.put("Points", "0.0");
-        else
-            statsAverages.put("Points", pointsAverage[1].length() < 2 ?
-                    pointsAverage[0]+"."+pointsAverage[1].substring(0,pointsAverage[1].length()) :
-                    pointsAverage[0]+"."+pointsAverage[1].substring(0,1));
-        if (opposantPointsAverage.length <= 1)
-            statsAverages.put("OpposantPoints", "0.0");
-        else
-            statsAverages.put("OpposantPoints", opposantPointsAverage[1].length() < 2 ?
-                    opposantPointsAverage[0]+"."+opposantPointsAverage[1].substring(0,opposantPointsAverage[1].length()) :
-                    opposantPointsAverage[0]+"."+opposantPointsAverage[1].substring(0,1));
-        if (reboundsAverage.length <= 1)
-            statsAverages.put("Rebounds", "0.0");
-        else
-            statsAverages.put("Rebounds", reboundsAverage[1].length() < 2 ?
-                    reboundsAverage[0]+"."+reboundsAverage[1].substring(0,reboundsAverage[1].length()) :
-                    reboundsAverage[0]+"."+reboundsAverage[1].substring(0,1));
-        if (assistsAverage.length <= 1)
-            statsAverages.put("Assists", "0.0");
-        else
-            statsAverages.put("Assists", assistsAverage[1].length() < 2 ?
-                    assistsAverage[0]+"."+assistsAverage[1].substring(0,assistsAverage[1].length()) :
-                    assistsAverage[0]+"."+assistsAverage[1].substring(0,1));
-        if (FGAverage.length <= 1)
-            statsAverages.put("FG", "0.0");
-        else
-            statsAverages.put("FG", FGAverage[1].length() < 2 ?
-                    FGAverage[0]+"."+FGAverage[1].substring(0,FGAverage[1].length()) :
-                    FGAverage[0]+"."+FGAverage[1].substring(0,1));
-        if (FTAverage.length <= 1)
-            statsAverages.put("FT", "0.0");
-        else
-            statsAverages.put("FT", FTAverage[1].length() < 2 ?
-                    FTAverage[0]+"."+FTAverage[1].substring(0,FTAverage[1].length()) :
-                    FTAverage[0]+"."+FTAverage[1].substring(0,1));
-        if (ThreePtAverage.length <= 1)
-            statsAverages.put("3pt", "0.0");
-        else
-            statsAverages.put("3pt", ThreePtAverage[1].length() < 2 ?
-                    ThreePtAverage[0]+"."+ThreePtAverage[1].substring(0,ThreePtAverage[1].length()) :
-                    ThreePtAverage[0]+"."+ThreePtAverage[1].substring(0,1));
+        statsAverages.put("Points", getFirstDecimal(statsTotals.get("Points") / treeGames.getAllGamesOfTeam(team).size()));
+        statsAverages.put("OpposantPoints", getFirstDecimal(statsTotals.get("OpposantPoints") / treeGames.getAllGamesOfTeam(team).size()));
+        statsAverages.put("Rebounds", getFirstDecimal(statsTotals.get("Rebounds") / treeGames.getAllGamesOfTeam(team).size()));
+        statsAverages.put("Assists", getFirstDecimal(statsTotals.get("Assists") / treeGames.getAllGamesOfTeam(team).size()));
+        statsAverages.put("FG", getFirstDecimal(statsTotals.get("FG") / treeGames.getAllGamesOfTeam(team).size()));
+        statsAverages.put("FT", getFirstDecimal(statsTotals.get("FTMade") * 100 / statsTotals.get("FTAttempts")));
+        statsAverages.put("3pt", getFirstDecimal(statsTotals.get("3pt") / treeGames.getAllGamesOfTeam(team).size()));
 
         return statsAverages;
     }
 
+    /**
+     * Calculate the totals of the statistics (all points scored this season, all rebounds, all assists etc...)
+     * @return Map with the totals
+     */
     private Map<String, Float> calculateTotals() {
         ArrayList<GameModel> games = treeGames.getAllGamesOfTeam(team);
         float totPoints = 0.0f, totOpposantPoints = 0.0f, totRebounds = 0.0f, totAssists = 0.0f, totFG = 0.0f, totFTMade = 0.0f,
@@ -131,7 +121,19 @@ public class TeamController {
         return totals;
     }
 
-    public TeamModel getTeam() {
-        return team;
+    /**
+     * To only get the first decimal of a float
+     * @param number Float which will be return
+     * @return the number string with only the first decimal
+     */
+    private String getFirstDecimal(Float number){
+        String[] numberSplit = number.toString().split("\\.");
+        if (numberSplit.length <= 1)
+            return "0.0";
+        else {
+            return numberSplit[1].length() < 2 ?
+                    numberSplit[0] + "." + numberSplit[1].substring(0, numberSplit[1].length()) :
+                    numberSplit[0] + "." + numberSplit[1].substring(0, 1);
+        }
     }
 }

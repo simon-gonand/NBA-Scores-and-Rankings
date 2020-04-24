@@ -8,13 +8,26 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Controller of a game that makes the calculation in order to display them in a the view
+ */
 public class GameController {
     private GameModel game;
 
+    /**
+     * Controller that initialize the GameModel
+     * @param game GameModel of the game
+     * @see GameModel
+     */
     public GameController(GameModel game){
         this.game = game;
     }
 
+    /**
+     * To calculate the whole team statistics of this game
+     * @param playerStatsList List of the players statistics of the team
+     * @return Map with the statistics of the team
+     */
     public Map<String, Object> calculateTeamStats(List<PlayerStats> playerStatsList){
         Map<String, Object> teamStats = new HashMap<String, Object>();
         int points = 0, rebounds = 0, assists = 0, steals = 0, blocks = 0, turnovers = 0, ftMade = 0, ftAttempts = 0, fgMade = 0, fgAttempts = 0;
@@ -54,6 +67,11 @@ public class GameController {
         return teamStats;
     }
 
+    /**
+     * Split a String from "Made/Attempts" to two Integer
+     * @param strMadeAttempts String of the Made/Attempts
+     * @return List of two Integer one is the shoot made and the other is the shoot attempted
+     */
     private List<Integer> getMadeAttempts(String strMadeAttempts){
         List<Integer> madeAttempts = new ArrayList<Integer>(2);
         String[] madeAndAttemptsStr = strMadeAttempts.split("/");
@@ -61,6 +79,13 @@ public class GameController {
         madeAttempts.add(Integer.parseInt(madeAndAttemptsStr[1]));
         return madeAttempts;
     }
+
+    /**
+     * Calculate a percentage
+     * @param made What made (succeed)
+     * @param attempts what attempted
+     * @return the Percentage of Made/Attempts
+     */
     private float calculatePercentage(float made, float attempts){
         return made*100/attempts;
     }

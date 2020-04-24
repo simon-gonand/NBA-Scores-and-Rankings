@@ -24,7 +24,7 @@ public class TreeTest {
     public void addTest(){
         tree.add(tree.getRoot(), new Models("model test"));
         assertEquals("model test",
-                tree.getRoot().getChilds().get(0).getData().getName(),
+                tree.getRoot().getChildren().get(0).getData().getName(),
                 "Model must be \"model test\"");
     }
 }

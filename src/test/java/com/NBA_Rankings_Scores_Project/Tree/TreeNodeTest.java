@@ -35,8 +35,8 @@ public class TreeNodeTest {
 
     @Test
     public void childsTest(){
-        node.addChilds(new TreeNode(new Models("child node test")));
-        List<TreeNode> child = node.getChilds();
+        node.addChild(new TreeNode(new Models("child node test")));
+        List<TreeNode> child = node.getChildren();
         assertEquals("child node test",
                 child.get(0).getData().getName(),
                 "child node name must be \"child node test\"");

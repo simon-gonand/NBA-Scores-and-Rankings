@@ -6,13 +6,30 @@ import com.NBA_Rankings_Scores_Project.Tree.TreeSeasonInfo;
 
 import java.util.ArrayList;
 
+/**
+ * Controller of the research that implements the search algorithms
+ */
 public class ResearchControllers {
     private TreeSeasonInfo info;
 
+    /**
+     * Controller that initialize the data member
+     * @param info Tree of the general informations of the current Season
+     * @see TreeSeasonInfo
+     */
     public ResearchControllers(TreeSeasonInfo info) {
         this.info = info;
     }
 
+    /**
+     * Search algorithm for players
+     * @param name Name of the player to search
+     * @param post Position of the players to search
+     * @param team Team of the players to search
+     * @param nationality Nationality of the players to search
+     * @return List of the Player Model that fits with the parameters of the research
+     * @see PlayerModel
+     */
     public ArrayList<PlayerModel> doPlayerSearch(String name, String post, String team, String nationality){
         name = name.toLowerCase();
         team = team.toLowerCase();
@@ -43,6 +60,13 @@ public class ResearchControllers {
         return results;
     }
 
+    /**
+     * Search algorithm for the teams
+     * @param name Name of the team to search
+     * @param conference Name of the conference to search
+     * @return List of the teams that fits with the parameters of the research
+     * @see TeamModel
+     */
     public ArrayList<TeamModel> doTeamSearch(String name, String conference){
         name = name.toLowerCase();
         conference = conference.toLowerCase();

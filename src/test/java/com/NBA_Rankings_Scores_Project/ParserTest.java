@@ -36,26 +36,26 @@ public class ParserTest {
         Parser parser = new Parser("src/test/resources/Test_Datas.xml");
         treeSeasonInfo = parser.getTreeSeason();
 
-        confWest = treeSeasonInfo.getRoot().getChilds().get(0);
-        confEast = treeSeasonInfo.getRoot().getChilds().get(1);
+        confWest = treeSeasonInfo.getRoot().getChildren().get(0);
+        confEast = treeSeasonInfo.getRoot().getChildren().get(1);
 
-        teamWest1 = confWest.getChilds().get(0);
-        teamWest2 = confWest.getChilds().get(1);
-        teamEast1 = confEast.getChilds().get(0);
-        teamEast2 = confEast.getChilds().get(1);
+        teamWest1 = confWest.getChildren().get(0);
+        teamWest2 = confWest.getChildren().get(1);
+        teamEast1 = confEast.getChildren().get(0);
+        teamEast2 = confEast.getChildren().get(1);
 
-        playerTeamWest1 = teamWest1.getChilds().get(0);
-        playerTeamWest2 = teamWest2.getChilds().get(0);
-        playerTeamEast1 = teamEast1.getChilds().get(0);
-        playerTeamEast2 = teamEast2.getChilds().get(0);
+        playerTeamWest1 = teamWest1.getChildren().get(0);
+        playerTeamWest2 = teamWest2.getChildren().get(0);
+        playerTeamEast1 = teamEast1.getChildren().get(0);
+        playerTeamEast2 = teamEast2.getChildren().get(0);
 
         treeGames = parser.getTreeSeasonGames(treeSeasonInfo);
 
-        gameNode = treeGames.getRoot().getChilds().get(0);
-        homeNode = gameNode.getChilds().get(0);
-        visitorNode = gameNode.getChilds().get(1);
-        homePlayerStatNode = homeNode.getChilds().get(0);
-        visitorPlayerStatNode = visitorNode.getChilds().get(0);
+        gameNode = treeGames.getRoot().getChildren().get(0);
+        homeNode = gameNode.getChildren().get(0);
+        visitorNode = gameNode.getChildren().get(1);
+        homePlayerStatNode = homeNode.getChildren().get(0);
+        visitorPlayerStatNode = visitorNode.getChildren().get(0);
     }
 
     @Test

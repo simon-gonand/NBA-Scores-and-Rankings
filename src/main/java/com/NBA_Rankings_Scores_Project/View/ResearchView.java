@@ -21,23 +21,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * View that display the research
+ */
 public class ResearchView {
     private JPanel panel;
     private TreeSeasonInfo info;
     private TreeGames games;
     private ResearchControllers controllers;
 
+    /**
+     * Constructor that initialize the data members
+     * @param panel Panel where the research form will be displayed
+     */
     public ResearchView(JPanel panel){
         this.panel = panel;
         Parser parser = new Parser("src/main/resources/Season_19_20.xml");
         this.info = parser.getTreeSeason();
         this.games = parser.getTreeSeasonGames(info);
         this.controllers = new ResearchControllers(this.info);
-        panel.removeAll();
+        this.panel.removeAll();
+        this.panel.setLayout(null);
 
         fillTitle("");
     }
 
+    /**
+     * To fill the title and what to Search button (player or team)
+     * @param whatToSearch String that indicates if the user wants to search a player or a team
+     */
     private void fillTitle(String whatToSearch){
         JPanel researchPanel = new JPanel(new GridBagLayout());
         researchPanel.setBounds(0,this.panel.getHeight()/3, this.panel.getWidth() - 120, this.panel.getHeight()/3);
@@ -80,6 +92,11 @@ public class ResearchView {
         }
     }
 
+    /**
+     * To fill the panel with a form to search a player
+     * @param researchPanel Panel where the form will be displayed
+     * @param constraints Constraints for the researchPanel layout
+     */
     private void fillPlayerResearch(JPanel researchPanel, GridBagConstraints constraints){
 
         JButton submit = new JButton("Search");
@@ -146,6 +163,11 @@ public class ResearchView {
         });
     }
 
+    /**
+     * To fill the panel with a form to search a team
+     * @param researchPanel Panel where the form will be displayed
+     * @param constraints Constraints of the researchPanel layout
+     */
     private void fillTeamResearchPanel(JPanel researchPanel, GridBagConstraints constraints){
         JButton submit = new JButton("Search");
         constraints.gridy = 3;
@@ -187,6 +209,10 @@ public class ResearchView {
         });
     }
 
+    /**
+     * To display the results of a player research
+     * @param results List of the results
+     */
     private void fillPlayerResultPanel(ArrayList<PlayerModel> results){
         this.panel.removeAll();
         JPanel resultPanel = new JPanel(new GridBagLayout());
@@ -211,6 +237,10 @@ public class ResearchView {
         }
     }
 
+    /**
+     * To display a message when no results are found
+     * @param resultsPanel Panel where the message will be displayed
+     */
     private void fillEmptyResultPanel(JPanel resultsPanel){
         JLabel label = new JLabel("No Results", JLabel.CENTER);
         GridBagConstraints constraints = new GridBagConstraints(0,0,1,1,1,1,
@@ -398,6 +428,10 @@ public class ResearchView {
         resultPanel.add(scrollPane, constraints);
     }
 
+    /**
+     * To display the result of the team research
+     * @param results List of the results
+     */
     private void fillTeamResultPanel(ArrayList<TeamModel> results){
         this.panel.removeAll();
         JPanel resultPanel = new JPanel(new GridBagLayout());

@@ -11,13 +11,22 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * View which displayed the list of the teams
+ */
 public class TeamListView {
     private JPanel panel;
     private TreeSeasonInfo treeSeasonInfo;
 
+    /**
+     * Constructor which intilialize the data members
+     * @param panel Panel where the view will be displayed
+     */
     public TeamListView(JPanel panel){
         this.panel = panel;
         panel.removeAll();
+
+        this.panel.setLayout(null);
 
         Parser parser = new Parser("src/main/resources/Season_19_20.xml");
         this.treeSeasonInfo = parser.getTreeSeason();
@@ -29,12 +38,19 @@ public class TeamListView {
 
         addButton(treeSeasonInfo.getConferences().get(0), teamLists, 0, games);
         addButton(treeSeasonInfo.getConferences().get(1), teamLists, 1, games);
-        JScrollPane scrollPane = new JScrollPane(teamLists, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        JScrollPane scrollPane = new JScrollPane(teamLists, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         scrollPane.setBounds(0,0, panel.getWidth(), panel.getHeight());
 
         panel.add(scrollPane);
     }
 
+    /**
+     * To displayed buttons to the teams lists
+     * @param conference Which conference are the teams on the buttons
+     * @param teamLists Panel where the button will be displayed
+     * @param column which column they will be displayed
+     * @param games Tree with all the games and the statistics of a season
+     */
     private void addButton(Conference conference, JPanel teamLists, int column, TreeGames games){
         JLabel columnName = new JLabel(conference.getName() + " Conference", JLabel.CENTER);
         GridBagConstraints constraints = new GridBagConstraints(column, 0, 1, 1, 0.25, 0.25,

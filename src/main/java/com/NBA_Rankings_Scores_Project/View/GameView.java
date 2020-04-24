@@ -16,6 +16,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
 
+/**
+ * View that display the information and the statistics of a game
+ */
 public class GameView {
     private JPanel panel;
     private JScrollPane table;
@@ -26,6 +29,15 @@ public class GameView {
     private TreeGames games;
     private TeamModel home, visitor;
 
+    /**
+     * Constructor which initialize the data members
+     * @param panel Panel where the view will be displayed
+     * @param game GameModel of the game that will be displayed
+     * @param home Home TeamModel of the game
+     * @param visitor Visitor TeamModel of the game
+     * @param info Tree with the general information on the current season
+     * @param games Tree with all the games and the statistics of the games
+     */
     public GameView(JPanel panel, GameModel game, TeamModel home, TeamModel visitor,
                     TreeSeasonInfo info, TreeGames games){
         this.panel = panel;
@@ -35,42 +47,57 @@ public class GameView {
         this.gameController = new GameController(game);
         this.home = home;
         this.visitor = visitor;
-        panel.removeAll();
+        this.panel.removeAll();
 
-        JPanel generalStats = new JPanel();
-        JPanel otherStats = new JPanel();
+        this.panel.setLayout(new GridBagLayout());
 
-        generalStats.setBounds(0,0, panel.getWidth(), panel.getHeight()/3 + 30);
-        otherStats.setBounds(0, generalStats.getHeight(), panel.getWidth(), 2*panel.getHeight()/3 - 30);
+        JPanel generalStats = new JPanel(new GridBagLayout());
+        JPanel otherStats = new JPanel(new GridBagLayout());
+
         generalStats.setBorder(BorderFactory.createMatteBorder(0,0,3,0, Color.black));
 
-        generalStats.setLayout(null);
-        otherStats.setLayout(null);
+        GridBagConstraints constraints = new GridBagConstraints();
 
-        this.panel.add(generalStats);
-        this.panel.add(otherStats);
+        constraints.gridy = 0;
+        constraints.weightx = 1;
+        constraints.weighty = 0.1;
+        constraints.fill = GridBagConstraints.BOTH;
+        this.panel.add(generalStats, constraints);
+        constraints.gridy = 1;
+        constraints.weighty = 1;
+        this.panel.add(otherStats, constraints);
 
         fillGeneralStatsPanel(generalStats);
         fillOtherStatsPanel(otherStats);
     }
 
+    /**
+     * To fill the general information of the game
+     * @param generalStats Panel where the info will be displayed
+     */
     private void fillGeneralStatsPanel(JPanel generalStats){
-        JPanel homeTeamPanel = new JPanel (new GridBagLayout());
-        JPanel visitorTeamPanel = new JPanel (new GridBagLayout());
-        homeTeamPanel.setBounds(2*generalStats.getWidth()/3,0, generalStats.getWidth()/3, 100);
-        visitorTeamPanel.setBounds(0,0, generalStats.getWidth()/3, 100);
-        generalStats.add(homeTeamPanel);
-        generalStats.add(visitorTeamPanel);
+        JPanel homeTeamPanel = new JPanel (new GridLayout(2,1));
+        JPanel visitorTeamPanel = new JPanel (new GridLayout(2,1));
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        constraints.anchor = GridBagConstraints.PAGE_START;
+        generalStats.add(homeTeamPanel, constraints);
+        constraints.gridx = 2;
+        generalStats.add(visitorTeamPanel, constraints);
 
         JLabel homeTeamLabel = new JLabel(home.getName(),
                 new ImageIcon("src/main/resources/Icons/jersey.png"),
                 JLabel.RIGHT);
-        JLabel homeTeamResult = new JLabel(new TeamController(home, games).calculateTeamResults());
+        JLabel homeTeamResult = new JLabel(new TeamController(home, games).calculateTeamResults(), JLabel.CENTER);
         homeTeamResult.setFont(new Font(homeTeamResult.getFont().getName(), Font.BOLD, 15));
         JLabel visitorTeamLabel = new JLabel (visitor.getName(),
                 new ImageIcon("src/main/resources/Icons/jersey.png"),
                 JLabel.LEFT);
-        JLabel visitorTeamResult = new JLabel(new TeamController(visitor, games).calculateTeamResults());
+        JLabel visitorTeamResult = new JLabel(new TeamController(visitor, games).calculateTeamResults(), JLabel.CENTER);
         visitorTeamResult.setFont(new Font(visitorTeamResult.getFont().getName(), Font.BOLD, 15));
 
         homeTeamLabel.setHorizontalTextPosition(JLabel.CENTER);
@@ -78,114 +105,120 @@ public class GameView {
         visitorTeamLabel.setHorizontalTextPosition(JLabel.CENTER);
         visitorTeamLabel.setVerticalTextPosition(JLabel.BOTTOM);
 
-        homeTeamResult.setBounds(
-                (generalStats.getWidth() - 35) - (homeTeamLabel.getFontMetrics(homeTeamLabel.getFont()).stringWidth(home.getName())/2) + 10,
-                55, 100, 100);
-        visitorTeamResult.setBounds((visitorTeamLabel.getFontMetrics(visitorTeamLabel.getFont()).stringWidth(visitor.getName())/2) - 5,
-                55, 100, 100);
 
-        displayScores(generalStats);
+        displayScores(generalStats, constraints);
 
-        GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                GridBagConstraints.LINE_END, GridBagConstraints.HORIZONTAL, new Insets(0,0,0,10), 0, 0);
-        homeTeamPanel.add(homeTeamLabel, constraints);
-        generalStats.add(homeTeamResult);
-        constraints.anchor = GridBagConstraints.LINE_START;
-        constraints.insets = new Insets(0,10,0,0);
-        generalStats.add(visitorTeamResult);
-        visitorTeamPanel.add(visitorTeamLabel, constraints);
+        homeTeamPanel.add(homeTeamLabel);
+        homeTeamPanel.add(homeTeamResult);
+        visitorTeamPanel.add(visitorTeamLabel);
+        visitorTeamPanel.add(visitorTeamResult);
     }
 
-    private void displayScores(JPanel generalStats){
+    /**
+     * To displayed the scores
+     * @param generalStats Panel where the scores will be displayed
+     * @param constraints Constraints of the generalStats layout
+     */
+    private void displayScores(JPanel generalStats, GridBagConstraints constraints){
         JLabel totScore = new JLabel(game.getTotScore(), JLabel.CENTER);
-        totScore.setBounds(0, 15, generalStats.getWidth(), 50);
         totScore.setFont(new Font(totScore.getFont().getName(), Font.BOLD, 30));
 
         JLabel q1 = new JLabel("Q1", JLabel.CENTER);
-        q1.setBounds(0, totScore.getY() + totScore.getHeight() + 3, generalStats.getWidth(), 25);
         q1.setFont(new Font(q1.getFont().getName(), Font.BOLD, 20));
 
         JLabel q1Score = new JLabel(game.getQ1Score(), JLabel.CENTER);
-        q1Score.setBounds(0, q1.getY() + q1.getHeight() + 2, generalStats.getWidth(), 25);
         q1Score.setFont(new Font(totScore.getFont().getName(), Font.PLAIN, 15));
 
         JLabel q2 = new JLabel("Q2", JLabel.CENTER);
-        q2.setBounds(0, q1Score.getY() + q1Score.getHeight() + 4, generalStats.getWidth(), 25);
         q2.setFont(new Font(q1.getFont().getName(), Font.BOLD, 20));
 
         JLabel q2Score = new JLabel(game.getQ2Score(), JLabel.CENTER);
-        q2Score.setBounds(0, q2.getY() + q2.getHeight() + 2, generalStats.getWidth(), 25);
         q2Score.setFont(new Font(totScore.getFont().getName(), Font.PLAIN, 15));
 
         JLabel q3 = new JLabel("Q3", JLabel.CENTER);
-        q3.setBounds(0, q2Score.getY() + q2Score.getHeight() + 4, generalStats.getWidth(), 25);
         q3.setFont(new Font(q1.getFont().getName(), Font.BOLD, 20));
 
         JLabel q3Score = new JLabel(game.getQ3Score(), JLabel.CENTER);
-        q3Score.setBounds(0, q3.getY() + q3.getHeight() + 2, generalStats.getWidth(), 25);
         q3Score.setFont(new Font(totScore.getFont().getName(), Font.PLAIN, 15));
 
         JLabel q4 = new JLabel("Q4", JLabel.CENTER);
-        q4.setBounds(0, q3Score.getY() + q3Score.getHeight() + 4, generalStats.getWidth(), 25);
         q4.setFont(new Font(q1.getFont().getName(), Font.BOLD, 20));
 
         JLabel q4Score = new JLabel(game.getQ4Score(), JLabel.CENTER);
-        q4Score.setBounds(0, q4.getY() + q4.getHeight() + 2, generalStats.getWidth(), 25);
         q4Score.setFont(new Font(totScore.getFont().getName(), Font.PLAIN, 15));
 
-        generalStats.add(totScore);
-        generalStats.add(q1);
-        generalStats.add(q2);
-        generalStats.add(q3);
-        generalStats.add(q4);
-        generalStats.add(q1Score);
-        generalStats.add(q2Score);
-        generalStats.add(q3Score);
-        generalStats.add(q4Score);
+        constraints.gridx = 1;
+        generalStats.add(totScore, constraints);
+
+        JPanel scores = new JPanel(new GridLayout(8,1));
+        scores.add(q1);
+        scores.add(q1Score);
+        scores.add(q2);
+        scores.add(q2Score);
+        scores.add(q3);
+        scores.add(q3Score);
+        scores.add(q4);
+        scores.add(q4Score);
+
+        constraints.anchor = GridBagConstraints.PAGE_END;
+        generalStats.add(scores, constraints);
     }
 
+    /**
+     * To fill the panel with the statistics
+     * @param otherStats Panel where the statistics will be displayed
+     */
     private void fillOtherStatsPanel(final JPanel otherStats){
         final JButton visitorButton = new JButton("Visitor");
         final JButton homeButton = new JButton("Home");
 
-        JLabel title = new JLabel("Statistics", JLabel.CENTER);
-        title.setBounds(0, 5, otherStats.getWidth(), 40);
-        title.setFont(new Font(title.getFont().getName(), Font.BOLD, 30));
-        otherStats.add(title);
+        GridBagConstraints otherStatsConstraints = new GridBagConstraints();
+        otherStatsConstraints.gridx = 0;
+        otherStatsConstraints.gridy = 0;
+        otherStatsConstraints.anchor = GridBagConstraints.PAGE_START;
+        otherStatsConstraints.fill = GridBagConstraints.HORIZONTAL;
+        otherStatsConstraints.weighty = 1;
+        otherStatsConstraints.weightx = 1;
 
+        JLabel title = new JLabel("Statistics", JLabel.CENTER);
+        title.setFont(new Font(title.getFont().getName(), Font.BOLD, 30));
+        otherStats.add(title, otherStatsConstraints);
+
+        otherStatsConstraints.gridy = 1;
         final JPanel statsMenu = new JPanel(new GridBagLayout());
-        statsMenu.setBounds(0, title.getY() + title.getHeight(), otherStats.getWidth(), 150);
-        otherStats.add(statsMenu);
-        final GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 0, 0,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(-25,0,0,0), 30, 25);
+        otherStats.add(statsMenu, otherStatsConstraints);
+        final GridBagConstraints statsMenuConstraints = new GridBagConstraints(0, 0, 1, 1, 0, 0,
+                GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0,0,0,0), 30, 25);
 
         JButton players = new JButton("Players");
-        statsMenu.add(players, constraints);
+        statsMenu.add(players, statsMenuConstraints);
+        otherStatsConstraints.gridy = 2;
         players.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if (table != null)
                     otherStats.remove(table);
                 visitorButton.setVisible(true);
                 homeButton.setVisible(true);
-                constraints.gridx = 0;
-                constraints.gridy = 1;
-                constraints.gridheight = 3;
-                constraints.ipadx = 20;
-                constraints.ipady = 15;
-                constraints.anchor = GridBagConstraints.LINE_END;
-                constraints.insets.top = 15;
-                constraints.insets.bottom = 0;
-                statsMenu.add(visitorButton, constraints);
+                statsMenuConstraints.gridx = 0;
+                statsMenuConstraints.gridy = 1;
+                statsMenuConstraints.gridheight = 3;
+                statsMenuConstraints.ipadx = 20;
+                statsMenuConstraints.ipady = 15;
+                statsMenuConstraints.anchor = GridBagConstraints.PAGE_START;
+                statsMenuConstraints.insets.top = 0;
+                statsMenuConstraints.insets.bottom = 0;
+                statsMenu.add(visitorButton, statsMenuConstraints);
 
-                constraints.gridx = 1;
-                constraints.anchor = GridBagConstraints.LINE_START;
-                statsMenu.add(homeButton, constraints);
+                statsMenuConstraints.gridx = 1;
+                statsMenuConstraints.anchor = GridBagConstraints.LINE_START;
+                statsMenu.add(homeButton, statsMenuConstraints);
 
                 visitorButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         if (table != null)
                             otherStats.remove(table);
-                        table = fillPlayerStats(visitor, statsMenu, otherStats);
+                        table = fillPlayerStats(visitor);
+                        otherStats.add(table, otherStatsConstraints);
                         SwingUtilities.updateComponentTreeUI(otherStats);
                     }
                 });
@@ -193,7 +226,8 @@ public class GameView {
                     public void actionPerformed(ActionEvent e) {
                         if (table != null)
                             otherStats.remove(table);
-                        table = fillPlayerStats(home, statsMenu, otherStats);
+                        table = fillPlayerStats(home);
+                        otherStats.add(table, otherStatsConstraints);
                         SwingUtilities.updateComponentTreeUI(otherStats);
                     }
                 });
@@ -201,9 +235,9 @@ public class GameView {
             }
         });
 
-        constraints.gridx = 1;
+        statsMenuConstraints.gridx = 1;
         final JButton teams = new JButton("Teams");
-        statsMenu.add(teams, constraints);
+        statsMenu.add(teams, statsMenuConstraints);
         teams.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 statsMenu.remove(visitorButton);
@@ -212,13 +246,19 @@ public class GameView {
                 homeButton.setVisible(false);
                 if (table != null)
                     otherStats.remove(table);
-                table = fillTeamsStats(statsMenu, otherStats);
+                table = fillTeamsStats();
+                otherStats.add(table, otherStatsConstraints);
                 SwingUtilities.updateComponentTreeUI(otherStats);
             }
         });
     }
 
-    private JScrollPane fillPlayerStats(TeamModel team, JPanel statsMenu, JPanel otherStats){
+    /**
+     * To fill the players's statistics of a team
+     * @param team Team of the players
+     * @return ScrollPane where the statistics are
+     */
+    private JScrollPane fillPlayerStats(TeamModel team){
         String[] columnsName = {"Player", "Min", "Points", "Rebounds", "Assists", "FG",
                 "3pt", "FT", "Steals", "Blocks", "TO"};
 
@@ -254,18 +294,20 @@ public class GameView {
         stats.getColumnModel().getColumn(9).setPreferredWidth(20);
         stats.getColumnModel().getColumn(10).setPreferredWidth(20);
 
-        // Set horizontal alignement to center for every cell
+        // Set horizontal alignment to center for every cell
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment( JLabel.CENTER );
         stats.setDefaultRenderer(Object.class, centerRenderer);
 
         JScrollPane scrollPane = new JScrollPane(stats);
-        scrollPane.setBounds(0, statsMenu.getY() + statsMenu.getHeight(), otherStats.getWidth(), otherStats.getHeight() - (statsMenu.getY() + statsMenu.getHeight()));
-        otherStats.add(scrollPane);
         return scrollPane;
     }
 
-    private JScrollPane fillTeamsStats(JPanel statsMenu, JPanel otherStats){
+    /**
+     * To fill the teams statistics of the game
+     * @return ScrollPane where the statistics are
+     */
+    private JScrollPane fillTeamsStats(){
         String[] columnsName = {"Team", "Points", "Rebounds", "Assists", "%Field Goal", "%3pt", "FT", "Steals", "Blocks", "Turnovers"};
 
         Object[][] data = new Object[2][10];
@@ -315,8 +357,6 @@ public class GameView {
         stats.setDefaultRenderer(Object.class, centerRenderer);
 
         JScrollPane scrollPane = new JScrollPane(stats);
-        scrollPane.setBounds(0, statsMenu.getY() + statsMenu.getHeight(), otherStats.getWidth(), otherStats.getHeight() - (statsMenu.getY() + statsMenu.getHeight()));
-        otherStats.add(scrollPane);
         return scrollPane;
     }
 }

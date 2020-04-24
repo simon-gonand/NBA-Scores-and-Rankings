@@ -18,6 +18,9 @@ import java.awt.font.TextAttribute;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * View which display the information and the statistics of a team
+ */
 public class TeamView {
     private JPanel panel;
     private TeamModel team;
@@ -25,6 +28,14 @@ public class TeamView {
     private TreeSeasonInfo info;
     private TreeGames games;
 
+    /**
+     * Constructor which initialize the data members and create two panels one to displayed general information
+     * and the other to display the statistics
+     * @param panel Panel where the view will be displayed
+     * @param team TeamModel of the team which will be displayed
+     * @param info Tree which contains general information of the current season
+     * @param games Tree which contains all games of the season
+     */
     public TeamView(JPanel panel, TeamModel team, TreeSeasonInfo info, TreeGames games){
         this.panel = panel;
         this.team = team;
@@ -32,7 +43,8 @@ public class TeamView {
         this.teamController = new TeamController(team, this.games);
         this.info = info;
 
-        panel.removeAll();
+        this.panel.removeAll();
+        this.panel.setLayout(null);
 
         JPanel generalInfos = new JPanel();
         JPanel otherStats = new JPanel();
@@ -52,6 +64,10 @@ public class TeamView {
         panel.add(otherStats);
     }
 
+    /**
+     * To display the general information of the team
+     * @param generalInfos Panel where the general information will be displayed
+     */
     private void fillGeneralInfos(JPanel generalInfos){
         GridBagConstraints constraints = new GridBagConstraints(0, 0, 4, 1, 1, 1,
                 GridBagConstraints.PAGE_START, GridBagConstraints.HORIZONTAL, new Insets(0,0,0,0), 0, 10);
@@ -118,6 +134,10 @@ public class TeamView {
         generalInfos.add(conference, constraints);
     }
 
+    /**
+     * To display the players of the team
+     * @param otherStats Panel where the players will be displayed
+     */
     private void fillPlayers(JPanel otherStats){
         List<PlayerModel> players = info.getPlayersByTeam(team);
         Object[][] data = new Object[players.size()][3];
@@ -251,7 +271,7 @@ public class TeamView {
 
             @Override
             public void mouseMoved(MouseEvent e) {
-                int c = playersTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the colomn of the button
+                int c = playersTable.getColumnModel().getColumnIndexAtX(e.getX()); // get the column of the button
                 int r    = e.getY()/playersTable.getRowHeight(); //get the row of the button
                 if (c != column || r != row){
                     if (row < playersTable.getRowCount() && row >= 0 && column < playersTable.getColumnCount() && column >= 0) {
@@ -299,6 +319,10 @@ public class TeamView {
         otherStats.add(scrollPane, constraints);
     }
 
+    /**
+     * To fill the statistics of the team
+     * @param otherStats Panel where the statistics will be displayed
+     */
     private void fillTeamSeasonStats(JPanel otherStats){
         String[] columnsName= {"Stats", "Values"};
         Map<String, String> teamSeasonStats = teamController.calculateTeamSeasonStats();
@@ -334,7 +358,7 @@ public class TeamView {
         });
 
         GridBagConstraints constraints = new GridBagConstraints(1, 0, 1, 1, 1, 1,
-                GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(60,180,0,0), 0, 0);
+                GridBagConstraints.CENTER, GridBagConstraints.VERTICAL, new Insets(60,0,0,0), 0, 0);
 
         JScrollPane scrollPane = new JScrollPane(tableStats);
         scrollPane.setBorder(BorderFactory.createEmptyBorder());

@@ -20,6 +20,9 @@ import java.awt.font.TextAttribute;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * View that displayed the rankings of the conferences
+ */
 public class RankingsView {
     private JPanel panel;
     private TreeSeasonInfo info;
@@ -28,9 +31,14 @@ public class RankingsView {
     private ArrayList<TeamModel> ranking;
     private JScrollPane rankingPane;
 
+    /**
+     * Constructor which intialize the data members
+     * @param panel Panel where the rankings will be displayed
+     */
     public RankingsView(JPanel panel){
         this.panel = panel;
-        panel.removeAll();
+        this.panel.removeAll();
+        this.panel.setLayout(null);
 
         Parser parser = new Parser("src/main/resources/Season_19_20.xml");
         this.info = parser.getTreeSeason();
@@ -59,7 +67,7 @@ public class RankingsView {
                 ranking = rankingController.sortRanking((Conference) conferenceChoice.getSelectedItem());
                 constraints.gridy = 2;
 
-                rankingPane = fillRankingPanel(rankingPane, ranking, constraints);
+                rankingPane = fillRankingPanel(rankingPane, ranking);
                 rankingPanel.add(rankingPane, constraints);
                 SwingUtilities.updateComponentTreeUI(rankingPanel);
             }
@@ -72,7 +80,13 @@ public class RankingsView {
         conferenceChoice.setSelectedItem(info.getConferences().get(0));
     }
 
-    private JScrollPane fillRankingPanel(JScrollPane rankingPane, ArrayList<TeamModel> sortTeamRanking, GridBagConstraints constraints){
+    /**
+     * To fill the ranking table of a conference
+     * @param rankingPane Scroll pane where the ranking will be displayed
+     * @param sortTeamRanking list of the teams already sorted
+     * @return
+     */
+    private JScrollPane fillRankingPanel(JScrollPane rankingPane, ArrayList<TeamModel> sortTeamRanking){
         rankingPane.removeAll();
         Object[][] data = new Object[sortTeamRanking.size()][3];
         for (int i = 0; i < sortTeamRanking.size(); ++i){

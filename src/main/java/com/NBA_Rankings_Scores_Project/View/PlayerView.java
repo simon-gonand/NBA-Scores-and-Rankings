@@ -11,18 +11,29 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.Map;
 
+/**
+ * View that display the information and the statistics of a player
+ */
 public class PlayerView {
     private JPanel panel;
     private PlayerModel player;
     private TreeSeasonInfo info;
     private TreeGames games;
 
+    /**
+     * Constructor that initialize the data members
+     * @param panel Panel where the information and the statistics will be displayed
+     * @param player PlayerModel of the player which will be displayed
+     * @param info Tree with all the information of the current season
+     * @param games Tree with all the games of the current season
+     */
     public PlayerView(JPanel panel, PlayerModel player, TreeSeasonInfo info, TreeGames games){
         this.panel = panel;
         this.player = player;
         this.info = info;
         this.games = games;
-        panel.removeAll();
+        this.panel.removeAll();
+        this.panel.setLayout(null);
 
         JPanel generalInfos = new JPanel(new GridBagLayout());
         JPanel otherStats = new JPanel(new GridBagLayout());
@@ -38,6 +49,10 @@ public class PlayerView {
         panel.add(otherStats);
     }
 
+    /**
+     * fill the general infos of the player
+     * @param generalInfos Panel where the information will be displayed
+     */
     private void fillGeneralInfos(JPanel generalInfos){
         GridBagConstraints constraints = new GridBagConstraints(0, 0, 1, 1, 1, 1,
                 GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0,0,0,0), 0, 0);
@@ -110,6 +125,10 @@ public class PlayerView {
         generalInfos.add(nationality, constraints);
     }
 
+    /**
+     * To fill the statistics of the player
+     * @param otherStats Panel where the statistics will be displayed
+     */
     private void fillStats(JPanel otherStats){
         String[] columnNames = {"Stats", "Values"};
         PlayerController playerController = new PlayerController(player, info, games);
